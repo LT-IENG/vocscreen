@@ -55,6 +55,7 @@ interface UIState {
   subtitleFontSize: 's' | 'm' | 'l'
   asrProvider: AsrProvider
   translationProvider: TranslationProvider
+  authModal: boolean
 
   setMode: (mode: InteractionMode) => void
   toggleMode: () => void
@@ -75,6 +76,8 @@ interface UIState {
   setTheme: (theme: 'dark' | 'light') => void
   setAsrProvider: (provider: AsrProvider) => void
   setTranslationProvider: (provider: TranslationProvider) => void
+  openAuthModal: () => void
+  closeAuthModal: () => void
 }
 
 const LS_KEY = 'vocScreenV2Prefs'
@@ -108,6 +111,7 @@ export const useUIStore = create<UIState>((set) => ({
   subtitleFontSize: prefs.subtitleFontSize ?? 'm',
   asrProvider: prefs.asrProvider ?? 'auto',
   translationProvider: prefs.translationProvider ?? 'auto',
+  authModal: false,
 
   setMode: (mode) => set({ interactionMode: mode }),
   toggleMode: () =>
@@ -164,4 +168,7 @@ export const useUIStore = create<UIState>((set) => ({
     set({ translationProvider: provider })
     savePrefs({ translationProvider: provider })
   },
+
+  openAuthModal: () => set({ authModal: true }),
+  closeAuthModal: () => set({ authModal: false }),
 }))

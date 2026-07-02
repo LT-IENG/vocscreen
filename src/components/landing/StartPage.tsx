@@ -2,11 +2,14 @@ import { useRef, useEffect, useState } from 'react'
 import { motion, useReducedMotion } from 'motion/react'
 import { Plasma } from './Plasma'
 import { useUIStore } from '../../stores/useUIStore'
+import { useAuthStore } from '../../stores/useAuthStore'
 
 export function StartPage() {
   const setAppScreen = useUIStore((s) => s.setAppScreen)
   const theme = useUIStore((s) => s.theme)
   const setTheme = useUIStore((s) => s.setTheme)
+  const openAuthModal = useUIStore((s) => s.openAuthModal)
+  const username = useAuthStore((s) => s.username)
   const enterWordBook = () => setAppScreen('wordbook-select')
   const reduceMotion = useReducedMotion()
 
@@ -80,6 +83,16 @@ export function StartPage() {
             </span>
           </motion.div>
           <div className="flex items-center gap-2">
+            <motion.button
+              onClick={openAuthModal}
+              {...slideDown(0.35)}
+              whileHover={reduceMotion ? {} : { scale: 1.05 }}
+              whileTap={reduceMotion ? {} : { scale: 0.95 }}
+              className="px-3 h-8 flex items-center justify-center rounded-lg bg-transparent border border-surface-border/40 text-[clamp(0.625rem,0.7vw,0.75rem)] text-ink-dim hover:border-purple/30 hover:bg-surface-1/50 transition-colors"
+              title={username ? `已登录: ${username}` : '登录 / 注册'}
+            >
+              {username ? `👤 ${username}` : '登录'}
+            </motion.button>
             <motion.button
               onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
               {...slideDown(0.38)}

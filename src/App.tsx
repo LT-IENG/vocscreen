@@ -11,18 +11,21 @@ import { LearningModal } from './components/vocab/LearningModal'
 import { DashboardPanel } from './components/vocab/DashboardPanel'
 import { ProfilePanel } from './components/vocab/ProfilePanel'
 import { StatsPanel } from './components/stats/StatsPanel'
-import { MemorizeScreen } from './components/memorize/MemorizeScreen'
 import { SubtitleSourceModal } from './components/player/SubtitleSourceModal'
+import { AuthModal } from './components/auth/AuthModal'
+import { MemorizeScreen } from './components/memorize/MemorizeScreen'
 import { usePlayerStore } from './stores/usePlayerStore'
 import { useVocabStore } from './stores/useVocabStore'
 import { useReviewStore } from './stores/useReviewStore'
 import { useUIStore } from './stores/useUIStore'
+import { useAuthStore } from './stores/useAuthStore'
 import { useSubtitleStore } from './stores/useSubtitleStore'
 import { useKeyboardShortcuts } from './hooks/useKeyboardShortcuts'
 import { useDemoTimeline } from './hooks/useDemoTimeline'
 import { useVideoEndDetection } from './hooks/useVideoEndDetection'
 import { ErrorBoundary } from './components/ErrorBoundary'
 import { Toaster } from './components/ui/Toast'
+import { pullCloudToLocal, pushLocalToCloud } from './lib/sync'
 import type { WordBook } from './types'
 
 function MainApp() {
@@ -70,6 +73,7 @@ function MainApp() {
       <DashboardPanel />
       <ProfilePanel />
       <StatsPanel />
+      <AuthModal />
 
       {subtitleSourceModal && (
         <SubtitleSourceModal
@@ -103,6 +107,32 @@ export default function App() {
     loadNotebooks()
     loadPersistedSchedules().then(() => getDueWords())
 
+    // Init auth + sync on login
+    const { init: initAuth } = useAuthStore.getState()
+    initAuth().then(async () => {
+      const { user } = useAuthStore.getState()
+      if (user) {
+        // Logged in: pull cloud data, merge with local, then push
+        await pullCloudToLocal(user.id)
+        await loadPersistedWords()
+        await loadNotebooks()
+        await loadPersistedSchedules().then(() => getDueWords())
+        await pushLocalToCloud(user.id)
+      }
+    })
+
+    // Watch for login/logout to trigger sync
+    const unsub = useAuthStore.subscribe(async (state, prev) => {
+      if (!prev.user && state.user) {
+        // Just logged in
+        await pullCloudToLocal(state.user.id)
+        await useVocabStore.getState().loadPersistedWords()
+        await useVocabStore.getState().loadNotebooks()
+        await useReviewStore.getState().loadPersistedSchedules().then(() => useReviewStore.getState().getDueWords())
+        await pushLocalToCloud(state.user.id)
+      }
+    })
+
     // Load default CET6 wordbook
     if (!loadedBooks.has('cet6')) {
       fetch('/wordbooks/cet6.json')
@@ -115,6 +145,8 @@ export default function App() {
         })
         .catch(() => {})
     }
+
+    return () => unsub()
   }, [])
 
   switch (appScreen) {
