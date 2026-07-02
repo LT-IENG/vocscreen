@@ -73,11 +73,13 @@ interface VocabState {
   setActiveBook: (bookId: WordBookId) => void
   lookupWord: (rawWord: string) => { spelling: string; lemma: string; phonetics: string; definition: string; level: string; senses?: DictSense[] } | undefined
   getDefinition: (lemma: string) => WordEntry | undefined
-  captureWord: (word: string, lemma: string, source: SourceContext, notebookId?: string) => Promise<void>
+  captureWord: (word: string, lemma: string, source: SourceContext, notebookId?: string) => Promise<string | null>
   removeCapturedWord: (wordId: string) => Promise<void>
   getCapturedWordsForVideo: (videoId: string) => CapturedWord[]
   getNewCapturedWords: () => CapturedWord[]
   markWordAsLearned: (wordId: string) => Promise<void>
+  markWordAsFuzzy: (wordId: string) => Promise<void>
+  markWordAsMastered: (wordId: string) => Promise<void>
   loadPersistedWords: () => Promise<void>
   loadNotebooks: () => Promise<void>
   createNotebook: (name: string) => Promise<Notebook>
@@ -172,10 +174,12 @@ export const useVocabStore = create<VocabState>((set, get) => ({
   captureWord: async (word, lemma, source, notebookId) => {
     const state = get()
     const targetNotebookId = notebookId || state.defaultNotebookId
+    const lowerLemma = lemma.toLowerCase()
+    // Dedup case-insensitively across all sources (same word shouldn't be captured twice)
     const exists = state.capturedWords.find(
-      (w) => w.lemma === lemma && w.source.videoId === source.videoId
+      (w) => w.lemma.toLowerCase() === lowerLemma
     )
-    if (exists) return
+    if (exists) return exists.id
 
     const id = crypto.randomUUID()
     const entry = state.lookupWord(lemma)
@@ -200,6 +204,7 @@ export const useVocabStore = create<VocabState>((set, get) => ({
       capturedAt: captured.capturedAt,
       notebookId: captured.notebookId,
     })
+    return id
   },
 
   removeCapturedWord: async (wordId) => {
@@ -219,6 +224,24 @@ export const useVocabStore = create<VocabState>((set, get) => ({
       ),
     }))
     await db.capturedWords.update(wordId, { status: 'learning', learnedAt: Date.now() })
+  },
+
+  markWordAsFuzzy: async (wordId) => {
+    set((s) => ({
+      capturedWords: s.capturedWords.map((w) =>
+        w.id === wordId ? { ...w, status: 'fuzzy' as const } : w
+      ),
+    }))
+    await db.capturedWords.update(wordId, { status: 'fuzzy' })
+  },
+
+  markWordAsMastered: async (wordId) => {
+    set((s) => ({
+      capturedWords: s.capturedWords.map((w) =>
+        w.id === wordId ? { ...w, status: 'mastered' as const, learnedAt: Date.now() } : w
+      ),
+    }))
+    await db.capturedWords.update(wordId, { status: 'mastered', learnedAt: Date.now() })
   },
 
   loadPersistedWords: async () => {

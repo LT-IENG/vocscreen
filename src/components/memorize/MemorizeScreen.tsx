@@ -1,14 +1,15 @@
-import { useState, useCallback, useMemo, useEffect } from 'react'
+import { useState, useCallback, useMemo, useEffect, useRef } from 'react'
 import { useUIStore } from '../../stores/useUIStore'
 import { useVocabStore } from '../../stores/useVocabStore'
 import { useSubtitleStore } from '../../stores/useSubtitleStore'
 import { useReviewStore } from '../../stores/useReviewStore'
 import { MemorizeCardView } from './MemorizeCardView'
+import { Modal } from '../ui/Modal'
 import type { MasteryResult, WordBookId } from '../../types'
 import type { DictSense } from '../../stores/useUIStore'
 import {
   ArrowLeft, GraduationCap, Check, X, Repeat, VideoCamera,
-  BookOpen, Notebook, Lightning, Clock, Sparkle,
+  BookOpen, Notebook, Lightning, Clock, Sparkle, Warning,
 } from '@phosphor-icons/react'
 import './MemorizeScreen.css'
 
@@ -50,6 +51,9 @@ export function MemorizeScreen() {
   const loadedBooks = useVocabStore((s) => s.loadedBooks)
   const capturedWords = useVocabStore((s) => s.capturedWords)
   const captureWord = useVocabStore((s) => s.captureWord)
+  const markWordAsLearned = useVocabStore((s) => s.markWordAsLearned)
+  const markWordAsFuzzy = useVocabStore((s) => s.markWordAsFuzzy)
+  const markWordAsMastered = useVocabStore((s) => s.markWordAsMastered)
   const segments = useSubtitleStore((s) => s.segments)
   const matchSummary = useSubtitleStore((s) => s.matchSummary)
 
@@ -66,6 +70,9 @@ export function MemorizeScreen() {
   const [queue, setQueue] = useState<MemorizeItem[]>([])
   const [currentIndex, setCurrentIndex] = useState(0)
   const [assessments, setAssessments] = useState<AssessmentRecord[]>([])
+  const [isAssessing, setIsAssessing] = useState(false)
+  const [showExitConfirm, setShowExitConfirm] = useState(false)
+  const initialQueueLengthRef = useRef(0)
 
   // Refresh due words when entering screen
   useEffect(() => {
@@ -201,6 +208,7 @@ export function MemorizeScreen() {
     const items = buildLearnItems()
     if (items.length === 0) return
     setQueue(items)
+    initialQueueLengthRef.current = items.length
     setCurrentIndex(0)
     setAssessments([])
     setMode('learn')
@@ -211,68 +219,106 @@ export function MemorizeScreen() {
     const items = buildReviewItems()
     if (items.length === 0) return
     setQueue(items)
+    initialQueueLengthRef.current = items.length
     setCurrentIndex(0)
     setAssessments([])
     setMode('review')
     setPhase('learning')
   }, [buildReviewItems])
 
+  // Fix #1: Use useEffect to handle empty item instead of setState during render
+  useEffect(() => {
+    if (phase === 'learning' && queue.length > 0 && currentIndex >= queue.length) {
+      setPhase('results')
+    }
+  }, [phase, queue.length, currentIndex])
+
   const handleAssess = useCallback(async (result: MasteryResult) => {
     const item = queue[currentIndex]
-    if (!item) return
+    if (!item || isAssessing) return
+    setIsAssessing(true)
 
     setAssessments(prev => [...prev, { item, result }])
 
-    // In review mode, record to review store
-    if (mode === 'review' && item.capturedWordId) {
-      await recordReview(item.capturedWordId, result)
-    } else if (mode === 'learn') {
-      // In learn mode, ensure the word is captured and has a schedule
-      let capturedId = item.capturedWordId
-      if (!capturedId) {
-        // Try to find existing captured word by lemma
-        const existing = capturedWords.find(w => w.lemma.toLowerCase() === item.lemma.toLowerCase())
-        if (existing) {
-          capturedId = existing.id
-        } else {
-          // Capture the word with a minimal source context
-          const sourceCtx = {
-            videoId: 'memorize-learn',
-            subtitleSegmentId: '',
-            timestamp: Date.now() / 1000,
-            sentenceEn: item.exampleSentence ?? '',
-            sentenceZh: item.exampleTranslation ?? '',
-            videoClipStart: 0,
+    try {
+      // In review mode, record to review store
+      if (mode === 'review' && item.capturedWordId) {
+        await recordReview(item.capturedWordId, result)
+        // Update capturedWord status based on result
+        const updatedSched = useReviewStore.getState().schedules.get(item.capturedWordId)
+        if (updatedSched?.status === 'mastered') {
+          await markWordAsMastered(item.capturedWordId)
+        } else if (result === 'known') {
+          await markWordAsLearned(item.capturedWordId)
+        } else if (result === 'fuzzy') {
+          await markWordAsFuzzy(item.capturedWordId)
+        }
+      } else if (mode === 'learn') {
+        // In learn mode, ensure the word is captured and has a schedule
+        let capturedId = item.capturedWordId
+        if (!capturedId) {
+          // Try to find existing captured word by lemma (case-insensitive)
+          const existing = capturedWords.find(w => w.lemma.toLowerCase() === item.lemma.toLowerCase())
+          if (existing) {
+            capturedId = existing.id
+          } else {
+            // Capture the word with a minimal source context
+            const sourceCtx = {
+              videoId: 'memorize-learn',
+              subtitleSegmentId: '',
+              timestamp: Date.now() / 1000,
+              sentenceEn: item.exampleSentence ?? '',
+              sentenceZh: item.exampleTranslation ?? '',
+              videoClipStart: 0,
+            }
+            // Fix #2: captureWord now returns the id directly
+            const newId = await captureWord(item.spelling, item.lemma, sourceCtx)
+            capturedId = newId ?? undefined
           }
-          await captureWord(item.spelling, item.lemma, sourceCtx)
-          // Get the newly captured word's id
-          const state = useVocabStore.getState()
-          const newlyCaptured = state.capturedWords.find(
-            w => w.lemma.toLowerCase() === item.lemma.toLowerCase() && w.source.videoId === 'memorize-learn'
-          )
-          capturedId = newlyCaptured?.id
+        }
+
+        if (capturedId) {
+          if (!schedules.has(capturedId)) {
+            // First time: initialize schedule
+            await initializeSchedule(capturedId, result)
+            // Update status: known → learning, fuzzy/unknown → keep new
+            if (result === 'known') {
+              await markWordAsLearned(capturedId)
+            } else if (result === 'fuzzy') {
+              await markWordAsFuzzy(capturedId)
+            }
+          } else {
+            // Fix #3: Retry — schedule already exists, record review to update curve
+            await recordReview(capturedId, result)
+            const updatedSched = useReviewStore.getState().schedules.get(capturedId)
+            if (updatedSched?.status === 'mastered') {
+              await markWordAsMastered(capturedId)
+            } else if (result === 'known') {
+              await markWordAsLearned(capturedId)
+            } else if (result === 'fuzzy') {
+              await markWordAsFuzzy(capturedId)
+            }
+          }
         }
       }
-      // Initialize review schedule (if not already exists)
-      if (capturedId && !schedules.has(capturedId)) {
-        await initializeSchedule(capturedId, result)
+
+      // If unknown/fuzzy in learn mode, re-queue at end
+      let newQueue = queue
+      if (mode === 'learn' && (result === 'unknown' || result === 'fuzzy')) {
+        newQueue = [...queue, item]
+        setQueue(newQueue)
       }
-    }
 
-    // If unknown/fuzzy in learn mode, re-queue at end
-    let newQueue = queue
-    if (mode === 'learn' && (result === 'unknown' || result === 'fuzzy')) {
-      newQueue = [...queue, item]
-      setQueue(newQueue)
+      // Advance
+      if (currentIndex < newQueue.length - 1) {
+        setCurrentIndex(i => i + 1)
+      } else {
+        setPhase('results')
+      }
+    } finally {
+      setIsAssessing(false)
     }
-
-    // Advance
-    if (currentIndex < newQueue.length - 1) {
-      setCurrentIndex(i => i + 1)
-    } else {
-      setPhase('results')
-    }
-  }, [queue, currentIndex, mode, capturedWords, captureWord, schedules, initializeSchedule, recordReview])
+  }, [queue, currentIndex, mode, isAssessing, capturedWords, captureWord, schedules, initializeSchedule, recordReview, markWordAsLearned, markWordAsFuzzy, markWordAsMastered])
 
   const handleRetryUnknown = useCallback(() => {
     const unknownItems = assessments
@@ -304,12 +350,12 @@ export function MemorizeScreen() {
     getDueWords()
   }, [getDueWords])
 
-  // Stats during learning
-  const totalInRound = queue.length
+  // Stats during learning — use fixed initial length for progress (#12)
+  const totalInRound = initialQueueLengthRef.current || queue.length
   const knownCount = assessments.filter(a => a.result === 'known').length
   const fuzzyCount = assessments.filter(a => a.result === 'fuzzy').length
   const unknownCount = assessments.filter(a => a.result === 'unknown').length
-  const progress = totalInRound > 0 ? (assessments.length / totalInRound) * 100 : 0
+  const progress = totalInRound > 0 ? Math.min(100, (assessments.length / totalInRound) * 100) : 0
 
   // Mastered count (for home screen stats)
   const masteredCount = useMemo(() => {
@@ -514,10 +560,8 @@ export function MemorizeScreen() {
   if (phase === 'learning') {
     const item = queue[currentIndex]
 
-    if (!item) {
-      setPhase('results')
-      return null
-    }
+    // Fix #1: No setState during render — useEffect above handles phase transition
+    if (!item) return null
 
     const modeLabel = mode === 'learn' ? 'Learn' : 'Review'
     const ModeIcon = mode === 'learn' ? Lightning : Clock
@@ -527,9 +571,7 @@ export function MemorizeScreen() {
       <div className="w-full h-dvh bg-surface-0 flex flex-col">
         <div className="flex items-center gap-3 px-5 py-4 border-b border-surface-border">
           <button
-            onClick={() => {
-              if (confirm('确定退出？进度不会保存。')) handleBack()
-            }}
+            onClick={() => setShowExitConfirm(true)}
             className="p-1.5 rounded-md text-ink-muted hover:text-ink hover:bg-surface-2 transition-colors"
           >
             <ArrowLeft size={18} weight="bold" />
@@ -560,8 +602,36 @@ export function MemorizeScreen() {
             total={totalInRound}
             onAssess={handleAssess}
             mode={mode}
+            disabled={isAssessing}
           />
         </div>
+
+        {/* Exit confirm modal (#15) */}
+        <Modal isOpen={showExitConfirm} onClose={() => setShowExitConfirm(false)}>
+          <div className="w-[340px] max-w-[90vw] p-5 text-center space-y-4">
+            <div className="w-12 h-12 mx-auto rounded-full bg-amber-500/15 flex items-center justify-center">
+              <Warning size={24} className="text-amber-400" weight="bold" />
+            </div>
+            <div className="space-y-1">
+              <h3 className="text-base font-semibold text-ink">确定退出？</h3>
+              <p className="text-xs text-ink-muted">本轮学习进度不会保存到复习曲线</p>
+            </div>
+            <div className="flex gap-2 pt-2">
+              <button
+                onClick={() => setShowExitConfirm(false)}
+                className="flex-1 py-2 rounded-lg bg-surface-2 text-sm text-ink-dim hover:text-ink hover:bg-surface-3 transition-colors"
+              >
+                继续学习
+              </button>
+              <button
+                onClick={() => { setShowExitConfirm(false); handleBack() }}
+                className="flex-1 py-2 rounded-lg bg-accent-rose text-white text-sm font-medium hover:bg-accent-rose/90 transition-colors"
+              >
+                退出
+              </button>
+            </div>
+          </div>
+        </Modal>
       </div>
     )
   }

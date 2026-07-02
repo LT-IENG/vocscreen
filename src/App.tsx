@@ -28,43 +28,13 @@ import type { WordBook } from './types'
 function MainApp() {
   const hasVideo = usePlayerStore((s) => s.hasVideo)
   const isPlaying = usePlayerStore((s) => s.isPlaying)
-  const loadPersistedWords = useVocabStore((s) => s.loadPersistedWords)
-  const loadNotebooks = useVocabStore((s) => s.loadNotebooks)
-  const loadBook = useVocabStore((s) => s.loadBook)
-  const loadPersistedSchedules = useReviewStore((s) => s.loadPersistedSchedules)
-  const getDueWords = useReviewStore((s) => s.getDueWords)
   const definitionCard = useUIStore((s) => s.definitionCard)
   const subtitleSourceModal = useUIStore((s) => s.subtitleSourceModal)
   const closeSubtitleSourceModal = useUIStore((s) => s.closeSubtitleSourceModal)
 
-  const initialized = useRef(false)
-
   useKeyboardShortcuts()
   useDemoTimeline()
   useVideoEndDetection()
-
-  useEffect(() => {
-    if (initialized.current) return
-    initialized.current = true
-
-    loadPersistedWords()
-    loadNotebooks()
-    loadPersistedSchedules().then(() => getDueWords())
-
-    // Load default CET6 wordbook
-    const state = useVocabStore.getState()
-    if (!state.loadedBooks.has('cet6')) {
-      fetch('/wordbooks/cet6.json')
-        .then((r) => r.json())
-        .then((book: WordBook) => {
-          loadBook(book)
-          if (!useUIStore.getState().selectedWordBookId) {
-            useUIStore.getState().setSelectedWordBookId(book.id)
-          }
-        })
-        .catch(() => {})
-    }
-  }, [])
 
   return (
     <div className="relative w-full h-dvh bg-surface-0 overflow-hidden select-none">
@@ -119,6 +89,33 @@ function MainApp() {
 
 export default function App() {
   const appScreen = useUIStore((s) => s.appScreen)
+  const initialized = useRef(false)
+
+  // Fix #11: Init at top level so it doesn't re-run when switching screens
+  useEffect(() => {
+    if (initialized.current) return
+    initialized.current = true
+
+    const { loadPersistedWords, loadNotebooks, loadBook, loadedBooks } = useVocabStore.getState()
+    const { loadPersistedSchedules, getDueWords } = useReviewStore.getState()
+
+    loadPersistedWords()
+    loadNotebooks()
+    loadPersistedSchedules().then(() => getDueWords())
+
+    // Load default CET6 wordbook
+    if (!loadedBooks.has('cet6')) {
+      fetch('/wordbooks/cet6.json')
+        .then((r) => r.json())
+        .then((book: WordBook) => {
+          loadBook(book)
+          if (!useUIStore.getState().selectedWordBookId) {
+            useUIStore.getState().setSelectedWordBookId(book.id)
+          }
+        })
+        .catch(() => {})
+    }
+  }, [])
 
   switch (appScreen) {
     case 'landing':

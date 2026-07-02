@@ -68,6 +68,11 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
   },
 
   loadVideoUrl: (url, title, videoId) => {
+    // Revoke previous blob URL if it was a local file (not a remote URL)
+    const oldUrl = get().videoBlobUrl
+    if (oldUrl && oldUrl.startsWith('blob:')) {
+      URL.revokeObjectURL(oldUrl)
+    }
     set({
       videoBlobUrl: url,
       videoTitle: title,

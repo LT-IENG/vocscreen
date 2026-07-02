@@ -172,6 +172,7 @@ export class SubtitleRenderer {
     }, 0)
     let x = cx - totalW / 2
 
+    let wordIndex = 0
     for (const token of tokens) {
       const tw = ctx.measureText(token).width
       if (/^\s+$/.test(token)) {
@@ -188,12 +189,14 @@ export class SubtitleRenderer {
       ctx.fillStyle = highlighted ? purple : textColor
       ctx.fillText(token, x, cy)
 
-      this.hitMap.set(`${clean}${NULL_SEP}${clean}${NULL_SEP}${segId}`, {
+      // Fix #9: Include wordIndex in key so duplicate words in same segment don't overwrite
+      this.hitMap.set(`${clean}${NULL_SEP}${clean}${NULL_SEP}${segId}${NULL_SEP}${wordIndex}`, {
         x,
         y: cy - lineH / 2,
         w: tw,
         h: lineH,
       })
+      wordIndex++
       x += tw
     }
   }
@@ -207,7 +210,36 @@ function measureLine(ctx: CanvasRenderingContext2D, line: string, wordSpacing: n
   }, 0)
 }
 
+function isCJK(ch: string): boolean {
+  const code = ch.charCodeAt(0)
+  return (code >= 0x4e00 && code <= 0x9fff) || (code >= 0x3400 && code <= 0x4dbf) ||
+         (code >= 0x3000 && code <= 0x303f) || (code >= 0xff00 && code <= 0xffef)
+}
+
 function wrapText(ctx: CanvasRenderingContext2D, text: string, maxWidth: number, wordSpacing: number): string[] {
+  // For CJK-heavy text (Chinese), split into individual characters for per-char wrapping
+  const hasCJK = [...text].some(isCJK)
+  if (hasCJK) {
+    const chars = [...text]
+    const lines: string[] = []
+    let current = ''
+    let currentW = 0
+    for (const ch of chars) {
+      const cw = ctx.measureText(ch).width
+      if (currentW + cw > maxWidth && current.length > 0) {
+        lines.push(current)
+        current = ch
+        currentW = cw
+      } else {
+        current += ch
+        currentW += cw
+      }
+    }
+    if (current) lines.push(current)
+    return lines.length > 0 ? lines : [text]
+  }
+
+  // Latin text: word-based wrapping
   const tokens = text.split(/(\s+)/)
   const lines: string[] = []
   let current = ''

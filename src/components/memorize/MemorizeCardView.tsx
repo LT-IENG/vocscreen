@@ -9,19 +9,22 @@ interface Props {
   total: number
   onAssess: (result: MasteryResult) => void
   mode?: 'learn' | 'review'
+  disabled?: boolean
 }
 
-export function MemorizeCardView({ item, index, total, onAssess, mode = 'learn' }: Props) {
+export function MemorizeCardView({ item, index, total, onAssess, mode = 'learn', disabled = false }: Props) {
   const [flipped, setFlipped] = useState(false)
 
   const handleFlip = useCallback(() => {
+    if (disabled) return
     setFlipped(f => !f)
-  }, [])
+  }, [disabled])
 
   const handleAssess = useCallback((result: MasteryResult) => {
+    if (disabled) return
     onAssess(result)
     setFlipped(false)
-  }, [onAssess])
+  }, [onAssess, disabled])
 
   const levelLabel = (lvl?: string) => {
     if (!lvl) return ''
@@ -101,19 +104,22 @@ export function MemorizeCardView({ item, index, total, onAssess, mode = 'learn' 
         <div className="flex gap-2">
           <button
             onClick={() => handleAssess('unknown')}
-            className="px-5 py-2 rounded-lg text-sm font-medium bg-accent-rose/15 text-accent-rose border border-accent-rose/25 hover:bg-accent-rose/25 transition-colors"
+            disabled={disabled}
+            className="px-5 py-2 rounded-lg text-sm font-medium bg-accent-rose/15 text-accent-rose border border-accent-rose/25 hover:bg-accent-rose/25 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
           >
             不认识
           </button>
           <button
             onClick={() => handleAssess('fuzzy')}
-            className="px-5 py-2 rounded-lg text-sm font-medium bg-amber-500/15 text-amber-400 border border-amber-500/25 hover:bg-amber-500/25 transition-colors"
+            disabled={disabled}
+            className="px-5 py-2 rounded-lg text-sm font-medium bg-amber-500/15 text-amber-400 border border-amber-500/25 hover:bg-amber-500/25 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
           >
             模糊
           </button>
           <button
             onClick={() => handleAssess('known')}
-            className="px-5 py-2 rounded-lg text-sm font-medium bg-accent-green/15 text-accent-green border border-accent-green/25 hover:bg-accent-green/25 transition-colors"
+            disabled={disabled}
+            className="px-5 py-2 rounded-lg text-sm font-medium bg-accent-green/15 text-accent-green border border-accent-green/25 hover:bg-accent-green/25 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
           >
             认识
           </button>

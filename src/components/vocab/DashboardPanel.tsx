@@ -5,9 +5,10 @@ import { useSubtitleStore } from '../../stores/useSubtitleStore'
 import { useReviewStore } from '../../stores/useReviewStore'
 import { buildWordSet } from '../../engines/matching/MatcherEngine'
 import { Modal } from '../ui/Modal'
+import { toast } from '../ui/Toast'
 import {
   X, BookOpen, Trash, Export, GraduationCap, Plus, Gear,
-  Star, PencilSimple, FolderOpen,
+  Star, PencilSimple, FolderOpen, Warning,
 } from '@phosphor-icons/react'
 import { motion } from 'motion/react'
 
@@ -42,12 +43,17 @@ export function DashboardPanel() {
   const [selectedNotebookId, setSelectedNotebookId] = useState<string | null>(null)
   const [showNotebookManager, setShowNotebookManager] = useState(false)
   const [movingWordId, setMovingWordId] = useState<string | null>(null)
+  const [wordToDelete, setWordToDelete] = useState<string | null>(null)
+  const [notebookToDelete, setNotebookToDelete] = useState<string | null>(null)
 
   useEffect(() => {
+    // Fix #10: If selected notebook was deleted, fall back to default
     if (!selectedNotebookId && defaultNotebookId) {
       setSelectedNotebookId(defaultNotebookId)
+    } else if (selectedNotebookId && !notebooks.find(n => n.id === selectedNotebookId)) {
+      setSelectedNotebookId(defaultNotebookId)
     }
-  }, [defaultNotebookId, selectedNotebookId])
+  }, [defaultNotebookId, selectedNotebookId, notebooks])
 
   if (activePanel !== 'dashboard') return null
 
@@ -68,6 +74,24 @@ export function DashboardPanel() {
     a.download = 'vocscreen-wordbook.json'
     a.click()
     URL.revokeObjectURL(url)
+    toast(`已导出 ${capturedWords.length} 个单词`, 'success')
+  }
+
+  const handleConfirmDeleteWord = async () => {
+    if (!wordToDelete) return
+    await removeCapturedWord(wordToDelete)
+    setWordToDelete(null)
+    toast('已删除', 'info')
+  }
+
+  const handleConfirmDeleteNotebook = async () => {
+    if (!notebookToDelete) return
+    await deleteNotebook(notebookToDelete)
+    if (selectedNotebookId === notebookToDelete) {
+      setSelectedNotebookId(defaultNotebookId)
+    }
+    setNotebookToDelete(null)
+    toast('生词本已删除，单词已移至默认生词本', 'info')
   }
 
   const handleBookChange = (id: string) => {
@@ -244,7 +268,7 @@ export function DashboardPanel() {
                       )
                     )}
                     <button
-                      onClick={() => removeCapturedWord(w.id)}
+                      onClick={() => setWordToDelete(w.id)}
                       className="opacity-0 group-hover:opacity-100 p-1 rounded text-ink-muted hover:text-accent-rose transition-all"
                     >
                       <Trash size={14} />
@@ -279,7 +303,58 @@ export function DashboardPanel() {
         onRename={renameNotebook}
         onDelete={deleteNotebook}
         onSetDefault={setDefaultNotebook}
+        onNotebookDelete={(id) => { setShowNotebookManager(false); setNotebookToDelete(id) }}
       />
+
+      {/* Confirm delete word modal (#14) */}
+      <Modal isOpen={!!wordToDelete} onClose={() => setWordToDelete(null)}>
+        <div className="w-[320px] max-w-[90vw] p-5 text-center space-y-4">
+          <div className="w-12 h-12 mx-auto rounded-full bg-accent-rose/15 flex items-center justify-center">
+            <Warning size={24} className="text-accent-rose" weight="bold" />
+          </div>
+          <h3 className="text-base font-semibold text-ink">删除这个单词？</h3>
+          <p className="text-xs text-ink-muted">将从生词本中永久移除</p>
+          <div className="flex gap-2 pt-2">
+            <button
+              onClick={() => setWordToDelete(null)}
+              className="flex-1 py-2 rounded-lg bg-surface-2 text-sm text-ink-dim hover:text-ink hover:bg-surface-3 transition-colors"
+            >
+              取消
+            </button>
+            <button
+              onClick={handleConfirmDeleteWord}
+              className="flex-1 py-2 rounded-lg bg-accent-rose text-white text-sm font-medium hover:bg-accent-rose/90 transition-colors"
+            >
+              删除
+            </button>
+          </div>
+        </div>
+      </Modal>
+
+      {/* Confirm delete notebook modal (#14) */}
+      <Modal isOpen={!!notebookToDelete} onClose={() => setNotebookToDelete(null)}>
+        <div className="w-[340px] max-w-[90vw] p-5 text-center space-y-4">
+          <div className="w-12 h-12 mx-auto rounded-full bg-accent-rose/15 flex items-center justify-center">
+            <Warning size={24} className="text-accent-rose" weight="bold" />
+          </div>
+          <h3 className="text-base font-semibold text-ink">删除这个生词本？</h3>
+          <p className="text-xs text-ink-muted">生词本内的单词会移至默认生词本，不会丢失</p>
+          <div className="flex gap-2 pt-2">
+            <button
+              onClick={() => setNotebookToDelete(null)}
+              className="flex-1 py-2 rounded-lg bg-surface-2 text-sm text-ink-dim hover:text-ink hover:bg-surface-3 transition-colors"
+            >
+              取消
+            </button>
+            <button
+              onClick={handleConfirmDeleteNotebook}
+              className="flex-1 py-2 rounded-lg bg-accent-rose text-white text-sm font-medium hover:bg-accent-rose/90 transition-colors"
+            >
+              删除
+            </button>
+          </div>
+        </div>
+      </Modal>
     </motion.div>
   )
 }
@@ -294,11 +369,12 @@ interface NotebookManagerModalProps {
   onRename: (id: string, name: string) => Promise<void>
   onDelete: (id: string) => Promise<void>
   onSetDefault: (id: string) => Promise<void>
+  onNotebookDelete: (id: string) => void
 }
 
 function NotebookManagerModal({
   isOpen, onClose, notebooks, capturedWords, defaultNotebookId,
-  onCreate, onRename, onDelete, onSetDefault,
+  onCreate, onRename, onDelete, onSetDefault, onNotebookDelete,
 }: NotebookManagerModalProps) {
   const [newName, setNewName] = useState('')
   const [editingId, setEditingId] = useState<string | null>(null)
@@ -385,7 +461,7 @@ function NotebookManagerModal({
                     </button>
                     {canDelete && (
                       <button
-                        onClick={() => onDelete(nb.id)}
+                        onClick={() => onNotebookDelete(nb.id)}
                         className="p-1 rounded text-ink-muted hover:text-accent-rose transition-colors"
                         title="删除（词移到默认本）"
                       >

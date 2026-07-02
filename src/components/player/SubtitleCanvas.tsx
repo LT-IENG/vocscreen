@@ -39,15 +39,24 @@ export function SubtitleCanvas() {
   const requestRef = useRef<number>(0)
   const hitMapRef = useRef<Map<string, { x: number; y: number; w: number; h: number }>>(new Map())
   const rendererRef = useRef<SubtitleRenderer>(new SubtitleRenderer())
+  const currentTimeRef = useRef(0)
   const [cursorOverWord, setCursorOverWord] = useState(false)
   const [fontLoaded, setFontLoaded] = useState(false)
 
   const hasVideo = usePlayerStore((s) => s.hasVideo)
-  const currentTime = usePlayerStore((s) => s.currentTime)
   const segments = useSubtitleStore((s) => s.segments)
   const subtitleDisplay = useUIStore((s) => s.subtitleDisplay)
   const subtitleFontSize = useUIStore((s) => s.subtitleFontSize)
   const theme = useUIStore((s) => s.theme)
+
+  // Keep currentTimeRef in sync without re-running the draw effect (#8)
+  useEffect(() => {
+    currentTimeRef.current = usePlayerStore.getState().currentTime
+    const unsub = usePlayerStore.subscribe((s) => {
+      currentTimeRef.current = s.currentTime
+    })
+    return unsub
+  }, [])
 
   useEffect(() => {
     if (typeof document === 'undefined' || !document.fonts) {
@@ -100,7 +109,7 @@ export function SubtitleCanvas() {
           canvas.width,
           canvas.height,
           segments,
-          currentTime,
+          currentTimeRef.current,
           subtitleDisplay,
           subtitleFontSize,
           theme === 'light',
@@ -116,7 +125,7 @@ export function SubtitleCanvas() {
       cancelAnimationFrame(requestRef.current)
       window.removeEventListener('resize', resize)
     }
-  }, [currentTime, segments, subtitleDisplay, subtitleFontSize, theme, fontLoaded])
+  }, [segments, subtitleDisplay, subtitleFontSize, theme, fontLoaded])
 
   const findHit = useCallback((clientX: number, clientY: number): HitEntry | null => {
     const canvas = canvasRef.current

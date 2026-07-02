@@ -44,8 +44,14 @@ export function VideoPlayer() {
   useEffect(() => {
     const video = videoRef.current
     if (!video) return
-    if (isPlaying) video.play().catch(() => {})
-    else video.pause()
+    if (isPlaying) {
+      video.play().catch(() => {
+        // Autoplay/play failed — roll back state to paused (#7)
+        usePlayerStore.getState().pause()
+      })
+    } else {
+      video.pause()
+    }
   }, [isPlaying])
 
   useEffect(() => {

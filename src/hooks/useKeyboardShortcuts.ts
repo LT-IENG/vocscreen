@@ -5,13 +5,18 @@ import { useUIStore } from '../stores/useUIStore'
 export function useKeyboardShortcuts() {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement || e.target instanceof HTMLSelectElement) return
+      const target = e.target as HTMLElement
+      if (target instanceof HTMLInputElement || target instanceof HTMLTextAreaElement || target instanceof HTMLSelectElement) return
+      // Fix #17: Skip contenteditable elements
+      if (target.isContentEditable) return
 
       const player = usePlayerStore.getState()
       const ui = useUIStore.getState()
 
       switch (e.code) {
         case 'Space': {
+          // Fix #17: Don't intercept Space when a button is focused (let it click)
+          if (target instanceof HTMLButtonElement) return
           e.preventDefault()
           if (!player.hasVideo) return
           const wasPlaying = player.isPlaying
