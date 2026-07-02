@@ -45,6 +45,8 @@ function shuffle<T>(arr: T[]): T[] {
 
 export function MemorizeScreen() {
   const setAppScreen = useUIStore((s) => s.setAppScreen)
+  const theme = useUIStore((s) => s.theme)
+  const setTheme = useUIStore((s) => s.setTheme)
   const selectedWordBookId = useUIStore((s) => s.selectedWordBookId)
 
   const combinedDict = useVocabStore((s) => s.combinedDict)
@@ -383,6 +385,14 @@ export function MemorizeScreen() {
             <GraduationCap size={18} className="text-purple" />
             背单词
           </h1>
+          <div className="flex-1" />
+          <button
+            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+            className="w-8 h-8 flex items-center justify-center rounded-lg bg-transparent border border-surface-border/40 text-sm hover:border-purple/30 hover:bg-surface-1/50 transition-colors"
+            title={theme === 'dark' ? '切换浅色主题' : '切换暗色主题'}
+          >
+            {theme === 'dark' ? '☀️' : '🌙'}
+          </button>
         </div>
 
         {/* Main content */}
