@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import type { EbbinghausSchedule, MasteryResult } from '../types'
-import { db } from '../db/database'
+import { db, type ReviewScheduleRecord } from '../db/database'
 
 const INTERVALS = [1, 2, 4, 7, 15, 30]
 
@@ -135,7 +135,12 @@ export const useReviewStore = create<ReviewState>((set, get) => ({
       }
     })
 
-    await db.reviewSchedules.update(schedule.id, { ...updates })
+    const { intervals: _omit, ...restUpdates } = updates
+    const dbUpdates: Partial<ReviewScheduleRecord> = { ...restUpdates }
+    if (updates.intervals) {
+      dbUpdates.intervals = JSON.stringify(updates.intervals)
+    }
+    await db.reviewSchedules.update(schedule.id, dbUpdates)
   },
 
   getDueWords: async () => {

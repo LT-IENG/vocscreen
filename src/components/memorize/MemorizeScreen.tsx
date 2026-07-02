@@ -160,7 +160,6 @@ export function MemorizeScreen() {
             lemma: entry.lemma,
             phonetics: entry.phonetics,
             definition: entry.definition,
-            senses: entry.senses,
             level: entry.level,
             source: 'wordbook',
           })

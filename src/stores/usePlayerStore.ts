@@ -49,8 +49,9 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
     }),
 
   loadVideo: (file) => {
-    if (get().videoBlobUrl) {
-      URL.revokeObjectURL(get().videoBlobUrl)
+    const oldUrl = get().videoBlobUrl
+    if (oldUrl) {
+      URL.revokeObjectURL(oldUrl)
     }
     const url = URL.createObjectURL(file)
     const videoId = crypto.randomUUID()

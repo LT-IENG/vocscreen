@@ -107,7 +107,6 @@ const IRREGULAR_MAP: Record<string, string> = {
   met: 'meet',
   meeting: 'meet',
   meets: 'meet',
-  ran: 'run',
   paid: 'pay',
   paying: 'pay',
   pays: 'pay',
