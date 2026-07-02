@@ -106,7 +106,8 @@ create trigger on_auth_user_created
   for each row execute procedure public.handle_new_user();
 
 -- ============================================
--- 6. 关闭邮箱验证（用户名密码直接登录）
+-- 6. 开启邮箱验证（Dashboard 操作）
 -- ============================================
 -- 这一步需要在 Dashboard 操作：
--- Authentication → Providers → Email → 关闭 "Confirm email"
+-- Authentication → Providers → Email → 开启 "Confirm email"
+-- 注册后用户会收到验证邮件，点击链接后才能登录

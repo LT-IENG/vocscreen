@@ -3,6 +3,16 @@ import { db } from '../db/database'
 import type { NotebookRecord, CapturedWordRecord, ReviewScheduleRecord } from '../db/database'
 
 // ============================================
+// 迁移标记：游客数据登录后首次全量上传，之后跳过避免重复
+// ============================================
+export async function migrateLocalToCloud(userId: string) {
+  const key = 'vocscreen_migrated_' + userId
+  if (localStorage.getItem(key)) return
+  await pushLocalToCloud(userId)
+  localStorage.setItem(key, '1')
+}
+
+// ============================================
 // 上传本地数据到 Supabase（登录后调用）
 // ============================================
 export async function pushLocalToCloud(userId: string) {

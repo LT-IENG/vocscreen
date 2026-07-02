@@ -9,7 +9,7 @@ import type { MasteryResult, WordBookId } from '../../types'
 import type { DictSense } from '../../stores/useUIStore'
 import {
   ArrowLeft, GraduationCap, Check, X, Repeat, VideoCamera,
-  BookOpen, Notebook, Lightning, Clock, Sparkle, Warning,
+  BookOpen, Notebook, Lightning, Clock, Sparkle, Warning, QrCode,
 } from '@phosphor-icons/react'
 import './MemorizeScreen.css'
 
@@ -74,6 +74,7 @@ export function MemorizeScreen() {
   const [assessments, setAssessments] = useState<AssessmentRecord[]>([])
   const [isAssessing, setIsAssessing] = useState(false)
   const [showExitConfirm, setShowExitConfirm] = useState(false)
+  const [showQrModal, setShowQrModal] = useState(false)
   const initialQueueLengthRef = useRef(0)
 
   // Refresh due words when entering screen
@@ -387,6 +388,13 @@ export function MemorizeScreen() {
           </h1>
           <div className="flex-1" />
           <button
+            onClick={() => setShowQrModal(true)}
+            className="w-8 h-8 flex items-center justify-center rounded-lg bg-transparent border border-surface-border/40 text-sm hover:border-purple/30 hover:bg-surface-1/50 transition-colors"
+            title="手机扫码背单词"
+          >
+            <QrCode size={16} />
+          </button>
+          <button
             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
             className="w-8 h-8 flex items-center justify-center rounded-lg bg-transparent border border-surface-border/40 text-sm hover:border-purple/30 hover:bg-surface-1/50 transition-colors"
             title={theme === 'dark' ? '切换浅色主题' : '切换暗色主题'}
@@ -466,6 +474,23 @@ export function MemorizeScreen() {
             </div>
           </div>
         </div>
+
+        {/* QR Modal: 手机扫码直入背单词 */}
+        <Modal isOpen={showQrModal} onClose={() => setShowQrModal(false)}>
+          <div className="w-[300px] max-w-[90vw] p-6 space-y-4 text-center">
+            <h3 className="text-base font-semibold text-ink">手机扫码背单词</h3>
+            <p className="text-xs text-ink-muted">用手机扫描下方二维码，直接进入背单词界面</p>
+            <div className="w-40 h-40 mx-auto bg-white rounded-lg flex items-center justify-center p-2">
+              <img
+                src={`https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${encodeURIComponent(window.location.origin + '/?screen=memorize')}`}
+                alt="QR Code"
+                className="w-full h-full"
+                loading="lazy"
+              />
+            </div>
+            <p className="text-[10px] text-ink-muted/70">登录同一账号即可同步进度</p>
+          </div>
+        </Modal>
       </div>
     )
   }

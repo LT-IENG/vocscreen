@@ -25,7 +25,7 @@ import { useDemoTimeline } from './hooks/useDemoTimeline'
 import { useVideoEndDetection } from './hooks/useVideoEndDetection'
 import { ErrorBoundary } from './components/ErrorBoundary'
 import { Toaster } from './components/ui/Toast'
-import { pullCloudToLocal, pushLocalToCloud } from './lib/sync'
+import { pullCloudToLocal, migrateLocalToCloud } from './lib/sync'
 import type { WordBook } from './types'
 
 function MainApp() {
@@ -100,6 +100,13 @@ export default function App() {
     if (initialized.current) return
     initialized.current = true
 
+    // 检测 ?screen=memorize 参数（手机扫码直入背单词）
+    const params = new URLSearchParams(window.location.search)
+    if (params.get('screen') === 'memorize') {
+      useUIStore.getState().setAppScreen('memorize')
+      history.replaceState({}, '', window.location.pathname)
+    }
+
     const { loadPersistedWords, loadNotebooks, loadBook, loadedBooks } = useVocabStore.getState()
     const { loadPersistedSchedules, getDueWords } = useReviewStore.getState()
 
@@ -117,7 +124,7 @@ export default function App() {
         await loadPersistedWords()
         await loadNotebooks()
         await loadPersistedSchedules().then(() => getDueWords())
-        await pushLocalToCloud(user.id)
+        await migrateLocalToCloud(user.id)
       }
     })
 
@@ -129,7 +136,7 @@ export default function App() {
         await useVocabStore.getState().loadPersistedWords()
         await useVocabStore.getState().loadNotebooks()
         await useReviewStore.getState().loadPersistedSchedules().then(() => useReviewStore.getState().getDueWords())
-        await pushLocalToCloud(state.user.id)
+        await migrateLocalToCloud(state.user.id)
       }
     })
 
