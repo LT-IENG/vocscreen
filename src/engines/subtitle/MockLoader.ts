@@ -15,10 +15,14 @@ export async function loadMockSubtitles(
 
     const subResp = await fetch(`${videoPath}/subtitles.json`)
     if (!subResp.ok) return null
-    const subData: MockSubtitleFile = await subResp.json()
+    const rawSub: unknown = await subResp.json()
+    // 兼容两种格式：纯数组 [seg, ...] 或对象 { segments: [...] }
+    const segments = Array.isArray(rawSub)
+      ? rawSub as SubtitleSegment[]
+      : (rawSub as MockSubtitleFile).segments ?? []
 
     return {
-      segments: subData.segments,
+      segments,
       matchSummary: meta.matchSummary,
       title: meta.title,
       duration: meta.duration,
