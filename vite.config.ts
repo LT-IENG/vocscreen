@@ -30,11 +30,6 @@ export default defineConfig({
         maximumFileSizeToCacheInBytes: 4 * 1024 * 1024,
         runtimeCaching: [
           {
-            urlPattern: /^https:\/\/.*\.(mp4|m4v|mov|mkv)$/,
-            handler: 'CacheFirst',
-            options: { cacheName: 'demo-videos', expiration: { maxEntries: 5 } },
-          },
-          {
             // 词书按需缓存：首次加载后缓存供离线使用
             urlPattern: /\/wordbooks\/.*\.json$/,
             handler: 'StaleWhileRevalidate',
