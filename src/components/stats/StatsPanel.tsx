@@ -22,8 +22,32 @@ export function StatsPanel() {
     const masteredSchedules = [...schedules.values()].filter(s => s.status === 'mastered').length
     const activeSchedules = [...schedules.values()].filter(s => s.status === 'active').length
 
-    // Calculate streak (simplified)
-    const streak = Math.max(1, Math.floor(totalReviews / 5))
+    // 计算真实连续学习天数：收集所有有复习记录的日期，从今天往前数连续天数
+    const reviewDates = new Set<string>()
+    const now = new Date()
+    for (const s of schedules.values()) {
+      if (s.lastReviewAt) {
+        const d = new Date(s.lastReviewAt)
+        const dateStr = `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`
+        reviewDates.add(dateStr)
+      }
+    }
+    let streak = 0
+    const cursor = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+    // 如果今天没有复习记录，从昨天开始算
+    const todayStr = `${cursor.getFullYear()}-${cursor.getMonth()}-${cursor.getDate()}`
+    if (!reviewDates.has(todayStr)) {
+      cursor.setDate(cursor.getDate() - 1)
+    }
+    while (true) {
+      const dateStr = `${cursor.getFullYear()}-${cursor.getMonth()}-${cursor.getDate()}`
+      if (reviewDates.has(dateStr)) {
+        streak++
+        cursor.setDate(cursor.getDate() - 1)
+      } else {
+        break
+      }
+    }
 
     return { total, mastered, learning, newCount, fuzzy, totalReviews, masteredSchedules, activeSchedules, streak }
   }, [capturedWords, schedules])

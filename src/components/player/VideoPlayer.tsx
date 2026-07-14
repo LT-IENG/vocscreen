@@ -16,6 +16,7 @@ export function VideoPlayer() {
     pause,
   } = usePlayerStore()
   const isDemoMode = usePlayerStore((s) => s.isDemoMode)
+  const title = usePlayerStore((s) => s.videoTitle)
   const [videoError, setVideoError] = useState(false)
 
   useEffect(() => {
@@ -71,7 +72,6 @@ export function VideoPlayer() {
   if (!hasVideo) return null
 
   const showVideo = !isDemoMode && videoBlobUrl
-  const title = usePlayerStore((s) => s.videoTitle)
 
   return (
     <div className="absolute inset-0 bg-black">

@@ -1,14 +1,12 @@
 import { useRef, useCallback } from 'react'
-import { ChartPie, User, X, UploadSimple } from '@phosphor-icons/react'
+import { ChartPie, User, X, UploadSimple, ChartBar } from '@phosphor-icons/react'
 import { useUIStore } from '../../stores/useUIStore'
-import { useReviewStore } from '../../stores/useReviewStore'
 import { usePlayerStore } from '../../stores/usePlayerStore'
 import { useSubtitleStore } from '../../stores/useSubtitleStore'
 import { motion } from 'motion/react'
 
 export function TopToolbar() {
   const { activePanel, openPanel, closePanel, setAppScreen, subtitleDisplay, setSubtitleDisplay, subtitleFontSize, setSubtitleFontSize } = useUIStore()
-  const dueCount = useReviewStore((s) => s.dueCount)
   const hasVideo = usePlayerStore((s) => s.hasVideo)
   const videoTitle = usePlayerStore((s) => s.videoTitle)
   const resetPlayer = usePlayerStore((s) => s.reset)
@@ -37,15 +35,18 @@ export function TopToolbar() {
     e.target.value = ''
   }, [loadVideo, resetPlayer, resetSubtitles])
 
+  const togglePanel = (panel: 'dashboard' | 'profile' | 'stats') =>
+    activePanel === panel ? closePanel() : openPanel(panel)
+
   return (
     <motion.header
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="toolbar-glass absolute top-0 left-0 right-0 z-30 flex items-center gap-2 px-4 py-2.5 text-xs overflow-hidden"
+      className="toolbar-glass absolute top-0 left-0 right-0 z-30 flex items-center gap-2 px-3 sm:px-4 py-2.5 text-xs overflow-hidden"
     >
       <button
         onClick={handleBrandClick}
-        className="flex items-baseline gap-1.5 hover:opacity-80 transition-opacity"
+        className="flex items-baseline gap-1.5 hover:opacity-80 transition-opacity shrink-0"
         title="返回开始界面"
       >
         <span className="text-purple font-display font-semibold text-sm tracking-wide select-none">
@@ -56,8 +57,9 @@ export function TopToolbar() {
         </span>
       </button>
 
+      {/* 字幕模式切换 - 小屏隐藏 */}
       {hasVideo && (
-        <div className="flex items-center gap-0.5 ml-2 border border-surface-border rounded-md overflow-hidden">
+        <div className="hidden md:flex items-center gap-0.5 ml-2 border border-surface-border rounded-md overflow-hidden shrink-0">
           {(['bilingual', 'en', 'zh'] as const).map((mode) => (
             <button
               key={mode}
@@ -74,8 +76,9 @@ export function TopToolbar() {
         </div>
       )}
 
+      {/* 字号切换 - 小屏隐藏 */}
       {hasVideo && (
-        <div className="flex items-center gap-0.5 border border-surface-border rounded-md overflow-hidden">
+        <div className="hidden md:flex items-center gap-0.5 border border-surface-border rounded-md overflow-hidden shrink-0">
           {(['s', 'm', 'l'] as const).map((size) => (
             <button
               key={size}
@@ -93,9 +96,10 @@ export function TopToolbar() {
         </div>
       )}
 
+      {/* 视频标题 - 小屏隐藏 */}
       {hasVideo && (
-        <div className="flex items-center gap-1.5 ml-2 px-2 py-1 rounded-md bg-surface-2/60 border border-surface-border">
-          <span className="text-[11px] text-ink-dim max-w-[140px] truncate hidden sm:inline">
+        <div className="hidden sm:flex items-center gap-1.5 ml-2 px-2 py-1 rounded-md bg-surface-2/60 border border-surface-border shrink-0">
+          <span className="text-[11px] text-ink-dim max-w-[140px] truncate">
             {videoTitle || '视频'}
           </span>
           <button
@@ -121,7 +125,7 @@ export function TopToolbar() {
           />
           <button
             onClick={handleChangeVideo}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs text-ink-dim hover:text-ink hover:bg-surface-3 transition-colors"
+            className="flex items-center gap-1.5 px-2 sm:px-3 py-1.5 rounded-md text-xs text-ink-dim hover:text-ink hover:bg-surface-3 transition-colors shrink-0"
             title="上传其他视频"
           >
             <UploadSimple size={16} weight="regular" />
@@ -130,27 +134,38 @@ export function TopToolbar() {
         </>
       )}
 
+      {/* 统计按钮 */}
       <button
-        onClick={() => activePanel === 'dashboard' ? closePanel() : openPanel('dashboard')}
-        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs transition-colors ${
+        onClick={() => togglePanel('stats')}
+        className={`flex items-center gap-1.5 px-2 sm:px-3 py-1.5 rounded-md text-xs transition-colors shrink-0 ${
+          activePanel === 'stats'
+            ? 'bg-purple/15 text-purple'
+            : 'text-ink-dim hover:text-ink hover:bg-surface-3'
+        }`}
+        title="学习统计"
+      >
+        <ChartBar size={16} weight="regular" />
+        <span className="hidden sm:inline">统计</span>
+      </button>
+
+      {/* 背单词按钮 */}
+      <button
+        onClick={() => togglePanel('dashboard')}
+        className={`flex items-center gap-1.5 px-2 sm:px-3 py-1.5 rounded-md text-xs transition-colors shrink-0 ${
           activePanel === 'dashboard'
             ? 'bg-purple/15 text-purple'
             : 'text-ink-dim hover:text-ink hover:bg-surface-3'
         }`}
-        title="仪表盘"
+        title="背单词"
       >
         <ChartPie size={16} weight="regular" />
-        <span className="hidden sm:inline">仪表盘</span>
-        {dueCount > 0 && (
-          <span className="flex items-center justify-center w-4 h-4 rounded-full bg-accent-rose text-[10px] font-semibold text-white">
-            {dueCount > 9 ? '9+' : dueCount}
-          </span>
-        )}
+        <span className="hidden sm:inline">背单词</span>
       </button>
 
+      {/* 我的按钮 */}
       <button
-        onClick={() => activePanel === 'profile' ? closePanel() : openPanel('profile')}
-        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs transition-colors ${
+        onClick={() => togglePanel('profile')}
+        className={`flex items-center gap-1.5 px-2 sm:px-3 py-1.5 rounded-md text-xs transition-colors shrink-0 ${
           activePanel === 'profile'
             ? 'bg-purple/15 text-purple'
             : 'text-ink-dim hover:text-ink hover:bg-surface-3'

@@ -1,6 +1,7 @@
 import { useUIStore } from '../../stores/useUIStore'
 import { useVocabStore } from '../../stores/useVocabStore'
 import { usePlayerStore } from '../../stores/usePlayerStore'
+import { useSubtitleStore } from '../../stores/useSubtitleStore'
 import { X, BookmarkSimple, Trash } from '@phosphor-icons/react'
 import { useEffect, useRef, useState } from 'react'
 
@@ -44,13 +45,16 @@ export function DefinitionCard() {
   const handleCapture = async () => {
     if (!card) return
     const currentTime = usePlayerStore.getState().currentTime
+    const segments = useSubtitleStore.getState().segments
+    const seg = segments.find(s => s.id === card.segmentId)
     await captureWord(card.word, card.lemma, {
       videoId: videoId || 'unknown',
       subtitleSegmentId: card.segmentId,
       timestamp: currentTime,
-      sentenceEn: '',
-      sentenceZh: '',
-      videoClipStart: Math.max(0, currentTime - 2),
+      sentenceEn: seg?.textEn ?? '',
+      sentenceZh: seg?.textZh ?? '',
+      videoClipStart: seg?.startTime ?? Math.max(0, currentTime - 2),
+      videoClipEnd: seg?.endTime,
     })
   }
 

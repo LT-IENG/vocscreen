@@ -13,11 +13,14 @@ interface AuthState {
   signIn: (email: string, password: string) => Promise<{ error: string | null }>
   signOut: () => Promise<void>
   init: () => Promise<void>
+  cleanup: () => void
   resendVerification: (email: string) => Promise<{ error: string | null }>
   clearError: () => void
 }
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+let authSubscription: { unsubscribe: () => void } | null = null
 
 export const useAuthStore = create<AuthState>((set, get) => ({
   user: null,
@@ -32,7 +35,12 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       const username = data.session.user.email?.split('@')[0] || '用户'
       set({ user: data.session.user, username })
     }
-    supabase.auth.onAuthStateChange((_event, session) => {
+    // 避免重复订阅
+    if (authSubscription) {
+      authSubscription.unsubscribe()
+      authSubscription = null
+    }
+    const { data: subData } = supabase.auth.onAuthStateChange((_event, session) => {
       if (session?.user) {
         const username = session.user.email?.split('@')[0] || '用户'
         set({ user: session.user, username, pendingEmail: null })
@@ -40,6 +48,14 @@ export const useAuthStore = create<AuthState>((set, get) => ({
         set({ user: null, username: null })
       }
     })
+    authSubscription = subData.subscription
+  },
+
+  cleanup: () => {
+    if (authSubscription) {
+      authSubscription.unsubscribe()
+      authSubscription = null
+    }
   },
 
   signUp: async (email, password) => {

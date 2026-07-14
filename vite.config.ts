@@ -16,7 +16,7 @@ export default defineConfig({
         theme_color: '#07060d',
         background_color: '#07060d',
         display: 'standalone',
-        orientation: 'landscape',
+        orientation: 'any',
         icons: [
           { src: '/icon-192.png', sizes: '192x192', type: 'image/png' },
           { src: '/icon-512.png', sizes: '512x512', type: 'image/png' },
@@ -24,7 +24,9 @@ export default defineConfig({
         ],
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2,json}'],
+        // 排除大型词书 JSON（5-6MB），改为运行时按需缓存
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
+        globIgnores: ['**/wordbooks/*.json'],
         maximumFileSizeToCacheInBytes: 4 * 1024 * 1024,
         runtimeCaching: [
           {
@@ -32,18 +34,21 @@ export default defineConfig({
             handler: 'CacheFirst',
             options: { cacheName: 'demo-videos', expiration: { maxEntries: 5 } },
           },
+          {
+            // 词书按需缓存：首次加载后缓存供离线使用
+            urlPattern: /\/wordbooks\/.*\.json$/,
+            handler: 'StaleWhileRevalidate',
+            options: {
+              cacheName: 'wordbooks',
+              expiration: { maxEntries: 10 },
+            },
+          },
         ],
       },
     }),
   ],
   optimizeDeps: {
     exclude: ['@ffmpeg/ffmpeg'],
-  },
-  server: {
-    headers: {
-      'Cross-Origin-Opener-Policy': 'same-origin',
-      'Cross-Origin-Embedder-Policy': 'require-corp',
-    },
   },
   build: {
     rollupOptions: {

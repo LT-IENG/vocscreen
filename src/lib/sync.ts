@@ -2,6 +2,16 @@ import { supabase } from './supabase'
 import { db } from '../db/database'
 import type { NotebookRecord, CapturedWordRecord, ReviewScheduleRecord } from '../db/database'
 
+// 安全的 JSON.parse：损坏数据返回 null 而非抛出
+function safeJsonParse<T>(raw: string | null | undefined, fallback: T): T {
+  if (!raw) return fallback
+  try {
+    return JSON.parse(raw) as T
+  } catch {
+    return fallback
+  }
+}
+
 // ============================================
 // 迁移标记：游客数据登录后首次全量上传，之后跳过避免重复
 // ============================================
@@ -31,7 +41,8 @@ export async function pushLocalToCloud(userId: string) {
       is_default: n.isDefault ?? false,
       created_at: new Date(n.createdAt).toISOString(),
     }))
-    await supabase.from('notebooks').upsert(rows, { onConflict: 'id' })
+    const { error } = await supabase.from('notebooks').upsert(rows, { onConflict: 'id' })
+    if (error) console.warn('[sync] notebooks upsert failed:', error.message)
   }
 
   // Captured words
@@ -43,12 +54,13 @@ export async function pushLocalToCloud(userId: string) {
       word_entry_id: w.wordEntryId,
       spelling: w.spelling,
       lemma: w.lemma,
-      source: w.source ? JSON.parse(w.source) : null,
+      source: safeJsonParse<unknown>(w.source, null),
       status: w.status,
       captured_at: new Date(w.capturedAt).toISOString(),
       learned_at: w.learnedAt ? new Date(w.learnedAt).toISOString() : null,
     }))
-    await supabase.from('captured_words').upsert(rows, { onConflict: 'id' })
+    const { error } = await supabase.from('captured_words').upsert(rows, { onConflict: 'id' })
+    if (error) console.warn('[sync] captured_words upsert failed:', error.message)
   }
 
   // Review schedules
@@ -57,7 +69,7 @@ export async function pushLocalToCloud(userId: string) {
       id: s.id,
       user_id: userId,
       captured_word_id: s.capturedWordId,
-      intervals: s.intervals ? JSON.parse(s.intervals) : [1, 2, 4, 7, 15, 30],
+      intervals: safeJsonParse<number[]>(s.intervals, [1, 2, 4, 7, 15, 30]),
       current_interval_index: s.currentIntervalIndex,
       last_review_at: s.lastReviewAt ? new Date(s.lastReviewAt).toISOString() : null,
       next_review_at: new Date(s.nextReviewAt).toISOString(),
@@ -65,8 +77,10 @@ export async function pushLocalToCloud(userId: string) {
       consecutive_pass: s.consecutivePass,
       ease: s.ease,
       status: s.status,
+      learn_stage: s.learnStage ?? 'completed',
     }))
-    await supabase.from('review_schedules').upsert(rows, { onConflict: 'id' })
+    const { error } = await supabase.from('review_schedules').upsert(rows, { onConflict: 'id' })
+    if (error) console.warn('[sync] review_schedules upsert failed:', error.message)
   }
 }
 
@@ -75,12 +89,14 @@ export async function pushLocalToCloud(userId: string) {
 // ============================================
 export async function pullCloudToLocal(userId: string) {
   // Notebooks
-  const { data: remoteNotebooks } = await supabase
+  const { data: remoteNotebooks, error: nbErr } = await supabase
     .from('notebooks')
     .select('*')
     .eq('user_id', userId)
 
-  if (remoteNotebooks && remoteNotebooks.length > 0) {
+  if (nbErr) {
+    console.warn('[sync] notebooks pull failed:', nbErr.message)
+  } else if (remoteNotebooks && remoteNotebooks.length > 0) {
     const rows: NotebookRecord[] = remoteNotebooks.map(n => ({
       id: n.id,
       name: n.name,
@@ -91,12 +107,14 @@ export async function pullCloudToLocal(userId: string) {
   }
 
   // Captured words
-  const { data: remoteWords } = await supabase
+  const { data: remoteWords, error: cwErr } = await supabase
     .from('captured_words')
     .select('*')
     .eq('user_id', userId)
 
-  if (remoteWords && remoteWords.length > 0) {
+  if (cwErr) {
+    console.warn('[sync] captured_words pull failed:', cwErr.message)
+  } else if (remoteWords && remoteWords.length > 0) {
     const rows: CapturedWordRecord[] = remoteWords.map(w => ({
       id: w.id,
       wordEntryId: w.word_entry_id ?? '',
@@ -112,12 +130,14 @@ export async function pullCloudToLocal(userId: string) {
   }
 
   // Review schedules
-  const { data: remoteSchedules } = await supabase
+  const { data: remoteSchedules, error: rsErr } = await supabase
     .from('review_schedules')
     .select('*')
     .eq('user_id', userId)
 
-  if (remoteSchedules && remoteSchedules.length > 0) {
+  if (rsErr) {
+    console.warn('[sync] review_schedules pull failed:', rsErr.message)
+  } else if (remoteSchedules && remoteSchedules.length > 0) {
     const rows: ReviewScheduleRecord[] = remoteSchedules.map(s => ({
       id: s.id,
       capturedWordId: s.captured_word_id,
@@ -129,6 +149,7 @@ export async function pullCloudToLocal(userId: string) {
       consecutivePass: s.consecutive_pass ?? 0,
       ease: s.ease ?? 2.5,
       status: s.status ?? 'new',
+      learnStage: s.learn_stage ?? 'completed',
     }))
     await db.reviewSchedules.bulkPut(rows)
   }
@@ -142,18 +163,20 @@ export async function syncNotebook(action: 'upsert' | 'delete', notebook: Notebo
   if (!user) return
 
   if (action === 'delete') {
-    await supabase.from('notebooks').delete().eq('id', (notebook as { id: string }).id)
+    const { error } = await supabase.from('notebooks').delete().eq('id', (notebook as { id: string }).id)
+    if (error) console.warn('[sync] notebook delete failed:', error.message)
     return
   }
 
   const n = notebook as NotebookRecord
-  await supabase.from('notebooks').upsert({
+  const { error } = await supabase.from('notebooks').upsert({
     id: n.id,
     user_id: user.id,
     name: n.name,
     is_default: n.isDefault ?? false,
     created_at: new Date(n.createdAt).toISOString(),
   }, { onConflict: 'id' })
+  if (error) console.warn('[sync] notebook upsert failed:', error.message)
 }
 
 export async function syncCapturedWord(action: 'upsert' | 'delete', word: CapturedWordRecord | { id: string }) {
@@ -161,23 +184,25 @@ export async function syncCapturedWord(action: 'upsert' | 'delete', word: Captur
   if (!user) return
 
   if (action === 'delete') {
-    await supabase.from('captured_words').delete().eq('id', (word as { id: string }).id)
+    const { error } = await supabase.from('captured_words').delete().eq('id', (word as { id: string }).id)
+    if (error) console.warn('[sync] captured_word delete failed:', error.message)
     return
   }
 
   const w = word as CapturedWordRecord
-  await supabase.from('captured_words').upsert({
+  const { error } = await supabase.from('captured_words').upsert({
     id: w.id,
     user_id: user.id,
     notebook_id: w.notebookId ?? null,
     word_entry_id: w.wordEntryId,
     spelling: w.spelling,
     lemma: w.lemma,
-    source: w.source ? JSON.parse(w.source) : null,
+    source: safeJsonParse<unknown>(w.source, null),
     status: w.status,
     captured_at: new Date(w.capturedAt).toISOString(),
     learned_at: w.learnedAt ? new Date(w.learnedAt).toISOString() : null,
   }, { onConflict: 'id' })
+  if (error) console.warn('[sync] captured_word upsert failed:', error.message)
 }
 
 export async function syncReviewSchedule(action: 'upsert' | 'delete', schedule: ReviewScheduleRecord | { id: string }) {
@@ -185,16 +210,17 @@ export async function syncReviewSchedule(action: 'upsert' | 'delete', schedule: 
   if (!user) return
 
   if (action === 'delete') {
-    await supabase.from('review_schedules').delete().eq('id', (schedule as { id: string }).id)
+    const { error } = await supabase.from('review_schedules').delete().eq('id', (schedule as { id: string }).id)
+    if (error) console.warn('[sync] review_schedule delete failed:', error.message)
     return
   }
 
   const s = schedule as ReviewScheduleRecord
-  await supabase.from('review_schedules').upsert({
+  const { error } = await supabase.from('review_schedules').upsert({
     id: s.id,
     user_id: user.id,
     captured_word_id: s.capturedWordId,
-    intervals: s.intervals ? JSON.parse(s.intervals) : [1, 2, 4, 7, 15, 30],
+    intervals: safeJsonParse<number[]>(s.intervals, [1, 2, 4, 7, 15, 30]),
     current_interval_index: s.currentIntervalIndex,
     last_review_at: s.lastReviewAt ? new Date(s.lastReviewAt).toISOString() : null,
     next_review_at: new Date(s.nextReviewAt).toISOString(),
@@ -202,5 +228,28 @@ export async function syncReviewSchedule(action: 'upsert' | 'delete', schedule: 
     consecutive_pass: s.consecutivePass,
     ease: s.ease,
     status: s.status,
+    learn_stage: s.learnStage ?? 'completed',
   }, { onConflict: 'id' })
+  if (error) console.warn('[sync] review_schedule upsert failed:', error.message)
+}
+
+// ============================================
+// 按 ID 从 IndexedDB 读取后同步（store 层调用）
+// ============================================
+export async function syncCapturedWordById(wordId: string) {
+  const record = await db.capturedWords.get(wordId)
+  if (!record) return
+  await syncCapturedWord('upsert', record)
+}
+
+export async function syncReviewScheduleById(scheduleId: string) {
+  const record = await db.reviewSchedules.get(scheduleId)
+  if (!record) return
+  await syncReviewSchedule('upsert', record)
+}
+
+export async function syncNotebookById(notebookId: string) {
+  const record = await db.notebooks.get(notebookId)
+  if (!record) return
+  await syncNotebook('upsert', record)
 }

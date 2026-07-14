@@ -44,7 +44,6 @@ export type HoveredWordState = {
 interface UIState {
   interactionMode: InteractionMode
   activePanel: ActivePanel
-  isLearningModalOpen: boolean
   subtitleDisplay: SubtitleDisplay
   definitionCard: DefinitionCardState
   hoveredWord: HoveredWordState
@@ -61,8 +60,6 @@ interface UIState {
   toggleMode: () => void
   openPanel: (panel: ActivePanel) => void
   closePanel: () => void
-  openLearningModal: () => void
-  closeLearningModal: () => void
   setSubtitleDisplay: (mode: SubtitleDisplay) => void
   setSubtitleFontSize: (size: 's' | 'm' | 'l') => void
   showDefinition: (card: DefinitionCardState) => void
@@ -100,7 +97,6 @@ const prefs = loadPrefs()
 export const useUIStore = create<UIState>((set) => ({
   interactionMode: 'play',
   activePanel: 'none',
-  isLearningModalOpen: false,
   subtitleDisplay: prefs.subtitleDisplay ?? 'bilingual',
   definitionCard: null,
   hoveredWord: null,
@@ -121,9 +117,6 @@ export const useUIStore = create<UIState>((set) => ({
 
   openPanel: (panel) => set({ activePanel: panel }),
   closePanel: () => set({ activePanel: 'none', definitionCard: null, hoveredWord: null }),
-
-  openLearningModal: () => set({ isLearningModalOpen: true }),
-  closeLearningModal: () => set({ isLearningModalOpen: false }),
 
   setSubtitleDisplay: (mode) => {
     set({ subtitleDisplay: mode })

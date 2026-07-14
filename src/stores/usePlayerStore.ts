@@ -38,19 +38,26 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
   hasVideo: false,
   isDemoMode: false,
 
-  startDemo: (title, videoId) =>
+  startDemo: (title, videoId) => {
+    // 释放旧的 blob URL（如果之前是本地视频）
+    const oldUrl = get().videoBlobUrl
+    if (oldUrl && oldUrl.startsWith('blob:')) {
+      URL.revokeObjectURL(oldUrl)
+    }
     set({
       hasVideo: true,
       isDemoMode: true,
       isPlaying: false,
       currentTime: 0,
+      videoBlobUrl: null,
       videoTitle: title || 'Demo Mode',
       videoId: videoId || 'demo',
-    }),
+    })
+  },
 
   loadVideo: (file) => {
     const oldUrl = get().videoBlobUrl
-    if (oldUrl) {
+    if (oldUrl && oldUrl.startsWith('blob:')) {
       URL.revokeObjectURL(oldUrl)
     }
     const url = URL.createObjectURL(file)
@@ -96,7 +103,10 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
   toggleFullscreen: () => set((s) => ({ isFullscreen: !s.isFullscreen })),
 
   reset: () => {
-    if (get().videoBlobUrl) URL.revokeObjectURL(get().videoBlobUrl!)
+    const oldUrl = get().videoBlobUrl
+    if (oldUrl && oldUrl.startsWith('blob:')) {
+      URL.revokeObjectURL(oldUrl)
+    }
     set({
       videoBlobUrl: null,
       videoTitle: '',

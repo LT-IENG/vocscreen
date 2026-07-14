@@ -4,7 +4,7 @@ import { useVocabStore } from '../../stores/useVocabStore'
 import { X, QrCode, Download, UploadSimple, Trash, Info } from '@phosphor-icons/react'
 import { motion } from 'motion/react'
 import { useEffect, useState } from 'react'
-import { db } from '../../db/database'
+import { db, clearAllLocalData } from '../../db/database'
 
 export function ProfilePanel() {
   const activePanel = useUIStore((s) => s.activePanel)
@@ -187,10 +187,8 @@ export function ProfilePanel() {
             )}
             <button
               onClick={() => {
-                if (confirm('确定要清除所有本地数据？此操作不可撤销。')) {
-                  localStorage.clear()
-                  window.location.reload()
-                }
+                if (!confirm('确定要清除所有本地数据？包括生词、复习计划、学习记录等，此操作不可撤销。')) return
+                clearAllLocalData()
               }}
               className="flex items-center gap-2 w-full py-2 px-3 rounded-lg bg-surface-2 text-xs text-ink-muted hover:text-accent-rose hover:bg-accent-rose/5 transition-colors"
             >

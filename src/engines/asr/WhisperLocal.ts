@@ -1,13 +1,13 @@
 import type { RawTranscriptionSegment, AsrEngineConfig } from '../../types'
 
 /**
- * Local Whisper WASM engine stub.
- * Will load whisper-tiny model and run inference in a Web Worker.
+ * 本地 Whisper WASM 引擎 — 尚未上线。
+ * whisper-tiny 模型约 40-80MB，加载耗时较长，
+ * 将在后续版本通过 Web Worker 集成。
  */
 export async function transcribeLocal(
   _audioBuffer: ArrayBuffer,
   _config: AsrEngineConfig
 ): Promise<RawTranscriptionSegment[]> {
-  // TODO: Integrate whisper.cpp WASM
-  throw new Error('Local Whisper ASR is not yet available. Please use preset subtitles or upload an SRT file.')
+  throw new Error('LOCAL_ASR_NOT_AVAILABLE')
 }

@@ -3,6 +3,7 @@ import type { WordBook, WordEntry, CapturedWord, WordBookId, SourceContext, Note
 import { db } from '../db/database'
 import type { DictSense } from '../engines/dict/DictEngine'
 import { buildWordSet, rematchAll, getMatchList } from '../engines/matching/MatcherEngine'
+import { syncCapturedWordById, syncCapturedWord, syncNotebookById, syncNotebook } from '../lib/sync'
 
 interface DefinitionSense {
   tranCn?: string
@@ -31,12 +32,11 @@ function parseSenses(def: unknown): DictSense[] | undefined {
   if (!Array.isArray(def) || def.length === 0) return undefined
   return def
     .map((sense: DefinitionSense): DictSense | null => {
-      const definition = sense.tranCn || sense.tranOther || ''
-      if (!definition) return null
+      const cn = sense.tranCn || ''
+      if (!cn) return null
       return {
         pos: sense.pos,
-        definition: sense.tranCn || '',
-        example: sense.tranOther || undefined,
+        definition: cn,
       }
     })
     .filter((s): s is DictSense => s !== null)
@@ -71,7 +71,7 @@ interface VocabState {
 
   loadBook: (book: WordBook) => Promise<void>
   setActiveBook: (bookId: WordBookId) => void
-  lookupWord: (rawWord: string) => { spelling: string; lemma: string; phonetics: string; definition: string; level: string; senses?: DictSense[] } | undefined
+  lookupWord: (rawWord: string) => Omit<WordEntry, 'id' | 'tags' | 'frequency'> & { senses?: DictSense[] } | undefined
   getDefinition: (lemma: string) => WordEntry | undefined
   captureWord: (word: string, lemma: string, source: SourceContext, notebookId?: string) => Promise<string | null>
   removeCapturedWord: (wordId: string) => Promise<void>
@@ -114,6 +114,13 @@ export const useVocabStore = create<VocabState>((set, get) => ({
             definition: formatDefinition(e.definition),
             level: e.level,
             senses: parseSenses(e.definition),
+            exampleSentence: e.exampleSentence,
+            exampleTranslation: e.exampleTranslation,
+            phrases: e.phrases,
+            relatedWords: e.relatedWords,
+            synonyms: e.synonyms,
+            mnemonic: e.mnemonic,
+            examSentences: e.examSentences,
           })
         }
       }
@@ -204,12 +211,14 @@ export const useVocabStore = create<VocabState>((set, get) => ({
       capturedAt: captured.capturedAt,
       notebookId: captured.notebookId,
     })
+    await syncCapturedWordById(id).catch(() => {})
     return id
   },
 
   removeCapturedWord: async (wordId) => {
     set((s) => ({ capturedWords: s.capturedWords.filter((w) => w.id !== wordId) }))
     await db.capturedWords.delete(wordId)
+    await syncCapturedWord('delete', { id: wordId }).catch(() => {})
   },
 
   getCapturedWordsForVideo: (videoId) =>
@@ -224,6 +233,7 @@ export const useVocabStore = create<VocabState>((set, get) => ({
       ),
     }))
     await db.capturedWords.update(wordId, { status: 'learning', learnedAt: Date.now() })
+    await syncCapturedWordById(wordId).catch(() => {})
   },
 
   markWordAsFuzzy: async (wordId) => {
@@ -233,6 +243,7 @@ export const useVocabStore = create<VocabState>((set, get) => ({
       ),
     }))
     await db.capturedWords.update(wordId, { status: 'fuzzy' })
+    await syncCapturedWordById(wordId).catch(() => {})
   },
 
   markWordAsMastered: async (wordId) => {
@@ -242,6 +253,7 @@ export const useVocabStore = create<VocabState>((set, get) => ({
       ),
     }))
     await db.capturedWords.update(wordId, { status: 'mastered', learnedAt: Date.now() })
+    await syncCapturedWordById(wordId).catch(() => {})
   },
 
   loadPersistedWords: async () => {
@@ -305,6 +317,7 @@ export const useVocabStore = create<VocabState>((set, get) => ({
       isDefault: nb.isDefault,
     })
     set((s) => ({ notebooks: [...s.notebooks, nb] }))
+    await syncNotebookById(nb.id).catch(() => {})
     return nb
   },
 
@@ -313,17 +326,18 @@ export const useVocabStore = create<VocabState>((set, get) => ({
       notebooks: s.notebooks.map((n) => (n.id === id ? { ...n, name } : n)),
     }))
     await db.notebooks.update(id, { name })
+    await syncNotebookById(id).catch(() => {})
   },
 
   deleteNotebook: async (id) => {
     const state = get()
     if (state.notebooks.length <= 1) return
-    // Move words to default notebook
     const defaultId = state.defaultNotebookId
     if (defaultId && defaultId !== id) {
       const wordsToMove = state.capturedWords.filter((w) => w.notebookId === id)
       for (const w of wordsToMove) {
         await db.capturedWords.update(w.id, { notebookId: defaultId })
+        await syncCapturedWordById(w.id).catch(() => {})
       }
     }
     set((s) => ({
@@ -333,12 +347,14 @@ export const useVocabStore = create<VocabState>((set, get) => ({
       ),
     }))
     await db.notebooks.delete(id)
+    await syncNotebook('delete', { id }).catch(() => {})
   },
 
   setDefaultNotebook: async (id) => {
     const state = get()
     for (const nb of state.notebooks) {
       await db.notebooks.update(nb.id, { isDefault: nb.id === id })
+      await syncNotebookById(nb.id).catch(() => {})
     }
     set({
       notebooks: state.notebooks.map((n) => ({ ...n, isDefault: n.id === id })),
@@ -353,6 +369,7 @@ export const useVocabStore = create<VocabState>((set, get) => ({
       ),
     }))
     await db.capturedWords.update(wordId, { notebookId })
+    await syncCapturedWordById(wordId).catch(() => {})
   },
 
   getCapturedWordsForNotebook: (notebookId) =>

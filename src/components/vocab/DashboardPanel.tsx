@@ -121,7 +121,7 @@ export function DashboardPanel() {
       <div className="flex items-center justify-between px-4 py-3 border-b border-surface-border">
         <h3 className="text-sm font-semibold text-ink flex items-center gap-2">
           <BookOpen size={18} weight="fill" className="text-purple" />
-          仪表盘
+          背单词
         </h3>
         <button onClick={closePanel} className="p-1 rounded-md text-ink-muted hover:text-ink hover:bg-surface-3">
           <X size={16} weight="bold" />

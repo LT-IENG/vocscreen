@@ -1,6 +1,7 @@
 import { create } from 'zustand'
-import type { EbbinghausSchedule, MasteryResult } from '../types'
+import type { EbbinghausSchedule, MasteryResult, LearnStage } from '../types'
 import { db, type ReviewScheduleRecord } from '../db/database'
+import { syncReviewScheduleById } from '../lib/sync'
 
 const INTERVALS = [1, 2, 4, 7, 15, 30]
 
@@ -40,30 +41,17 @@ function calcNextReview(
       ease: Math.min(2.5, schedule.ease + 0.15),
       status: mastered ? 'mastered' : 'active',
     }
-  } else if (result === 'fuzzy') {
-    const nextIdx = Math.max(0, currentIdx - 1)
-    const nextDay = new Date()
-    nextDay.setDate(nextDay.getDate() + INTERVALS[nextIdx])
-    nextDay.setHours(9, 0, 0, 0)
-    return {
-      currentIntervalIndex: nextIdx,
-      lastReviewAt: now,
-      nextReviewAt: nextDay.getTime(),
-      reviewCount: schedule.reviewCount + 1,
-      consecutivePass: 0,
-      ease: Math.max(0.5, schedule.ease - 0.2),
-      status: 'active',
-    }
   } else {
     const nextDay = new Date()
-    nextDay.setHours(nextDay.getHours() + 4)
+    nextDay.setDate(nextDay.getDate() + INTERVALS[0])
+    nextDay.setHours(9, 0, 0, 0)
     return {
       currentIntervalIndex: 0,
       lastReviewAt: now,
       nextReviewAt: nextDay.getTime(),
       reviewCount: schedule.reviewCount + 1,
       consecutivePass: 0,
-      ease: Math.max(0.5, schedule.ease - 0.3),
+      ease: Math.max(0.5, schedule.ease - 0.2),
       status: 'active',
     }
   }
@@ -76,6 +64,13 @@ export const useReviewStore = create<ReviewState>((set, get) => ({
   dueCount: 0,
 
   initializeSchedule: async (capturedWordId, firstResult) => {
+    // 已存在复习计划则直接记录复习结果，避免重复创建
+    const existing = get().schedules.get(capturedWordId)
+    if (existing) {
+      await get().recordReview(capturedWordId, firstResult)
+      return
+    }
+
     const now = Date.now()
     const startIdx = firstResult === 'known' ? 1 : 0
     const nextDay = new Date()
@@ -93,6 +88,7 @@ export const useReviewStore = create<ReviewState>((set, get) => ({
       consecutivePass: firstResult === 'known' ? 1 : 0,
       ease: 1.0,
       status: 'active',
+      learnStage: 'completed',
     }
 
     set((s) => {
@@ -112,8 +108,10 @@ export const useReviewStore = create<ReviewState>((set, get) => ({
       consecutivePass: schedule.consecutivePass,
       ease: schedule.ease,
       status: schedule.status,
+      learnStage: schedule.learnStage,
     })
 
+    await syncReviewScheduleById(schedule.id).catch(() => {})
     await get().getDueWords()
   },
 
@@ -126,8 +124,10 @@ export const useReviewStore = create<ReviewState>((set, get) => ({
     set((s) => {
       const newSchedules = new Map(s.schedules)
       newSchedules.set(capturedWordId, { ...schedule, ...updates })
-      // Remove this word from the review queue immediately
       const newQueue = s.reviewQueue.filter((id) => id !== capturedWordId)
+      if (result === 'unknown') {
+        newQueue.push(capturedWordId)
+      }
       return {
         schedules: newSchedules,
         reviewQueue: newQueue,
@@ -135,12 +135,17 @@ export const useReviewStore = create<ReviewState>((set, get) => ({
       }
     })
 
-    const { intervals: _omit, ...restUpdates } = updates
-    const dbUpdates: Partial<ReviewScheduleRecord> = { ...restUpdates }
-    if (updates.intervals) {
-      dbUpdates.intervals = JSON.stringify(updates.intervals)
+    const dbUpdates: Partial<ReviewScheduleRecord> = {
+      currentIntervalIndex: updates.currentIntervalIndex,
+      lastReviewAt: updates.lastReviewAt,
+      nextReviewAt: updates.nextReviewAt,
+      reviewCount: updates.reviewCount,
+      consecutivePass: updates.consecutivePass,
+      ease: updates.ease,
+      status: updates.status,
     }
     await db.reviewSchedules.update(schedule.id, dbUpdates)
+    await syncReviewScheduleById(schedule.id).catch(() => {})
   },
 
   getDueWords: async () => {
@@ -166,6 +171,7 @@ export const useReviewStore = create<ReviewState>((set, get) => ({
             consecutivePass: r.consecutivePass,
             ease: r.ease,
             status: r.status as EbbinghausSchedule['status'],
+            learnStage: (r.learnStage as LearnStage) || 'completed',
           })
         }
       }
@@ -195,6 +201,7 @@ export const useReviewStore = create<ReviewState>((set, get) => ({
         consecutivePass: r.consecutivePass,
         ease: r.ease,
         status: r.status as EbbinghausSchedule['status'],
+        learnStage: (r.learnStage as LearnStage) || 'completed',
       })
     }
     set({ schedules })

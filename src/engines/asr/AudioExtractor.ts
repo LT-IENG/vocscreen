@@ -5,10 +5,15 @@ export interface AudioExtractionResult {
 }
 
 /**
- * Extract audio from a video file.
- * Currently a stub — FFmpeg WASM integration planned.
+ * 从视频文件提取音频数据。
+ * 大多数 ASR API（如 OpenAI Whisper）支持直接接收视频文件，
+ * 因此这里直接返回文件原始数据，由 ASR 服务端解码。
  */
 export async function extractAudio(videoFile: File): Promise<AudioExtractionResult> {
-  // TODO: Integrate FFmpeg WASM in Web Worker for audio extraction
-  throw new Error('Audio extraction via FFmpeg WASM is not yet available. Please use preset subtitles or upload an SRT file.')
+  const audioBuffer = await videoFile.arrayBuffer()
+  return {
+    audioBuffer,
+    sampleRate: 16000,
+    duration: 0,
+  }
 }

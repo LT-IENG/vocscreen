@@ -6,6 +6,27 @@ export interface WordBook {
   entries: WordEntry[]
 }
 
+export interface Phrase {
+  content: string
+  translation: string
+}
+
+export interface RelatedWordGroup {
+  pos: string
+  words: { word: string; translation: string }[]
+}
+
+export interface SynonymGroup {
+  pos: string
+  translation: string
+  words: string[]
+}
+
+export interface ExamSentence {
+  en: string
+  source: string
+}
+
 export interface WordEntry {
   id: string
   spelling: string
@@ -15,6 +36,13 @@ export interface WordEntry {
   level: string
   frequency: number
   tags: string[]
+  exampleSentence?: string
+  exampleTranslation?: string
+  phrases?: Phrase[]
+  relatedWords?: RelatedWordGroup[]
+  synonyms?: SynonymGroup[]
+  mnemonic?: string
+  examSentences?: ExamSentence[]
 }
 
 export interface SourceContext {
@@ -25,6 +53,7 @@ export interface SourceContext {
   sentenceZh: string
   shortClip?: Blob
   videoClipStart: number
+  videoClipEnd?: number
 }
 
 export type WordStatus = 'new' | 'learning' | 'fuzzy' | 'mastered'

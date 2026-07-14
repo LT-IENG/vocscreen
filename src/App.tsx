@@ -6,8 +6,7 @@ import { VideoPlayer } from './components/player/VideoPlayer'
 import { VideoDropZone } from './components/player/VideoDropZone'
 import { VideoControls } from './components/player/VideoControls'
 import { DefinitionCard } from './components/vocab/DefinitionCard'
-import { ReviewPanel } from './components/vocab/ReviewPanel'
-import { LearningModal } from './components/vocab/LearningModal'
+
 import { DashboardPanel } from './components/vocab/DashboardPanel'
 import { ProfilePanel } from './components/vocab/ProfilePanel'
 import { StatsPanel } from './components/stats/StatsPanel'
@@ -68,12 +67,9 @@ function MainApp() {
       )}
 
       <DefinitionCard />
-      <ReviewPanel />
-      <LearningModal />
       <DashboardPanel />
       <ProfilePanel />
       <StatsPanel />
-      <AuthModal />
 
       {subtitleSourceModal && (
         <SubtitleSourceModal
@@ -83,7 +79,7 @@ function MainApp() {
       )}
 
       <div className="absolute bottom-3 left-1/2 -translate-x-1/2 text-[10px] text-ink-muted/30 pointer-events-none select-none">
-        Space 暂停/播放 · ←→ 进退 · 暂停后点击单词查看释义 · R 复习 · S 统计
+        Space 暂停/播放 · ←→ 进退 · 暂停后点击单词查看释义 · R 背单词 · S 统计
       </div>
 
       <Toaster />
@@ -120,23 +116,27 @@ export default function App() {
       const { user } = useAuthStore.getState()
       if (user) {
         // Logged in: pull cloud data, merge with local, then push
-        await pullCloudToLocal(user.id)
+        await pullCloudToLocal(user.id).catch(() => {})
         await loadPersistedWords()
         await loadNotebooks()
         await loadPersistedSchedules().then(() => getDueWords())
-        await migrateLocalToCloud(user.id)
+        await migrateLocalToCloud(user.id).catch(() => {})
       }
-    })
+    }).catch(() => {})
 
     // Watch for login/logout to trigger sync
     const unsub = useAuthStore.subscribe(async (state, prev) => {
       if (!prev.user && state.user) {
         // Just logged in
-        await pullCloudToLocal(state.user.id)
-        await useVocabStore.getState().loadPersistedWords()
-        await useVocabStore.getState().loadNotebooks()
-        await useReviewStore.getState().loadPersistedSchedules().then(() => useReviewStore.getState().getDueWords())
-        await migrateLocalToCloud(state.user.id)
+        try {
+          await pullCloudToLocal(state.user.id)
+          await useVocabStore.getState().loadPersistedWords()
+          await useVocabStore.getState().loadNotebooks()
+          await useReviewStore.getState().loadPersistedSchedules().then(() => useReviewStore.getState().getDueWords())
+          await migrateLocalToCloud(state.user.id)
+        } catch {
+          // sync failure is non-fatal; local data still works
+        }
       }
     })
 
@@ -153,19 +153,34 @@ export default function App() {
         .catch(() => {})
     }
 
-    return () => unsub()
+    return () => {
+      unsub()
+      useAuthStore.getState().cleanup()
+    }
   }, [])
 
+  let screen
   switch (appScreen) {
     case 'landing':
-      return <StartPage />
+      screen = <StartPage />
+      break
     case 'wordbook-select':
-      return <WordBookSelect />
+      screen = <WordBookSelect />
+      break
     case 'app':
-      return <MainApp />
+      screen = <MainApp />
+      break
     case 'memorize':
-      return <MemorizeScreen />
+      screen = <MemorizeScreen />
+      break
     default:
-      return <StartPage />
+      screen = <StartPage />
   }
+
+  return (
+    <>
+      {screen}
+      <AuthModal />
+    </>
+  )
 }

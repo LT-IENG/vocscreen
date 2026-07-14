@@ -6,10 +6,10 @@ import { useEffect, useCallback } from 'react'
 import type { WordBookId } from '../../types'
 
 const BOOKS = [
-  { id: 'cet4' as WordBookId, name: '四级词汇', sub: 'CET-4 · ~4,500 词', icon: BookOpen, color: '#a78bfa' },
-  { id: 'cet6' as WordBookId, name: '六级词汇', sub: 'CET-6 · ~6,000 词', icon: GraduationCap, color: '#8b5cf6' },
-  { id: 'ielts' as WordBookId, name: '雅思词汇', sub: 'IELTS · ~8,000 词', icon: Globe, color: '#7c3aed' },
-  { id: 'toefl' as WordBookId, name: '托福词汇', sub: 'TOEFL · ~8,000 词', icon: Airplane, color: '#6d28d9' },
+  { id: 'cet4' as WordBookId, name: '四级词汇', sub: 'CET-4 · 2,607 词', icon: BookOpen, color: '#a78bfa' },
+  { id: 'cet6' as WordBookId, name: '六级词汇', sub: 'CET-6 · 2,345 词', icon: GraduationCap, color: '#8b5cf6' },
+  { id: 'ielts' as WordBookId, name: '雅思词汇', sub: 'IELTS · 3,575 词', icon: Globe, color: '#7c3aed' },
+  { id: 'toefl' as WordBookId, name: '托福词汇', sub: 'TOEFL · 4,264 词', icon: Airplane, color: '#6d28d9' },
 ]
 
 export function WordBookSelect() {

@@ -20,7 +20,7 @@ export function useVideoEndDetection() {
         videoEndedFired.current = true
         const newWords = useVocabStore.getState().getNewCapturedWords()
         if (newWords.length > 0) {
-          setTimeout(() => useUIStore.getState().openLearningModal(), 500)
+          useUIStore.getState().openPanel('dashboard')
         }
       }
     }

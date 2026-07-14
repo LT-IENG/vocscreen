@@ -44,7 +44,7 @@ export function useKeyboardShortcuts() {
         }
         case 'KeyR': {
           e.preventDefault()
-          ui.activePanel === 'review' ? ui.closePanel() : ui.openPanel('review')
+          ui.activePanel === 'dashboard' ? ui.closePanel() : ui.openPanel('dashboard')
           break
         }
         case 'KeyS': {
@@ -55,7 +55,6 @@ export function useKeyboardShortcuts() {
         case 'Escape': {
           e.preventDefault()
           if (ui.definitionCard) ui.hideDefinition()
-          else if (ui.isLearningModalOpen) ui.closeLearningModal()
           else if (ui.activePanel !== 'none') ui.closePanel()
           else if (ui.interactionMode === 'interact') {
             ui.setMode('play')

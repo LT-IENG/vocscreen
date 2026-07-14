@@ -73,7 +73,8 @@ create table if not exists public.review_schedules (
   review_count          integer default 0,
   consecutive_pass      integer default 0,
   ease                  real default 2.5,
-  status                text default 'new'
+  status                text default 'new',
+  learn_stage           text default 'completed'
 );
 
 alter table public.review_schedules enable row level security;

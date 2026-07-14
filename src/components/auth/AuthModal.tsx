@@ -162,11 +162,14 @@ export function AuthModal() {
           </button>
         </div>
 
-        {/* Guest hint */}
+        {/* Skip login */}
         {mode === 'login' && (
-          <div className="text-center text-[10px] text-ink-muted/60 pt-1 border-t border-surface-border/30">
-            不登录也可使用，数据仅存本地
-          </div>
+          <button
+            onClick={closeAuthModal}
+            className="w-full py-2 text-center text-xs text-ink-muted hover:text-ink transition-colors border-t border-surface-border/30 pt-3"
+          >
+            跳过，先体验
+          </button>
         )}
       </div>
     </Modal>
