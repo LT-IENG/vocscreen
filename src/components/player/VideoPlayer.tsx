@@ -5,7 +5,7 @@ import { FilmReel } from '@phosphor-icons/react'
 
 export function VideoPlayer() {
   const videoRef = useRef<HTMLVideoElement>(null)
-  const retryCountRef = useRef(0)
+  const errorTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const {
     videoBlobUrl,
     isPlaying,
@@ -27,8 +27,7 @@ export function VideoPlayer() {
     const onTimeUpdate = () => setCurrentTime(video.currentTime)
     const onLoadedMeta = () => {
       if (video.duration && isFinite(video.duration)) setDuration(video.duration)
-      // 加载成功，重置重试计数
-      retryCountRef.current = 0
+      setVideoError(false)
     }
     const onEnded = () => pause()
 
@@ -45,7 +44,12 @@ export function VideoPlayer() {
 
   useEffect(() => {
     setVideoError(false)
-    retryCountRef.current = 0
+    return () => {
+      if (errorTimerRef.current) {
+        clearTimeout(errorTimerRef.current)
+        errorTimerRef.current = null
+      }
+    }
   }, [videoBlobUrl])
 
   useEffect(() => {
@@ -53,7 +57,6 @@ export function VideoPlayer() {
     if (!video) return
     if (isPlaying) {
       video.play().catch(() => {
-        // Autoplay/play failed — roll back state to paused (#7)
         usePlayerStore.getState().pause()
       })
     } else {
@@ -87,18 +90,15 @@ export function VideoPlayer() {
           src={videoBlobUrl}
           className="absolute inset-0 w-full h-full object-contain pointer-events-none"
           onError={() => {
-            // 重试一次（浏览器可能因 CORS 预检或网络抖动中止请求）
-            if (retryCountRef.current < 2) {
-              retryCountRef.current++
+            // React Strict Mode 双挂载会触发 ERR_ABORTED，延迟检查避免误报
+            if (errorTimerRef.current) clearTimeout(errorTimerRef.current)
+            errorTimerRef.current = setTimeout(() => {
               const video = videoRef.current
-              if (video) {
-                // 重新触发加载
-                video.load()
+              // 只有当视频确实没有数据时才认为是真正的错误
+              if (video && video.readyState === 0 && video.networkState <= 2) {
+                setVideoError(true)
               }
-              return
-            }
-            // 重试仍失败，显示错误但保持视频元素（不切换到 demo 模式）
-            setVideoError(true)
+            }, 3000)
           }}
           playsInline
         />
