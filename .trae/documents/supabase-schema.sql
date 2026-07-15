@@ -1,5 +1,6 @@
 -- 词映 VocScreen - Supabase 数据表 + RLS 策略
 -- 在 Supabase Dashboard → SQL Editor → New Query 粘贴执行
+-- 可重复执行（幂等），已存在的表/策略/索引会自动跳过
 
 -- ============================================
 -- 1. profiles 表（用户名映射）
@@ -12,6 +13,9 @@ create table if not exists public.profiles (
 
 alter table public.profiles enable row level security;
 
+drop policy if exists "profiles_select_own" on public.profiles;
+drop policy if exists "profiles_insert_own" on public.profiles;
+drop policy if exists "profiles_update_own" on public.profiles;
 create policy "profiles_select_own" on public.profiles
   for select using (auth.uid() = id);
 create policy "profiles_insert_own" on public.profiles
@@ -32,6 +36,7 @@ create table if not exists public.notebooks (
 
 alter table public.notebooks enable row level security;
 
+drop policy if exists "notebooks_user_crud" on public.notebooks;
 create policy "notebooks_user_crud" on public.notebooks
   for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
 
@@ -53,11 +58,12 @@ create table if not exists public.captured_words (
 
 alter table public.captured_words enable row level security;
 
+drop policy if exists "captured_words_user_crud" on public.captured_words;
 create policy "captured_words_user_crud" on public.captured_words
   for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
 
-create index on public.captured_words (user_id);
-create index on public.captured_words (notebook_id);
+create index if not exists captured_words_user_id_idx on public.captured_words (user_id);
+create index if not exists captured_words_notebook_id_idx on public.captured_words (notebook_id);
 
 -- ============================================
 -- 4. review_schedules 表（复习计划）
@@ -79,11 +85,12 @@ create table if not exists public.review_schedules (
 
 alter table public.review_schedules enable row level security;
 
+drop policy if exists "review_schedules_user_crud" on public.review_schedules;
 create policy "review_schedules_user_crud" on public.review_schedules
   for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
 
-create index on public.review_schedules (user_id);
-create index on public.review_schedules (next_review_at);
+create index if not exists review_schedules_user_id_idx on public.review_schedules (user_id);
+create index if not exists review_schedules_next_review_at_idx on public.review_schedules (next_review_at);
 
 -- ============================================
 -- 5. 触发器：注册时自动创建 profile

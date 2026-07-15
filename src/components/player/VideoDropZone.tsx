@@ -65,11 +65,9 @@ export function VideoDropZone() {
     setError(null)
     setLoadingDemo(true)
     try {
-      // Load video from COS
-      loadVideoUrl(DEMO_VIDEO_URL, DEMO_VIDEO_TITLE, DEMO_VIDEO_ID)
-
-      // Load preset subtitles and match with current wordbook
+      // 先加载字幕（此时组件仍挂载，fetch 不会被中断）
       const mockData = await loadMockSubtitles(DEMO_SUBTITLE_PATH)
+
       if (mockData) {
         // Rematch with currently loaded wordbook
         const vocabState = useVocabStore.getState()
@@ -99,6 +97,9 @@ export function VideoDropZone() {
           })
         }
       }
+
+      // 最后加载视频（此调用会触发组件卸载，但字幕数据已就绪）
+      loadVideoUrl(DEMO_VIDEO_URL, DEMO_VIDEO_TITLE, DEMO_VIDEO_ID)
     } catch (err) {
       setError('加载演示视频失败，请检查网络后重试')
       console.error(err)
