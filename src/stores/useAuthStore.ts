@@ -76,6 +76,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
         password,
         options: {
           emailRedirectTo: window.location.origin,
+          data: { username: cleanEmail.split('@')[0] },
         },
       })
 
