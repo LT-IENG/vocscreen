@@ -8,7 +8,7 @@
     "textZh": "没什么好说的 他只不过是我的同事",
     "alignment": [
       {
-        "wordEn": "Theres",
+        "wordEn": "There's",
         "wordZh": "",
         "startChar": 0,
         "endChar": 6
@@ -32,7 +32,7 @@
         "endChar": 22
       },
       {
-        "wordEn": "Its",
+        "wordEn": "It's",
         "wordZh": "",
         "startChar": 25,
         "endChar": 28
@@ -96,7 +96,7 @@
         "endChar": 6
       },
       {
-        "wordEn": "Youre",
+        "wordEn": "You're",
         "wordZh": "",
         "startChar": 9,
         "endChar": 14
@@ -142,7 +142,7 @@
     "textZh": "多多少少一定有点问题",
     "alignment": [
       {
-        "wordEn": "Theres",
+        "wordEn": "There's",
         "wordZh": "",
         "startChar": 0,
         "endChar": 6
@@ -310,7 +310,7 @@
         "endChar": 0
       },
       {
-        "wordEn": "dont",
+        "wordEn": "don't",
         "wordZh": "",
         "startChar": 2,
         "endChar": 6
@@ -462,7 +462,7 @@
     "textZh": "不过是两个人一起出去吃晚餐 而且不上床",
     "alignment": [
       {
-        "wordEn": "Its",
+        "wordEn": "It's",
         "wordZh": "",
         "startChar": 0,
         "endChar": 3
@@ -590,7 +590,7 @@
     "textZh": "做了个梦 在中学时代 我站在餐厅中央…",
     "alignment": [
       {
-        "wordEn": "Im",
+        "wordEn": "I'm",
         "wordZh": "",
         "startChar": 0,
         "endChar": 2
@@ -684,7 +684,7 @@
         "endChar": 15
       },
       {
-        "wordEn": "Im",
+        "wordEn": "I'm",
         "wordZh": "",
         "startChar": 17,
         "endChar": 19
@@ -708,44 +708,44 @@
     "videoId": "friends-s01e01",
     "startTime": 85.62,
     "endTime": 87.16,
-    "textEn": "- Oh, yeah.     - I've had that dream.",
-    "textZh": "- 对 没错   - 我做过那样的梦",
+    "textEn": "Oh, yeah. I've had that dream.",
+    "textZh": "对 没错 我做过那样的梦",
     "alignment": [
       {
         "wordEn": "Oh",
         "wordZh": "",
-        "startChar": 2,
-        "endChar": 3
+        "startChar": 0,
+        "endChar": 1
       },
       {
         "wordEn": "yeah",
         "wordZh": "",
-        "startChar": 6,
-        "endChar": 9
+        "startChar": 4,
+        "endChar": 7
       },
       {
-        "wordEn": "Ive",
+        "wordEn": "I've",
         "wordZh": "",
-        "startChar": 18,
-        "endChar": 21
+        "startChar": 10,
+        "endChar": 13
       },
       {
         "wordEn": "had",
         "wordZh": "",
-        "startChar": 23,
-        "endChar": 25
+        "startChar": 15,
+        "endChar": 17
       },
       {
         "wordEn": "that",
         "wordZh": "",
-        "startChar": 27,
-        "endChar": 30
+        "startChar": 19,
+        "endChar": 22
       },
       {
         "wordEn": "dream",
         "wordZh": "",
-        "startChar": 32,
-        "endChar": 36
+        "startChar": 24,
+        "endChar": 28
       }
     ]
   },
@@ -846,32 +846,32 @@
     "videoId": "friends-s01e01",
     "startTime": 94.92,
     "endTime": 96.84,
-    "textEn": "- Instead of...     - That's right!",
-    "textZh": "- 而不是…   - 没错",
+    "textEn": "Instead of... That's right!",
+    "textZh": "而不是… 没错",
     "alignment": [
       {
         "wordEn": "Instead",
         "wordZh": "",
-        "startChar": 2,
-        "endChar": 8
+        "startChar": 0,
+        "endChar": 6
       },
       {
         "wordEn": "of",
         "wordZh": "",
-        "startChar": 10,
-        "endChar": 11
+        "startChar": 8,
+        "endChar": 9
       },
       {
-        "wordEn": "Thats",
+        "wordEn": "That's",
         "wordZh": "",
-        "startChar": 22,
-        "endChar": 27
+        "startChar": 14,
+        "endChar": 19
       },
       {
         "wordEn": "right",
         "wordZh": "",
-        "startChar": 29,
-        "endChar": 33
+        "startChar": 21,
+        "endChar": 25
       }
     ]
   },
@@ -880,44 +880,44 @@
     "videoId": "friends-s01e01",
     "startTime": 97.05,
     "endTime": 98.55,
-    "textEn": "- That one, I've never had.     - No.",
-    "textZh": "- 我没做过那样的梦   - 没有",
+    "textEn": "That one, I've never had. No.",
+    "textZh": "我没做过那样的梦 没有",
     "alignment": [
       {
         "wordEn": "That",
         "wordZh": "",
-        "startChar": 2,
-        "endChar": 5
+        "startChar": 0,
+        "endChar": 3
       },
       {
         "wordEn": "one",
         "wordZh": "",
-        "startChar": 7,
-        "endChar": 9
+        "startChar": 5,
+        "endChar": 7
       },
       {
-        "wordEn": "Ive",
+        "wordEn": "I've",
         "wordZh": "",
-        "startChar": 12,
-        "endChar": 15
+        "startChar": 10,
+        "endChar": 13
       },
       {
         "wordEn": "never",
         "wordZh": "",
-        "startChar": 17,
-        "endChar": 21
+        "startChar": 15,
+        "endChar": 19
       },
       {
         "wordEn": "had",
         "wordZh": "",
-        "startChar": 23,
-        "endChar": 25
+        "startChar": 21,
+        "endChar": 23
       },
       {
         "wordEn": "No",
         "wordZh": "",
-        "startChar": 34,
-        "endChar": 35
+        "startChar": 26,
+        "endChar": 27
       }
     ]
   },
@@ -1018,7 +1018,7 @@
         "endChar": 15
       },
       {
-        "wordEn": "its",
+        "wordEn": "it's",
         "wordZh": "",
         "startChar": 17,
         "endChar": 20
@@ -1342,50 +1342,50 @@
     "videoId": "friends-s01e01",
     "startTime": 128.5,
     "endTime": 131.38,
-    "textEn": "- ...and tied it around my neck.     - Cookie?",
-    "textZh": "- 再在我的脖子上打结…   - 要吃饼干吗？",
+    "textEn": "...and tied it around my neck. Cookie?",
+    "textZh": "再在我的脖子上打结… 要吃饼干吗？",
     "alignment": [
       {
         "wordEn": "and",
         "wordZh": "",
-        "startChar": 5,
-        "endChar": 7
+        "startChar": 3,
+        "endChar": 5
       },
       {
         "wordEn": "tied",
         "wordZh": "",
-        "startChar": 9,
-        "endChar": 12
+        "startChar": 7,
+        "endChar": 10
       },
       {
         "wordEn": "it",
         "wordZh": "",
-        "startChar": 14,
-        "endChar": 15
+        "startChar": 12,
+        "endChar": 13
       },
       {
         "wordEn": "around",
         "wordZh": "",
-        "startChar": 17,
-        "endChar": 22
+        "startChar": 15,
+        "endChar": 20
       },
       {
         "wordEn": "my",
         "wordZh": "",
-        "startChar": 24,
-        "endChar": 25
+        "startChar": 22,
+        "endChar": 23
       },
       {
         "wordEn": "neck",
         "wordZh": "",
-        "startChar": 27,
-        "endChar": 30
+        "startChar": 25,
+        "endChar": 28
       },
       {
         "wordEn": "Cookie",
         "wordZh": "",
-        "startChar": 39,
-        "endChar": 44
+        "startChar": 31,
+        "endChar": 36
       }
     ]
   },
@@ -1440,50 +1440,50 @@
     "videoId": "friends-s01e01",
     "startTime": 136.3,
     "endTime": 138.09,
-    "textEn": "- Let me get you some coffee.     - Thanks.",
-    "textZh": "- 我给你拿杯咖啡   - 谢谢",
+    "textEn": "Let me get you some coffee. Thanks.",
+    "textZh": "我给你拿杯咖啡 谢谢",
     "alignment": [
       {
         "wordEn": "Let",
         "wordZh": "",
-        "startChar": 2,
-        "endChar": 4
+        "startChar": 0,
+        "endChar": 2
       },
       {
         "wordEn": "me",
         "wordZh": "",
-        "startChar": 6,
-        "endChar": 7
+        "startChar": 4,
+        "endChar": 5
       },
       {
         "wordEn": "get",
         "wordZh": "",
-        "startChar": 9,
-        "endChar": 11
+        "startChar": 7,
+        "endChar": 9
       },
       {
         "wordEn": "you",
         "wordZh": "",
-        "startChar": 13,
-        "endChar": 15
+        "startChar": 11,
+        "endChar": 13
       },
       {
         "wordEn": "some",
         "wordZh": "",
-        "startChar": 17,
-        "endChar": 20
+        "startChar": 15,
+        "endChar": 18
       },
       {
         "wordEn": "coffee",
         "wordZh": "",
-        "startChar": 22,
-        "endChar": 27
+        "startChar": 20,
+        "endChar": 25
       },
       {
         "wordEn": "Thanks",
         "wordZh": "",
-        "startChar": 36,
-        "endChar": 41
+        "startChar": 28,
+        "endChar": 33
       }
     ]
   },
@@ -1508,7 +1508,7 @@
         "endChar": 5
       },
       {
-        "wordEn": "dont",
+        "wordEn": "don't",
         "wordZh": "",
         "startChar": 8,
         "endChar": 12
@@ -1594,7 +1594,7 @@
     "textZh": "我会没事的 好吗？真的 我希望她开心",
     "alignment": [
       {
-        "wordEn": "Ill",
+        "wordEn": "I'll",
         "wordZh": "",
         "startChar": 0,
         "endChar": 3
@@ -1642,7 +1642,7 @@
         "endChar": 38
       },
       {
-        "wordEn": "shell",
+        "wordEn": "she'll",
         "wordZh": "",
         "startChar": 40,
         "endChar": 45
@@ -1672,44 +1672,44 @@
     "videoId": "friends-s01e01",
     "startTime": 154.82,
     "endTime": 156.15,
-    "textEn": "- No, you don't.     - No, I don't.",
-    "textZh": "- 不 你并不希望   - 是的 我不希望",
+    "textEn": "No, you don't. No, I don't.",
+    "textZh": "不 你并不希望 是的 我不希望",
     "alignment": [
       {
         "wordEn": "No",
         "wordZh": "",
-        "startChar": 2,
-        "endChar": 3
+        "startChar": 0,
+        "endChar": 1
       },
       {
         "wordEn": "you",
         "wordZh": "",
-        "startChar": 6,
-        "endChar": 8
+        "startChar": 4,
+        "endChar": 6
       },
       {
-        "wordEn": "dont",
+        "wordEn": "don't",
         "wordZh": "",
-        "startChar": 10,
-        "endChar": 14
+        "startChar": 8,
+        "endChar": 12
       },
       {
         "wordEn": "No",
         "wordZh": "",
-        "startChar": 23,
-        "endChar": 24
+        "startChar": 15,
+        "endChar": 16
       },
       {
         "wordEn": "I",
         "wordZh": "",
-        "startChar": 27,
-        "endChar": 27
+        "startChar": 19,
+        "endChar": 19
       },
       {
-        "wordEn": "dont",
+        "wordEn": "don't",
         "wordZh": "",
-        "startChar": 29,
-        "endChar": 33
+        "startChar": 21,
+        "endChar": 25
       }
     ]
   },
@@ -1912,7 +1912,7 @@
         "endChar": 2
       },
       {
-        "wordEn": "didnt",
+        "wordEn": "didn't",
         "wordZh": "",
         "startChar": 4,
         "endChar": 9
@@ -2080,7 +2080,7 @@
         "endChar": 20
       },
       {
-        "wordEn": "youre",
+        "wordEn": "you're",
         "wordZh": "",
         "startChar": 23,
         "endChar": 28
@@ -2138,7 +2138,7 @@
     "textZh": "你很生气 很伤心",
     "alignment": [
       {
-        "wordEn": "Youre",
+        "wordEn": "You're",
         "wordZh": "",
         "startChar": 0,
         "endChar": 5
@@ -2150,7 +2150,7 @@
         "endChar": 11
       },
       {
-        "wordEn": "Youre",
+        "wordEn": "You're",
         "wordZh": "",
         "startChar": 14,
         "endChar": 19
@@ -2264,7 +2264,7 @@
         "endChar": 6
       },
       {
-        "wordEn": "youre",
+        "wordEn": "you're",
         "wordZh": "",
         "startChar": 9,
         "endChar": 14
@@ -2322,7 +2322,7 @@
         "endChar": 9
       },
       {
-        "wordEn": "dont",
+        "wordEn": "don't",
         "wordZh": "",
         "startChar": 11,
         "endChar": 15
@@ -2664,50 +2664,50 @@
     "videoId": "friends-s01e01",
     "startTime": 224.14,
     "endTime": 227.64,
-    "textEn": "- Can I get you some coffee?     - Decaf.",
-    "textZh": "- 你想喝点咖啡吗？- 无咖啡因的",
+    "textEn": "Can I get you some coffee? Decaf.",
+    "textZh": "你想喝点咖啡吗？ 无咖啡因的",
     "alignment": [
       {
         "wordEn": "Can",
         "wordZh": "",
-        "startChar": 2,
-        "endChar": 4
+        "startChar": 0,
+        "endChar": 2
       },
       {
         "wordEn": "I",
         "wordZh": "",
-        "startChar": 6,
-        "endChar": 6
+        "startChar": 4,
+        "endChar": 4
       },
       {
         "wordEn": "get",
         "wordZh": "",
-        "startChar": 8,
-        "endChar": 10
+        "startChar": 6,
+        "endChar": 8
       },
       {
         "wordEn": "you",
         "wordZh": "",
-        "startChar": 12,
-        "endChar": 14
+        "startChar": 10,
+        "endChar": 12
       },
       {
         "wordEn": "some",
         "wordZh": "",
-        "startChar": 16,
-        "endChar": 19
+        "startChar": 14,
+        "endChar": 17
       },
       {
         "wordEn": "coffee",
         "wordZh": "",
-        "startChar": 21,
-        "endChar": 26
+        "startChar": 19,
+        "endChar": 24
       },
       {
         "wordEn": "Decaf",
         "wordZh": "",
-        "startChar": 35,
-        "endChar": 39
+        "startChar": 27,
+        "endChar": 31
       }
     ]
   },
@@ -2890,20 +2890,20 @@
     "videoId": "friends-s01e01",
     "startTime": 237.52,
     "endTime": 238.65,
-    "textEn": "- Sure!     - Hey.",
-    "textZh": "- 当然  - 嘿",
+    "textEn": "Sure! Hey.",
+    "textZh": "当然 嘿",
     "alignment": [
       {
         "wordEn": "Sure",
         "wordZh": "",
-        "startChar": 2,
-        "endChar": 5
+        "startChar": 0,
+        "endChar": 3
       },
       {
         "wordEn": "Hey",
         "wordZh": "",
-        "startChar": 14,
-        "endChar": 16
+        "startChar": 6,
+        "endChar": 8
       }
     ]
   },
@@ -2912,26 +2912,26 @@
     "videoId": "friends-s01e01",
     "startTime": 238.82,
     "endTime": 240.73,
-    "textEn": "- Hi.     - Oh, God.",
-    "textZh": "- 嗨   - 天啊",
+    "textEn": "Hi. Oh, God.",
+    "textZh": "嗨 天啊",
     "alignment": [
       {
         "wordEn": "Hi",
         "wordZh": "",
-        "startChar": 2,
-        "endChar": 3
+        "startChar": 0,
+        "endChar": 1
       },
       {
         "wordEn": "Oh",
         "wordZh": "",
-        "startChar": 12,
-        "endChar": 13
+        "startChar": 4,
+        "endChar": 5
       },
       {
         "wordEn": "God",
         "wordZh": "",
-        "startChar": 16,
-        "endChar": 18
+        "startChar": 8,
+        "endChar": 10
       }
     ]
   },
@@ -3044,7 +3044,7 @@
     "videoId": "friends-s01e01",
     "startTime": 254.37,
     "endTime": 259.34,
-    "textEn": "Oh, God! Well, it started about a half-hour before the wedding.",
+    "textEn": "Oh, God! Well, it started about a half hour before the wedding.",
     "textZh": "好吧 大概在婚礼前半个小时",
     "alignment": [
       {
@@ -3334,7 +3334,7 @@
         "endChar": 28
       },
       {
-        "wordEn": "N",
+        "wordEn": "'N",
         "wordZh": "",
         "startChar": 30,
         "endChar": 31
@@ -3502,7 +3502,7 @@
         "endChar": 33
       },
       {
-        "wordEn": "thats",
+        "wordEn": "that's",
         "wordZh": "",
         "startChar": 35,
         "endChar": 40
@@ -3864,7 +3864,7 @@
         "endChar": 13
       },
       {
-        "wordEn": "didnt",
+        "wordEn": "didn't",
         "wordZh": "",
         "startChar": 15,
         "endChar": 20
@@ -3964,7 +3964,7 @@
         "endChar": 5
       },
       {
-        "wordEn": "youre",
+        "wordEn": "you're",
         "wordZh": "",
         "startChar": 7,
         "endChar": 12
@@ -4034,7 +4034,7 @@
         "endChar": 2
       },
       {
-        "wordEn": "wasnt",
+        "wordEn": "wasn't",
         "wordZh": "",
         "startChar": 4,
         "endChar": 9
@@ -4116,7 +4116,7 @@
         "endChar": 28
       },
       {
-        "wordEn": "wouldnt",
+        "wordEn": "wouldn't",
         "wordZh": "",
         "startChar": 30,
         "endChar": 37
@@ -4150,7 +4150,7 @@
     "textZh": "我猜他给她买了个管风琴",
     "alignment": [
       {
-        "wordEn": "Im",
+        "wordEn": "I'm",
         "wordZh": "",
         "startChar": 0,
         "endChar": 2
@@ -4220,7 +4220,7 @@
         "endChar": 5
       },
       {
-        "wordEn": "shes",
+        "wordEn": "she's",
         "wordZh": "",
         "startChar": 7,
         "endChar": 11
@@ -4290,7 +4290,7 @@
         "endChar": 17
       },
       {
-        "wordEn": "cant",
+        "wordEn": "can't",
         "wordZh": "",
         "startChar": 19,
         "endChar": 23
@@ -4318,7 +4318,7 @@
     "textZh": "对不起",
     "alignment": [
       {
-        "wordEn": "Im",
+        "wordEn": "I'm",
         "wordZh": "",
         "startChar": 0,
         "endChar": 2
@@ -4352,7 +4352,7 @@
         "endChar": 5
       },
       {
-        "wordEn": "dont",
+        "wordEn": "don't",
         "wordZh": "",
         "startChar": 7,
         "endChar": 11
@@ -4640,7 +4640,7 @@
     "textZh": "这就好像在我一生中 所有人都告诉我: \"你是鞋子 \"",
     "alignment": [
       {
-        "wordEn": "Its",
+        "wordEn": "It's",
         "wordZh": "",
         "startChar": 0,
         "endChar": 3
@@ -4676,7 +4676,7 @@
         "endChar": 23
       },
       {
-        "wordEn": "everyones",
+        "wordEn": "everyone's",
         "wordZh": "",
         "startChar": 26,
         "endChar": 35
@@ -4700,7 +4700,7 @@
         "endChar": 50
       },
       {
-        "wordEn": "Youre",
+        "wordEn": "You're",
         "wordZh": "",
         "startChar": 54,
         "endChar": 59
@@ -4728,7 +4728,7 @@
     "textZh": "\"你是鞋子…\"",
     "alignment": [
       {
-        "wordEn": "Youre",
+        "wordEn": "You're",
         "wordZh": "",
         "startChar": 0,
         "endChar": 5
@@ -4746,7 +4746,7 @@
         "endChar": 12
       },
       {
-        "wordEn": "Youre",
+        "wordEn": "You're",
         "wordZh": "",
         "startChar": 15,
         "endChar": 20
@@ -4764,7 +4764,7 @@
         "endChar": 27
       },
       {
-        "wordEn": "Youre",
+        "wordEn": "You're",
         "wordZh": "",
         "startChar": 30,
         "endChar": 35
@@ -4846,7 +4846,7 @@
         "endChar": 40
       },
       {
-        "wordEn": "dont",
+        "wordEn": "don't",
         "wordZh": "",
         "startChar": 42,
         "endChar": 46
@@ -4984,7 +4984,7 @@
         "endChar": 0
       },
       {
-        "wordEn": "dont",
+        "wordEn": "don't",
         "wordZh": "",
         "startChar": 2,
         "endChar": 6
@@ -5066,7 +5066,7 @@
     "textZh": "这是个比喻 爸爸",
     "alignment": [
       {
-        "wordEn": "Its",
+        "wordEn": "It's",
         "wordZh": "",
         "startChar": 0,
         "endChar": 3
@@ -5124,7 +5124,7 @@
         "endChar": 16
       },
       {
-        "wordEn": "hed",
+        "wordEn": "he'd",
         "wordZh": "",
         "startChar": 18,
         "endChar": 21
@@ -5164,7 +5164,7 @@
         "endChar": 10
       },
       {
-        "wordEn": "its",
+        "wordEn": "it's",
         "wordZh": "",
         "startChar": 13,
         "endChar": 16
@@ -5204,7 +5204,7 @@
         "endChar": 10
       },
       {
-        "wordEn": "Ill",
+        "wordEn": "I'll",
         "wordZh": "",
         "startChar": 12,
         "endChar": 15
@@ -5262,7 +5262,7 @@
         "endChar": 6
       },
       {
-        "wordEn": "weve",
+        "wordEn": "we've",
         "wordZh": "",
         "startChar": 8,
         "endChar": 12
@@ -5274,7 +5274,7 @@
         "endChar": 24
       },
       {
-        "wordEn": "shes",
+        "wordEn": "she's",
         "wordZh": "",
         "startChar": 26,
         "endChar": 30
@@ -5320,7 +5320,7 @@
         "endChar": 10
       },
       {
-        "wordEn": "thats",
+        "wordEn": "that's",
         "wordZh": "",
         "startChar": 12,
         "endChar": 17
@@ -5366,7 +5366,7 @@
         "endChar": 12
       },
       {
-        "wordEn": "dont",
+        "wordEn": "don't",
         "wordZh": "",
         "startChar": 14,
         "endChar": 18
@@ -5458,7 +5458,7 @@
         "endChar": 17
       },
       {
-        "wordEn": "thats",
+        "wordEn": "that's",
         "wordZh": "",
         "startChar": 20,
         "endChar": 25
@@ -5694,7 +5694,7 @@
     "textZh": "我现在好多了",
     "alignment": [
       {
-        "wordEn": "Im",
+        "wordEn": "I'm",
         "wordZh": "",
         "startChar": 0,
         "endChar": 2
@@ -5996,7 +5996,7 @@
         "endChar": 46
       },
       {
-        "wordEn": "hes",
+        "wordEn": "he's",
         "wordZh": "",
         "startChar": 48,
         "endChar": 51
@@ -6060,7 +6060,7 @@
         "endChar": 24
       },
       {
-        "wordEn": "Its",
+        "wordEn": "It's",
         "wordZh": "",
         "startChar": 27,
         "endChar": 30
@@ -6106,7 +6106,7 @@
         "endChar": 9
       },
       {
-        "wordEn": "theres",
+        "wordEn": "there's",
         "wordZh": "",
         "startChar": 11,
         "endChar": 17
@@ -6152,7 +6152,7 @@
         "endChar": 5
       },
       {
-        "wordEn": "dont",
+        "wordEn": "don't",
         "wordZh": "",
         "startChar": 7,
         "endChar": 11
@@ -6176,7 +6176,7 @@
         "endChar": 25
       },
       {
-        "wordEn": "Its",
+        "wordEn": "It's",
         "wordZh": "",
         "startChar": 28,
         "endChar": 31
@@ -6206,44 +6206,44 @@
     "videoId": "friends-s01e01",
     "startTime": 465.04,
     "endTime": 467.46,
-    "textEn": "- Uh, it's Paul.     - Buzz him in.",
-    "textZh": "- 我是保罗   - 让他进来",
+    "textEn": "Uh, it's Paul. Buzz him in.",
+    "textZh": "我是保罗 让他进来",
     "alignment": [
       {
         "wordEn": "Uh",
         "wordZh": "",
-        "startChar": 2,
-        "endChar": 3
+        "startChar": 0,
+        "endChar": 1
       },
       {
-        "wordEn": "its",
+        "wordEn": "it's",
         "wordZh": "",
-        "startChar": 6,
-        "endChar": 9
+        "startChar": 4,
+        "endChar": 7
       },
       {
         "wordEn": "Paul",
         "wordZh": "",
-        "startChar": 11,
-        "endChar": 14
+        "startChar": 9,
+        "endChar": 12
       },
       {
         "wordEn": "Buzz",
         "wordZh": "",
-        "startChar": 23,
-        "endChar": 26
+        "startChar": 15,
+        "endChar": 18
       },
       {
         "wordEn": "him",
         "wordZh": "",
-        "startChar": 28,
-        "endChar": 30
+        "startChar": 20,
+        "endChar": 22
       },
       {
         "wordEn": "in",
         "wordZh": "",
-        "startChar": 32,
-        "endChar": 33
+        "startChar": 24,
+        "endChar": 25
       }
     ]
   },
@@ -6252,50 +6252,50 @@
     "videoId": "friends-s01e01",
     "startTime": 467.75,
     "endTime": 470.05,
-    "textEn": "- Who's Paul?     - Paul, the wine guy, Paul?",
-    "textZh": "- 谁是保罗？- 保罗 红酒达人 保罗？",
+    "textEn": "Who's Paul? Paul, the wine guy, Paul?",
+    "textZh": "谁是保罗？ 保罗 红酒达人 保罗？",
     "alignment": [
       {
-        "wordEn": "Whos",
+        "wordEn": "Who's",
         "wordZh": "",
-        "startChar": 2,
-        "endChar": 6
+        "startChar": 0,
+        "endChar": 4
       },
       {
         "wordEn": "Paul",
         "wordZh": "",
-        "startChar": 8,
-        "endChar": 11
+        "startChar": 6,
+        "endChar": 9
       },
       {
         "wordEn": "Paul",
         "wordZh": "",
-        "startChar": 20,
-        "endChar": 23
+        "startChar": 12,
+        "endChar": 15
       },
       {
         "wordEn": "the",
         "wordZh": "",
-        "startChar": 26,
-        "endChar": 28
+        "startChar": 18,
+        "endChar": 20
       },
       {
         "wordEn": "wine",
         "wordZh": "",
-        "startChar": 30,
-        "endChar": 33
+        "startChar": 22,
+        "endChar": 25
       },
       {
         "wordEn": "guy",
         "wordZh": "",
-        "startChar": 35,
-        "endChar": 37
+        "startChar": 27,
+        "endChar": 29
       },
       {
         "wordEn": "Paul",
         "wordZh": "",
-        "startChar": 40,
-        "endChar": 43
+        "startChar": 32,
+        "endChar": 35
       }
     ]
   },
@@ -6414,44 +6414,44 @@
     "videoId": "friends-s01e01",
     "startTime": 475.01,
     "endTime": 476.8,
-    "textEn": "- He finally asked you out?     - Yes.",
-    "textZh": "- 他终于约你出去啦？- 是的",
+    "textEn": "He finally asked you out? Yes.",
+    "textZh": "他终于约你出去啦？ 是的",
     "alignment": [
       {
         "wordEn": "He",
         "wordZh": "",
-        "startChar": 2,
-        "endChar": 3
+        "startChar": 0,
+        "endChar": 1
       },
       {
         "wordEn": "finally",
         "wordZh": "",
-        "startChar": 5,
-        "endChar": 11
+        "startChar": 3,
+        "endChar": 9
       },
       {
         "wordEn": "asked",
         "wordZh": "",
-        "startChar": 13,
-        "endChar": 17
+        "startChar": 11,
+        "endChar": 15
       },
       {
         "wordEn": "you",
         "wordZh": "",
-        "startChar": 19,
-        "endChar": 21
+        "startChar": 17,
+        "endChar": 19
       },
       {
         "wordEn": "out",
         "wordZh": "",
-        "startChar": 23,
-        "endChar": 25
+        "startChar": 21,
+        "endChar": 23
       },
       {
         "wordEn": "Yes",
         "wordZh": "",
-        "startChar": 34,
-        "endChar": 36
+        "startChar": 26,
+        "endChar": 28
       }
     ]
   },
@@ -6574,7 +6574,7 @@
         "endChar": 13
       },
       {
-        "wordEn": "Ill",
+        "wordEn": "I'll",
         "wordZh": "",
         "startChar": 16,
         "endChar": 19
@@ -6684,7 +6684,7 @@
     "textZh": "能留下就太好了",
     "alignment": [
       {
-        "wordEn": "Thatd",
+        "wordEn": "That'd",
         "wordZh": "",
         "startChar": 0,
         "endChar": 5
@@ -6708,62 +6708,62 @@
     "videoId": "friends-s01e01",
     "startTime": 491.11,
     "endTime": 494.86,
-    "textEn": "- Really?     - No, go on! It's Paul, the wine guy.",
-    "textZh": "- 真的？- 不 去吧 那可是红酒达人保罗耶",
+    "textEn": "Really? No, go on! It's Paul, the wine guy.",
+    "textZh": "真的？ 不 去吧 那可是红酒达人保罗耶",
     "alignment": [
       {
         "wordEn": "Really",
         "wordZh": "",
-        "startChar": 2,
-        "endChar": 7
+        "startChar": 0,
+        "endChar": 5
       },
       {
         "wordEn": "No",
         "wordZh": "",
-        "startChar": 16,
-        "endChar": 17
+        "startChar": 8,
+        "endChar": 9
       },
       {
         "wordEn": "go",
         "wordZh": "",
-        "startChar": 20,
-        "endChar": 21
+        "startChar": 12,
+        "endChar": 13
       },
       {
         "wordEn": "on",
         "wordZh": "",
-        "startChar": 23,
-        "endChar": 24
+        "startChar": 15,
+        "endChar": 16
       },
       {
-        "wordEn": "Its",
+        "wordEn": "It's",
         "wordZh": "",
-        "startChar": 27,
-        "endChar": 30
+        "startChar": 19,
+        "endChar": 22
       },
       {
         "wordEn": "Paul",
         "wordZh": "",
-        "startChar": 32,
-        "endChar": 35
+        "startChar": 24,
+        "endChar": 27
       },
       {
         "wordEn": "the",
         "wordZh": "",
-        "startChar": 38,
-        "endChar": 40
+        "startChar": 30,
+        "endChar": 32
       },
       {
         "wordEn": "wine",
         "wordZh": "",
-        "startChar": 42,
-        "endChar": 45
+        "startChar": 34,
+        "endChar": 37
       },
       {
         "wordEn": "guy",
         "wordZh": "",
-        "startChar": 47,
-        "endChar": 49
+        "startChar": 39,
+        "endChar": 41
       }
     ]
   },
@@ -6892,68 +6892,68 @@
     "videoId": "friends-s01e01",
     "startTime": 506.25,
     "endTime": 510.09,
-    "textEn": "- Wine guy.     - I didn't catch your name. Paul, was it?",
-    "textZh": "- 红酒达人    - 我没听清楚你的名字 是保罗吗？",
+    "textEn": "Wine guy. I didn't catch your name. Paul, was it?",
+    "textZh": "红酒达人 我没听清楚你的名字 是保罗吗？",
     "alignment": [
       {
         "wordEn": "Wine",
         "wordZh": "",
-        "startChar": 2,
-        "endChar": 5
+        "startChar": 0,
+        "endChar": 3
       },
       {
         "wordEn": "guy",
         "wordZh": "",
-        "startChar": 7,
-        "endChar": 9
+        "startChar": 5,
+        "endChar": 7
       },
       {
         "wordEn": "I",
         "wordZh": "",
-        "startChar": 18,
-        "endChar": 18
+        "startChar": 10,
+        "endChar": 10
       },
       {
-        "wordEn": "didnt",
+        "wordEn": "didn't",
         "wordZh": "",
-        "startChar": 20,
-        "endChar": 25
+        "startChar": 12,
+        "endChar": 17
       },
       {
         "wordEn": "catch",
         "wordZh": "",
-        "startChar": 27,
-        "endChar": 31
+        "startChar": 19,
+        "endChar": 23
       },
       {
         "wordEn": "your",
         "wordZh": "",
-        "startChar": 33,
-        "endChar": 36
+        "startChar": 25,
+        "endChar": 28
       },
       {
         "wordEn": "name",
         "wordZh": "",
-        "startChar": 38,
-        "endChar": 41
+        "startChar": 30,
+        "endChar": 33
       },
       {
         "wordEn": "Paul",
         "wordZh": "",
-        "startChar": 44,
-        "endChar": 47
+        "startChar": 36,
+        "endChar": 39
       },
       {
         "wordEn": "was",
         "wordZh": "",
-        "startChar": 50,
-        "endChar": 52
+        "startChar": 42,
+        "endChar": 44
       },
       {
         "wordEn": "it",
         "wordZh": "",
-        "startChar": 54,
-        "endChar": 55
+        "startChar": 46,
+        "endChar": 47
       }
     ]
   },
@@ -6962,44 +6962,44 @@
     "videoId": "friends-s01e01",
     "startTime": 510.51,
     "endTime": 513.05,
-    "textEn": "- Okay. Sit down. Two seconds.     - Okay.",
-    "textZh": "- 请坐 两秒钟就好   - 好",
+    "textEn": "Okay. Sit down. Two seconds. Okay.",
+    "textZh": "请坐 两秒钟就好 好",
     "alignment": [
       {
         "wordEn": "Okay",
         "wordZh": "",
-        "startChar": 2,
-        "endChar": 5
+        "startChar": 0,
+        "endChar": 3
       },
       {
         "wordEn": "Sit",
         "wordZh": "",
-        "startChar": 8,
-        "endChar": 10
+        "startChar": 6,
+        "endChar": 8
       },
       {
         "wordEn": "down",
         "wordZh": "",
-        "startChar": 12,
-        "endChar": 15
+        "startChar": 10,
+        "endChar": 13
       },
       {
         "wordEn": "Two",
         "wordZh": "",
-        "startChar": 18,
-        "endChar": 20
+        "startChar": 16,
+        "endChar": 18
       },
       {
         "wordEn": "seconds",
         "wordZh": "",
-        "startChar": 22,
-        "endChar": 28
+        "startChar": 20,
+        "endChar": 26
       },
       {
         "wordEn": "Okay",
         "wordZh": "",
-        "startChar": 37,
-        "endChar": 40
+        "startChar": 29,
+        "endChar": 32
       }
     ]
   },
@@ -7060,7 +7060,7 @@
         "endChar": 42
       },
       {
-        "wordEn": "cant",
+        "wordEn": "can't",
         "wordZh": "",
         "startChar": 44,
         "endChar": 48
@@ -7256,7 +7256,7 @@
         "endChar": 4
       },
       {
-        "wordEn": "Youre",
+        "wordEn": "You're",
         "wordZh": "",
         "startChar": 7,
         "endChar": 12
@@ -7446,7 +7446,7 @@
         "endChar": 13
       },
       {
-        "wordEn": "dont",
+        "wordEn": "don't",
         "wordZh": "",
         "startChar": 15,
         "endChar": 19
@@ -7568,7 +7568,7 @@
         "endChar": 7
       },
       {
-        "wordEn": "were",
+        "wordEn": "we're",
         "wordZh": "",
         "startChar": 9,
         "endChar": 13
@@ -7626,7 +7626,7 @@
         "endChar": 20
       },
       {
-        "wordEn": "Im",
+        "wordEn": "I'm",
         "wordZh": "",
         "startChar": 22,
         "endChar": 24
@@ -7674,62 +7674,62 @@
     "videoId": "friends-s01e01",
     "startTime": 560.72,
     "endTime": 562.76,
-    "textEn": "- It's been a long day.     - Oh, sure. Okay. Sure.",
-    "textZh": "- 今天真是漫长的一天   - 是呀 好吧",
+    "textEn": "It's been a long day. Oh, sure. Okay. Sure.",
+    "textZh": "今天真是漫长的一天 是呀 好吧",
     "alignment": [
       {
-        "wordEn": "Its",
+        "wordEn": "It's",
         "wordZh": "",
-        "startChar": 2,
-        "endChar": 5
+        "startChar": 0,
+        "endChar": 3
       },
       {
         "wordEn": "been",
         "wordZh": "",
-        "startChar": 7,
-        "endChar": 10
+        "startChar": 5,
+        "endChar": 8
       },
       {
         "wordEn": "a",
         "wordZh": "",
-        "startChar": 12,
-        "endChar": 12
+        "startChar": 10,
+        "endChar": 10
       },
       {
         "wordEn": "long",
         "wordZh": "",
-        "startChar": 14,
-        "endChar": 17
+        "startChar": 12,
+        "endChar": 15
       },
       {
         "wordEn": "day",
         "wordZh": "",
-        "startChar": 19,
-        "endChar": 21
+        "startChar": 17,
+        "endChar": 19
       },
       {
         "wordEn": "Oh",
         "wordZh": "",
-        "startChar": 30,
-        "endChar": 31
+        "startChar": 22,
+        "endChar": 23
       },
       {
         "wordEn": "sure",
         "wordZh": "",
-        "startChar": 34,
-        "endChar": 37
+        "startChar": 26,
+        "endChar": 29
       },
       {
         "wordEn": "Okay",
         "wordZh": "",
-        "startChar": 40,
-        "endChar": 43
+        "startChar": 32,
+        "endChar": 35
       },
       {
         "wordEn": "Sure",
         "wordZh": "",
-        "startChar": 46,
-        "endChar": 49
+        "startChar": 38,
+        "endChar": 41
       }
     ]
   },
@@ -7824,7 +7824,7 @@
         "endChar": 24
       },
       {
-        "wordEn": "dont",
+        "wordEn": "don't",
         "wordZh": "",
         "startChar": 26,
         "endChar": 30
@@ -7848,11 +7848,11 @@
     "videoId": "friends-s01e01",
     "startTime": 574.86,
     "endTime": 579.28,
-    "textEn": "I'm supposed to attach a bracket-y thing to the side things...",
+    "textEn": "I'm supposed to attach a bracket y thing to the side things...",
     "textZh": "我应该把支架固定在侧面",
     "alignment": [
       {
-        "wordEn": "Im",
+        "wordEn": "I'm",
         "wordZh": "",
         "startChar": 0,
         "endChar": 2
@@ -7988,7 +7988,7 @@
     "videoId": "friends-s01e01",
     "startTime": 583.41,
     "endTime": 588.16,
-    "textEn": "I have no bracket-y thing, I see no worm guys whatsoever...",
+    "textEn": "I have no bracket y thing, I see no worm guys whatsoever...",
     "textZh": "我没有支架 没有看到螺纹涡轮",
     "alignment": [
       {
@@ -8120,7 +8120,7 @@
     "textZh": "这是什么？",
     "alignment": [
       {
-        "wordEn": "Whats",
+        "wordEn": "What's",
         "wordZh": "",
         "startChar": 0,
         "endChar": 5
@@ -8172,44 +8172,44 @@
     "videoId": "friends-s01e01",
     "startTime": 599.14,
     "endTime": 601.55,
-    "textEn": "- Done with the bookcase.     - All finished.",
-    "textZh": "- 搞定书架了    - 完工了",
+    "textEn": "Done with the bookcase. All finished.",
+    "textZh": "搞定书架了 完工了",
     "alignment": [
       {
         "wordEn": "Done",
         "wordZh": "",
-        "startChar": 2,
-        "endChar": 5
+        "startChar": 0,
+        "endChar": 3
       },
       {
         "wordEn": "with",
         "wordZh": "",
-        "startChar": 7,
-        "endChar": 10
+        "startChar": 5,
+        "endChar": 8
       },
       {
         "wordEn": "the",
         "wordZh": "",
-        "startChar": 12,
-        "endChar": 14
+        "startChar": 10,
+        "endChar": 12
       },
       {
         "wordEn": "bookcase",
         "wordZh": "",
-        "startChar": 16,
-        "endChar": 23
+        "startChar": 14,
+        "endChar": 21
       },
       {
         "wordEn": "All",
         "wordZh": "",
-        "startChar": 32,
-        "endChar": 34
+        "startChar": 24,
+        "endChar": 26
       },
       {
         "wordEn": "finished",
         "wordZh": "",
-        "startChar": 36,
-        "endChar": 43
+        "startChar": 28,
+        "endChar": 35
       }
     ]
   },
@@ -8234,7 +8234,7 @@
         "endChar": 7
       },
       {
-        "wordEn": "Carols",
+        "wordEn": "Carol's",
         "wordZh": "",
         "startChar": 9,
         "endChar": 15
@@ -8518,56 +8518,56 @@
     "videoId": "friends-s01e01",
     "startTime": 622.2,
     "endTime": 624.28,
-    "textEn": "- Oh, God. Oh, my God.     - You got screwed.",
-    "textZh": "- 天呀   - 你被耍了",
+    "textEn": "Oh, God. Oh, my God. You got screwed.",
+    "textZh": "天呀 你被耍了",
     "alignment": [
       {
         "wordEn": "Oh",
         "wordZh": "",
-        "startChar": 2,
-        "endChar": 3
+        "startChar": 0,
+        "endChar": 1
       },
       {
         "wordEn": "God",
         "wordZh": "",
-        "startChar": 6,
-        "endChar": 8
+        "startChar": 4,
+        "endChar": 6
       },
       {
         "wordEn": "Oh",
         "wordZh": "",
-        "startChar": 11,
-        "endChar": 12
+        "startChar": 9,
+        "endChar": 10
       },
       {
         "wordEn": "my",
         "wordZh": "",
-        "startChar": 15,
-        "endChar": 16
+        "startChar": 13,
+        "endChar": 14
       },
       {
         "wordEn": "God",
         "wordZh": "",
-        "startChar": 18,
-        "endChar": 20
+        "startChar": 16,
+        "endChar": 18
       },
       {
         "wordEn": "You",
         "wordZh": "",
-        "startChar": 29,
-        "endChar": 31
+        "startChar": 21,
+        "endChar": 23
       },
       {
         "wordEn": "got",
         "wordZh": "",
-        "startChar": 33,
-        "endChar": 35
+        "startChar": 25,
+        "endChar": 27
       },
       {
         "wordEn": "screwed",
         "wordZh": "",
-        "startChar": 37,
-        "endChar": 43
+        "startChar": 29,
+        "endChar": 35
       }
     ]
   },
@@ -8576,26 +8576,38 @@
     "videoId": "friends-s01e01",
     "startTime": 624.49,
     "endTime": 628.79,
-    "textEn": "- Oh, my God.     - I know, I know. I'm such an idiot.",
-    "textZh": "- 我的老天    - 我知道 我真是个笨蛋",
+    "textEn": "Oh, my God. I know, I know. I'm such an idiot.",
+    "textZh": "我的老天 我知道 我真是个笨蛋",
     "alignment": [
       {
         "wordEn": "Oh",
         "wordZh": "",
-        "startChar": 2,
-        "endChar": 3
+        "startChar": 0,
+        "endChar": 1
       },
       {
         "wordEn": "my",
         "wordZh": "",
-        "startChar": 6,
-        "endChar": 7
+        "startChar": 4,
+        "endChar": 5
       },
       {
         "wordEn": "God",
         "wordZh": "",
-        "startChar": 9,
-        "endChar": 11
+        "startChar": 7,
+        "endChar": 9
+      },
+      {
+        "wordEn": "I",
+        "wordZh": "",
+        "startChar": 12,
+        "endChar": 12
+      },
+      {
+        "wordEn": "know",
+        "wordZh": "",
+        "startChar": 14,
+        "endChar": 17
       },
       {
         "wordEn": "I",
@@ -8610,40 +8622,28 @@
         "endChar": 25
       },
       {
-        "wordEn": "I",
+        "wordEn": "I'm",
         "wordZh": "",
         "startChar": 28,
-        "endChar": 28
-      },
-      {
-        "wordEn": "know",
-        "wordZh": "",
-        "startChar": 30,
-        "endChar": 33
-      },
-      {
-        "wordEn": "Im",
-        "wordZh": "",
-        "startChar": 36,
-        "endChar": 38
+        "endChar": 30
       },
       {
         "wordEn": "such",
         "wordZh": "",
-        "startChar": 40,
-        "endChar": 43
+        "startChar": 32,
+        "endChar": 35
       },
       {
         "wordEn": "an",
         "wordZh": "",
-        "startChar": 45,
-        "endChar": 46
+        "startChar": 37,
+        "endChar": 38
       },
       {
         "wordEn": "idiot",
         "wordZh": "",
-        "startChar": 48,
-        "endChar": 52
+        "startChar": 40,
+        "endChar": 44
       }
     ]
   },
@@ -8662,7 +8662,7 @@
         "endChar": 0
       },
       {
-        "wordEn": "shouldve",
+        "wordEn": "should've",
         "wordZh": "",
         "startChar": 2,
         "endChar": 10
@@ -8820,7 +8820,7 @@
         "endChar": 1
       },
       {
-        "wordEn": "brothers",
+        "wordEn": "brother's",
         "wordZh": "",
         "startChar": 3,
         "endChar": 11
@@ -8844,7 +8844,7 @@
         "endChar": 30
       },
       {
-        "wordEn": "Hes",
+        "wordEn": "He's",
         "wordZh": "",
         "startChar": 33,
         "endChar": 36
@@ -8984,26 +8984,26 @@
     "videoId": "friends-s01e01",
     "startTime": 644.56,
     "endTime": 646.14,
-    "textEn": "- Say her...     - Leg?",
-    "textZh": "- 比如她的…   - 腿？",
+    "textEn": "Say her... Leg?",
+    "textZh": "比如她的… 腿？",
     "alignment": [
       {
         "wordEn": "Say",
         "wordZh": "",
-        "startChar": 2,
-        "endChar": 4
+        "startChar": 0,
+        "endChar": 2
       },
       {
         "wordEn": "her",
         "wordZh": "",
-        "startChar": 6,
-        "endChar": 8
+        "startChar": 4,
+        "endChar": 6
       },
       {
         "wordEn": "Leg",
         "wordZh": "",
-        "startChar": 19,
-        "endChar": 21
+        "startChar": 11,
+        "endChar": 13
       }
     ]
   },
@@ -9022,7 +9022,7 @@
         "endChar": 2
       },
       {
-        "wordEn": "Thats",
+        "wordEn": "That's",
         "wordZh": "",
         "startChar": 5,
         "endChar": 10
@@ -9122,44 +9122,44 @@
     "videoId": "friends-s01e01",
     "startTime": 650.77,
     "endTime": 652.65,
-    "textEn": "- You actually broke her watch?     - Mm.",
-    "textZh": "- 真的砸了她的手表？ - 嗯",
+    "textEn": "You actually broke her watch? Mm.",
+    "textZh": "真的砸了她的手表？ 嗯",
     "alignment": [
       {
         "wordEn": "You",
         "wordZh": "",
-        "startChar": 2,
-        "endChar": 4
+        "startChar": 0,
+        "endChar": 2
       },
       {
         "wordEn": "actually",
         "wordZh": "",
-        "startChar": 6,
-        "endChar": 13
+        "startChar": 4,
+        "endChar": 11
       },
       {
         "wordEn": "broke",
         "wordZh": "",
-        "startChar": 15,
-        "endChar": 19
+        "startChar": 13,
+        "endChar": 17
       },
       {
         "wordEn": "her",
         "wordZh": "",
-        "startChar": 21,
-        "endChar": 23
+        "startChar": 19,
+        "endChar": 21
       },
       {
         "wordEn": "watch",
         "wordZh": "",
-        "startChar": 25,
-        "endChar": 29
+        "startChar": 23,
+        "endChar": 27
       },
       {
         "wordEn": "Mm",
         "wordZh": "",
-        "startChar": 38,
-        "endChar": 39
+        "startChar": 30,
+        "endChar": 31
       }
     ]
   },
@@ -9178,7 +9178,7 @@
         "endChar": 4
       },
       {
-        "wordEn": "Im",
+        "wordEn": "I'm",
         "wordZh": "",
         "startChar": 7,
         "endChar": 9
@@ -9254,7 +9254,7 @@
         "endChar": 24
       },
       {
-        "wordEn": "its",
+        "wordEn": "it's",
         "wordZh": "",
         "startChar": 26,
         "endChar": 29
@@ -9354,7 +9354,7 @@
         "endChar": 46
       },
       {
-        "wordEn": "isnt",
+        "wordEn": "isn't",
         "wordZh": "",
         "startChar": 48,
         "endChar": 52
@@ -9376,13 +9376,13 @@
         "endChar": 1
       },
       {
-        "wordEn": "isnt",
+        "wordEn": "isn't",
         "wordZh": "",
         "startChar": 3,
         "endChar": 7
       },
       {
-        "wordEn": "its",
+        "wordEn": "it's",
         "wordZh": "",
         "startChar": 10,
         "endChar": 13
@@ -9486,7 +9486,7 @@
         "endChar": 7
       },
       {
-        "wordEn": "whats",
+        "wordEn": "what's",
         "wordZh": "",
         "startChar": 9,
         "endChar": 14
@@ -9520,7 +9520,7 @@
         "endChar": 6
       },
       {
-        "wordEn": "theres",
+        "wordEn": "there's",
         "wordZh": "",
         "startChar": 8,
         "endChar": 14
@@ -9620,7 +9620,7 @@
         "endChar": 37
       },
       {
-        "wordEn": "thats",
+        "wordEn": "that's",
         "wordZh": "",
         "startChar": 39,
         "endChar": 44
@@ -9770,7 +9770,7 @@
     "textZh": "那就好像你只吃一种口味的冰淇淋",
     "alignment": [
       {
-        "wordEn": "Thats",
+        "wordEn": "That's",
         "wordZh": "",
         "startChar": 0,
         "endChar": 5
@@ -9788,7 +9788,7 @@
         "endChar": 17
       },
       {
-        "wordEn": "theres",
+        "wordEn": "there's",
         "wordZh": "",
         "startChar": 19,
         "endChar": 25
@@ -9888,7 +9888,7 @@
         "endChar": 30
       },
       {
-        "wordEn": "Theres",
+        "wordEn": "There's",
         "wordZh": "",
         "startChar": 33,
         "endChar": 39
@@ -9934,7 +9934,7 @@
     "textZh": "有碎糖口味、饼干口味 然后还有香草口味",
     "alignment": [
       {
-        "wordEn": "Theres",
+        "wordEn": "There's",
         "wordZh": "",
         "startChar": 0,
         "endChar": 6
@@ -10272,7 +10272,7 @@
         "endChar": 9
       },
       {
-        "wordEn": "dont",
+        "wordEn": "don't",
         "wordZh": "",
         "startChar": 11,
         "endChar": 15
@@ -10290,7 +10290,7 @@
         "endChar": 23
       },
       {
-        "wordEn": "Im",
+        "wordEn": "I'm",
         "wordZh": "",
         "startChar": 25,
         "endChar": 27
@@ -10508,7 +10508,7 @@
         "endChar": 1
       },
       {
-        "wordEn": "its",
+        "wordEn": "it's",
         "wordZh": "",
         "startChar": 4,
         "endChar": 7
@@ -10584,7 +10584,7 @@
         "endChar": 5
       },
       {
-        "wordEn": "theres",
+        "wordEn": "there's",
         "wordZh": "",
         "startChar": 7,
         "endChar": 13
@@ -10630,7 +10630,7 @@
     "textZh": "会有吗？",
     "alignment": [
       {
-        "wordEn": "Isnt",
+        "wordEn": "Isn't",
         "wordZh": "",
         "startChar": 0,
         "endChar": 4
@@ -10818,7 +10818,7 @@
         "endChar": 3
       },
       {
-        "wordEn": "havent",
+        "wordEn": "haven't",
         "wordZh": "",
         "startChar": 5,
         "endChar": 11
@@ -10922,38 +10922,38 @@
     "videoId": "friends-s01e01",
     "startTime": 773.02,
     "endTime": 774.23,
-    "textEn": "- I'm so sorry.     - It's okay.",
-    "textZh": "- 对不起…   - 没关系",
+    "textEn": "I'm so sorry. It's okay.",
+    "textZh": "对不起… 没关系",
     "alignment": [
       {
-        "wordEn": "Im",
+        "wordEn": "I'm",
         "wordZh": "",
-        "startChar": 2,
-        "endChar": 4
+        "startChar": 0,
+        "endChar": 2
       },
       {
         "wordEn": "so",
         "wordZh": "",
-        "startChar": 6,
-        "endChar": 7
+        "startChar": 4,
+        "endChar": 5
       },
       {
         "wordEn": "sorry",
         "wordZh": "",
-        "startChar": 9,
-        "endChar": 13
+        "startChar": 7,
+        "endChar": 11
       },
       {
-        "wordEn": "Its",
+        "wordEn": "It's",
         "wordZh": "",
-        "startChar": 22,
-        "endChar": 25
+        "startChar": 14,
+        "endChar": 17
       },
       {
         "wordEn": "okay",
         "wordZh": "",
-        "startChar": 27,
-        "endChar": 30
+        "startChar": 19,
+        "endChar": 22
       }
     ]
   },
@@ -11086,7 +11086,7 @@
     "textZh": "我真高兴你砸了她的手表",
     "alignment": [
       {
-        "wordEn": "Im",
+        "wordEn": "I'm",
         "wordZh": "",
         "startChar": 0,
         "endChar": 2
@@ -11306,44 +11306,44 @@
     "videoId": "friends-s01e01",
     "startTime": 805.22,
     "endTime": 808.47,
-    "textEn": "- Do you take Joanie...?     - Oh! See.",
-    "textZh": "- 你是否接受乔安妮…   - 看吧",
+    "textEn": "Do you take Joanie...? Oh! See.",
+    "textZh": "你是否接受乔安妮… 看吧",
     "alignment": [
       {
         "wordEn": "Do",
         "wordZh": "",
-        "startChar": 2,
-        "endChar": 3
+        "startChar": 0,
+        "endChar": 1
       },
       {
         "wordEn": "you",
         "wordZh": "",
-        "startChar": 5,
-        "endChar": 7
+        "startChar": 3,
+        "endChar": 5
       },
       {
         "wordEn": "take",
         "wordZh": "",
-        "startChar": 9,
-        "endChar": 12
+        "startChar": 7,
+        "endChar": 10
       },
       {
         "wordEn": "Joanie",
         "wordZh": "",
-        "startChar": 14,
-        "endChar": 19
+        "startChar": 12,
+        "endChar": 17
       },
       {
         "wordEn": "Oh",
         "wordZh": "",
-        "startChar": 31,
-        "endChar": 32
+        "startChar": 23,
+        "endChar": 24
       },
       {
         "wordEn": "See",
         "wordZh": "",
-        "startChar": 35,
-        "endChar": 37
+        "startChar": 27,
+        "endChar": 29
       }
     ]
   },
@@ -11380,7 +11380,7 @@
         "endChar": 22
       },
       {
-        "wordEn": "Thats",
+        "wordEn": "That's",
         "wordZh": "",
         "startChar": 25,
         "endChar": 30
@@ -11460,7 +11460,7 @@
         "endChar": 15
       },
       {
-        "wordEn": "its",
+        "wordEn": "it's",
         "wordZh": "",
         "startChar": 17,
         "endChar": 20
@@ -11536,7 +11536,7 @@
         "endChar": 19
       },
       {
-        "wordEn": "dont",
+        "wordEn": "don't",
         "wordZh": "",
         "startChar": 22,
         "endChar": 26
@@ -11606,7 +11606,7 @@
         "endChar": 7
       },
       {
-        "wordEn": "heres",
+        "wordEn": "here's",
         "wordZh": "",
         "startChar": 10,
         "endChar": 15
@@ -11762,7 +11762,7 @@
     "textZh": "是不是很不可思议？",
     "alignment": [
       {
-        "wordEn": "Isnt",
+        "wordEn": "Isn't",
         "wordZh": "",
         "startChar": 0,
         "endChar": 4
@@ -11862,32 +11862,32 @@
     "videoId": "friends-s01e01",
     "startTime": 860.65,
     "endTime": 863.15,
-    "textEn": "- That is amazing.     - Congratulations.",
-    "textZh": "- 是很不可思议   - 恭喜你",
+    "textEn": "That is amazing. Congratulations.",
+    "textZh": "是很不可思议 恭喜你",
     "alignment": [
       {
         "wordEn": "That",
         "wordZh": "",
-        "startChar": 2,
-        "endChar": 5
+        "startChar": 0,
+        "endChar": 3
       },
       {
         "wordEn": "is",
         "wordZh": "",
-        "startChar": 7,
-        "endChar": 8
+        "startChar": 5,
+        "endChar": 6
       },
       {
         "wordEn": "amazing",
         "wordZh": "",
-        "startChar": 10,
-        "endChar": 16
+        "startChar": 8,
+        "endChar": 14
       },
       {
         "wordEn": "Congratulations",
         "wordZh": "",
-        "startChar": 25,
-        "endChar": 39
+        "startChar": 17,
+        "endChar": 31
       }
     ]
   },
@@ -11906,7 +11906,7 @@
         "endChar": 4
       },
       {
-        "wordEn": "youre",
+        "wordEn": "you're",
         "wordZh": "",
         "startChar": 6,
         "endChar": 11
@@ -12024,7 +12024,7 @@
         "endChar": 17
       },
       {
-        "wordEn": "Im",
+        "wordEn": "I'm",
         "wordZh": "",
         "startChar": 19,
         "endChar": 21
@@ -12072,32 +12072,32 @@
     "videoId": "friends-s01e01",
     "startTime": 875.37,
     "endTime": 876.7,
-    "textEn": "- Good morning.     - Good morning.",
-    "textZh": "- 早安   - 早安",
+    "textEn": "Good morning. Good morning.",
+    "textZh": "早安 早安",
     "alignment": [
       {
         "wordEn": "Good",
         "wordZh": "",
-        "startChar": 2,
-        "endChar": 5
+        "startChar": 0,
+        "endChar": 3
       },
       {
         "wordEn": "morning",
         "wordZh": "",
-        "startChar": 7,
-        "endChar": 13
+        "startChar": 5,
+        "endChar": 11
       },
       {
         "wordEn": "Good",
         "wordZh": "",
-        "startChar": 22,
-        "endChar": 25
+        "startChar": 14,
+        "endChar": 17
       },
       {
         "wordEn": "morning",
         "wordZh": "",
-        "startChar": 27,
-        "endChar": 33
+        "startChar": 19,
+        "endChar": 25
       }
     ]
   },
@@ -12106,20 +12106,20 @@
     "videoId": "friends-s01e01",
     "startTime": 876.87,
     "endTime": 878.5,
-    "textEn": "- Morning.     - Morning.",
-    "textZh": "- 早安   - 早安",
+    "textEn": "Morning. Morning.",
+    "textZh": "早安 早安",
     "alignment": [
       {
         "wordEn": "Morning",
         "wordZh": "",
-        "startChar": 2,
-        "endChar": 8
+        "startChar": 0,
+        "endChar": 6
       },
       {
         "wordEn": "Morning",
         "wordZh": "",
-        "startChar": 17,
-        "endChar": 23
+        "startChar": 9,
+        "endChar": 15
       }
     ]
   },
@@ -12128,26 +12128,26 @@
     "videoId": "friends-s01e01",
     "startTime": 879.42,
     "endTime": 881.58,
-    "textEn": "- Morning.     - Morning, Paul.",
-    "textZh": "- 早安   - 早安 保罗",
+    "textEn": "Morning. Morning, Paul.",
+    "textZh": "早安 早安 保罗",
     "alignment": [
       {
         "wordEn": "Morning",
         "wordZh": "",
-        "startChar": 2,
-        "endChar": 8
+        "startChar": 0,
+        "endChar": 6
       },
       {
         "wordEn": "Morning",
         "wordZh": "",
-        "startChar": 17,
-        "endChar": 23
+        "startChar": 9,
+        "endChar": 15
       },
       {
         "wordEn": "Paul",
         "wordZh": "",
-        "startChar": 26,
-        "endChar": 29
+        "startChar": 18,
+        "endChar": 21
       }
     ]
   },
@@ -12156,44 +12156,44 @@
     "videoId": "friends-s01e01",
     "startTime": 881.75,
     "endTime": 884.96,
-    "textEn": "- Hello, Paul.     - Hi. Paul, is it?",
-    "textZh": "- 你好 保罗   - 嘿 是保罗 对吗？",
+    "textEn": "Hello, Paul. Hi. Paul, is it?",
+    "textZh": "你好 保罗 嘿 是保罗 对吗？",
     "alignment": [
       {
         "wordEn": "Hello",
         "wordZh": "",
-        "startChar": 2,
-        "endChar": 6
+        "startChar": 0,
+        "endChar": 4
       },
       {
         "wordEn": "Paul",
         "wordZh": "",
-        "startChar": 9,
-        "endChar": 12
+        "startChar": 7,
+        "endChar": 10
       },
       {
         "wordEn": "Hi",
         "wordZh": "",
-        "startChar": 21,
-        "endChar": 22
+        "startChar": 13,
+        "endChar": 14
       },
       {
         "wordEn": "Paul",
         "wordZh": "",
-        "startChar": 25,
-        "endChar": 28
+        "startChar": 17,
+        "endChar": 20
       },
       {
         "wordEn": "is",
         "wordZh": "",
-        "startChar": 31,
-        "endChar": 32
+        "startChar": 23,
+        "endChar": 24
       },
       {
         "wordEn": "it",
         "wordZh": "",
-        "startChar": 34,
-        "endChar": 35
+        "startChar": 26,
+        "endChar": 27
       }
     ]
   },
@@ -12306,38 +12306,38 @@
     "videoId": "friends-s01e01",
     "startTime": 894.6,
     "endTime": 897.47,
-    "textEn": "- We'll talk later, okay?     - Yeah.",
-    "textZh": "- 再聊   - 好的",
+    "textEn": "We'll talk later, okay? Yeah.",
+    "textZh": "再聊 好的",
     "alignment": [
       {
-        "wordEn": "Well",
+        "wordEn": "We'll",
         "wordZh": "",
-        "startChar": 2,
-        "endChar": 6
+        "startChar": 0,
+        "endChar": 4
       },
       {
         "wordEn": "talk",
         "wordZh": "",
-        "startChar": 8,
-        "endChar": 11
+        "startChar": 6,
+        "endChar": 9
       },
       {
         "wordEn": "later",
         "wordZh": "",
-        "startChar": 13,
-        "endChar": 17
+        "startChar": 11,
+        "endChar": 15
       },
       {
         "wordEn": "okay",
         "wordZh": "",
-        "startChar": 20,
-        "endChar": 23
+        "startChar": 18,
+        "endChar": 21
       },
       {
         "wordEn": "Yeah",
         "wordZh": "",
-        "startChar": 32,
-        "endChar": 35
+        "startChar": 24,
+        "endChar": 27
       }
     ]
   },
@@ -12378,7 +12378,7 @@
         "endChar": 3
       },
       {
-        "wordEn": "wasnt",
+        "wordEn": "wasn't",
         "wordZh": "",
         "startChar": 5,
         "endChar": 10
@@ -12478,56 +12478,56 @@
     "videoId": "friends-s01e01",
     "startTime": 917.04,
     "endTime": 920.5,
-    "textEn": "- Shut up and put my table back.     - Okay.",
-    "textZh": "- 闭嘴 把我的桌子搬回去   - 好的",
+    "textEn": "Shut up and put my table back. Okay.",
+    "textZh": "闭嘴 把我的桌子搬回去 好的",
     "alignment": [
       {
         "wordEn": "Shut",
         "wordZh": "",
-        "startChar": 2,
-        "endChar": 5
+        "startChar": 0,
+        "endChar": 3
       },
       {
         "wordEn": "up",
         "wordZh": "",
-        "startChar": 7,
-        "endChar": 8
+        "startChar": 5,
+        "endChar": 6
       },
       {
         "wordEn": "and",
         "wordZh": "",
-        "startChar": 10,
-        "endChar": 12
+        "startChar": 8,
+        "endChar": 10
       },
       {
         "wordEn": "put",
         "wordZh": "",
-        "startChar": 14,
-        "endChar": 16
+        "startChar": 12,
+        "endChar": 14
       },
       {
         "wordEn": "my",
         "wordZh": "",
-        "startChar": 18,
-        "endChar": 19
+        "startChar": 16,
+        "endChar": 17
       },
       {
         "wordEn": "table",
         "wordZh": "",
-        "startChar": 21,
-        "endChar": 25
+        "startChar": 19,
+        "endChar": 23
       },
       {
         "wordEn": "back",
         "wordZh": "",
-        "startChar": 27,
-        "endChar": 30
+        "startChar": 25,
+        "endChar": 28
       },
       {
         "wordEn": "Okay",
         "wordZh": "",
-        "startChar": 39,
-        "endChar": 42
+        "startChar": 31,
+        "endChar": 34
       }
     ]
   },
@@ -12610,7 +12610,7 @@
         "endChar": 3
       },
       {
-        "wordEn": "dont",
+        "wordEn": "don't",
         "wordZh": "",
         "startChar": 5,
         "endChar": 9
@@ -12640,7 +12640,7 @@
         "endChar": 33
       },
       {
-        "wordEn": "doesnt",
+        "wordEn": "doesn't",
         "wordZh": "",
         "startChar": 35,
         "endChar": 41
@@ -12784,7 +12784,7 @@
         "endChar": 2
       },
       {
-        "wordEn": "thats",
+        "wordEn": "that's",
         "wordZh": "",
         "startChar": 5,
         "endChar": 10
@@ -12830,7 +12830,7 @@
         "endChar": 3
       },
       {
-        "wordEn": "Im",
+        "wordEn": "I'm",
         "wordZh": "",
         "startChar": 6,
         "endChar": 8
@@ -13010,7 +13010,7 @@
         "endChar": 35
       },
       {
-        "wordEn": "Ones",
+        "wordEn": "One's",
         "wordZh": "",
         "startChar": 37,
         "endChar": 41
@@ -13056,7 +13056,7 @@
         "endChar": 13
       },
       {
-        "wordEn": "Im",
+        "wordEn": "I'm",
         "wordZh": "",
         "startChar": 16,
         "endChar": 18
@@ -13142,7 +13142,7 @@
     "textZh": "没错 对不起",
     "alignment": [
       {
-        "wordEn": "Youre",
+        "wordEn": "You're",
         "wordZh": "",
         "startChar": 0,
         "endChar": 5
@@ -13154,7 +13154,7 @@
         "endChar": 11
       },
       {
-        "wordEn": "Im",
+        "wordEn": "I'm",
         "wordZh": "",
         "startChar": 14,
         "endChar": 16
@@ -13352,7 +13352,7 @@
         "endChar": 23
       },
       {
-        "wordEn": "cant",
+        "wordEn": "can't",
         "wordZh": "",
         "startChar": 25,
         "endChar": 29
@@ -13492,7 +13492,7 @@
         "endChar": 5
       },
       {
-        "wordEn": "Hes",
+        "wordEn": "He's",
         "wordZh": "",
         "startChar": 8,
         "endChar": 11
@@ -13562,56 +13562,56 @@
     "videoId": "friends-s01e01",
     "startTime": 988.32,
     "endTime": 992.32,
-    "textEn": "- Oh, yeah.     - Well, it's like that. With feelings.",
-    "textZh": "- 是的 记得   - 就好像那样 但有感觉",
+    "textEn": "Oh, yeah. Well, it's like that. With feelings.",
+    "textZh": "是的 记得 就好像那样 但有感觉",
     "alignment": [
       {
         "wordEn": "Oh",
         "wordZh": "",
-        "startChar": 2,
-        "endChar": 3
+        "startChar": 0,
+        "endChar": 1
       },
       {
         "wordEn": "yeah",
         "wordZh": "",
-        "startChar": 6,
-        "endChar": 9
+        "startChar": 4,
+        "endChar": 7
       },
       {
         "wordEn": "Well",
         "wordZh": "",
-        "startChar": 18,
-        "endChar": 21
+        "startChar": 10,
+        "endChar": 13
       },
       {
-        "wordEn": "its",
+        "wordEn": "it's",
         "wordZh": "",
-        "startChar": 24,
-        "endChar": 27
+        "startChar": 16,
+        "endChar": 19
       },
       {
         "wordEn": "like",
         "wordZh": "",
-        "startChar": 29,
-        "endChar": 32
+        "startChar": 21,
+        "endChar": 24
       },
       {
         "wordEn": "that",
         "wordZh": "",
-        "startChar": 34,
-        "endChar": 37
+        "startChar": 26,
+        "endChar": 29
       },
       {
         "wordEn": "With",
         "wordZh": "",
-        "startChar": 40,
-        "endChar": 43
+        "startChar": 32,
+        "endChar": 35
       },
       {
         "wordEn": "feelings",
         "wordZh": "",
-        "startChar": 45,
-        "endChar": 52
+        "startChar": 37,
+        "endChar": 44
       }
     ]
   },
@@ -13816,7 +13816,7 @@
         "endChar": 6
       },
       {
-        "wordEn": "Im",
+        "wordEn": "I'm",
         "wordZh": "",
         "startChar": 8,
         "endChar": 10
@@ -13876,44 +13876,44 @@
     "videoId": "friends-s01e01",
     "startTime": 1005.5,
     "endTime": 1007.13,
-    "textEn": "- Oh, wish me luck!     - What for?",
-    "textZh": "- 喔 祝我好运    - 为什么？",
+    "textEn": "Oh, wish me luck! What for?",
+    "textZh": "喔 祝我好运 为什么？",
     "alignment": [
       {
         "wordEn": "Oh",
         "wordZh": "",
-        "startChar": 2,
-        "endChar": 3
+        "startChar": 0,
+        "endChar": 1
       },
       {
         "wordEn": "wish",
         "wordZh": "",
-        "startChar": 6,
-        "endChar": 9
+        "startChar": 4,
+        "endChar": 7
       },
       {
         "wordEn": "me",
         "wordZh": "",
-        "startChar": 11,
-        "endChar": 12
+        "startChar": 9,
+        "endChar": 10
       },
       {
         "wordEn": "luck",
         "wordZh": "",
-        "startChar": 14,
-        "endChar": 17
+        "startChar": 12,
+        "endChar": 15
       },
       {
         "wordEn": "What",
         "wordZh": "",
-        "startChar": 26,
-        "endChar": 29
+        "startChar": 18,
+        "endChar": 21
       },
       {
         "wordEn": "for",
         "wordZh": "",
-        "startChar": 31,
-        "endChar": 33
+        "startChar": 23,
+        "endChar": 25
       }
     ]
   },
@@ -13926,7 +13926,7 @@
     "textZh": "我要去找工作之类的事",
     "alignment": [
       {
-        "wordEn": "Im",
+        "wordEn": "I'm",
         "wordZh": "",
         "startChar": 0,
         "endChar": 2
@@ -13986,44 +13986,44 @@
     "videoId": "friends-s01e01",
     "startTime": 1018.6,
     "endTime": 1021.22,
-    "textEn": "- Hey, Monica.     - Hey, Franny. Welcome back.",
-    "textZh": "- 嘿 摩妮卡   - 嘿 弗兰妮 欢迎回来",
+    "textEn": "Hey, Monica. Hey, Franny. Welcome back.",
+    "textZh": "嘿 摩妮卡 嘿 弗兰妮 欢迎回来",
     "alignment": [
       {
         "wordEn": "Hey",
         "wordZh": "",
-        "startChar": 2,
-        "endChar": 4
+        "startChar": 0,
+        "endChar": 2
       },
       {
         "wordEn": "Monica",
         "wordZh": "",
-        "startChar": 7,
-        "endChar": 12
+        "startChar": 5,
+        "endChar": 10
       },
       {
         "wordEn": "Hey",
         "wordZh": "",
-        "startChar": 21,
-        "endChar": 23
+        "startChar": 13,
+        "endChar": 15
       },
       {
         "wordEn": "Franny",
         "wordZh": "",
-        "startChar": 26,
-        "endChar": 31
+        "startChar": 18,
+        "endChar": 23
       },
       {
         "wordEn": "Welcome",
         "wordZh": "",
-        "startChar": 34,
-        "endChar": 40
+        "startChar": 26,
+        "endChar": 32
       },
       {
         "wordEn": "back",
         "wordZh": "",
-        "startChar": 42,
-        "endChar": 45
+        "startChar": 34,
+        "endChar": 37
       }
     ]
   },
@@ -14082,7 +14082,7 @@
         "endChar": 10
       },
       {
-        "wordEn": "didnt",
+        "wordEn": "didn't",
         "wordZh": "",
         "startChar": 13,
         "endChar": 18
@@ -14140,38 +14140,38 @@
     "videoId": "friends-s01e01",
     "startTime": 1028.44,
     "endTime": 1032.23,
-    "textEn": "- So, who?     - You know Paul?",
-    "textZh": "- 那么 是和谁？- 你认识保罗吗？",
+    "textEn": "So, who? You know Paul?",
+    "textZh": "那么 是和谁？ 你认识保罗吗？",
     "alignment": [
       {
         "wordEn": "So",
         "wordZh": "",
-        "startChar": 2,
-        "endChar": 3
+        "startChar": 0,
+        "endChar": 1
       },
       {
         "wordEn": "who",
         "wordZh": "",
-        "startChar": 6,
-        "endChar": 8
+        "startChar": 4,
+        "endChar": 6
       },
       {
         "wordEn": "You",
         "wordZh": "",
-        "startChar": 17,
-        "endChar": 19
+        "startChar": 9,
+        "endChar": 11
       },
       {
         "wordEn": "know",
         "wordZh": "",
-        "startChar": 21,
-        "endChar": 24
+        "startChar": 13,
+        "endChar": 16
       },
       {
         "wordEn": "Paul",
         "wordZh": "",
-        "startChar": 26,
-        "endChar": 29
+        "startChar": 18,
+        "endChar": 21
       }
     ]
   },
@@ -14566,7 +14566,7 @@
     "textZh": "我想更精确的答案是",
     "alignment": [
       {
-        "wordEn": "Were",
+        "wordEn": "We're",
         "wordZh": "",
         "startChar": 0,
         "endChar": 4
@@ -14954,7 +14954,7 @@
         "endChar": 0
       },
       {
-        "wordEn": "cant",
+        "wordEn": "can't",
         "wordZh": "",
         "startChar": 2,
         "endChar": 6
@@ -14972,7 +14972,7 @@
         "endChar": 18
       },
       {
-        "wordEn": "didnt",
+        "wordEn": "didn't",
         "wordZh": "",
         "startChar": 20,
         "endChar": 25
@@ -15036,50 +15036,50 @@
     "videoId": "friends-s01e01",
     "startTime": 1094.42,
     "endTime": 1096.21,
-    "textEn": "- You got a job?     - Are you kidding?",
-    "textZh": "- 你找到工作啦？- 开玩笑吗？",
+    "textEn": "You got a job? Are you kidding?",
+    "textZh": "你找到工作啦？ 开玩笑吗？",
     "alignment": [
       {
         "wordEn": "You",
         "wordZh": "",
-        "startChar": 2,
-        "endChar": 4
+        "startChar": 0,
+        "endChar": 2
       },
       {
         "wordEn": "got",
         "wordZh": "",
-        "startChar": 6,
-        "endChar": 8
+        "startChar": 4,
+        "endChar": 6
       },
       {
         "wordEn": "a",
         "wordZh": "",
-        "startChar": 10,
-        "endChar": 10
+        "startChar": 8,
+        "endChar": 8
       },
       {
         "wordEn": "job",
         "wordZh": "",
-        "startChar": 12,
-        "endChar": 14
+        "startChar": 10,
+        "endChar": 12
       },
       {
         "wordEn": "Are",
         "wordZh": "",
-        "startChar": 23,
-        "endChar": 25
+        "startChar": 15,
+        "endChar": 17
       },
       {
         "wordEn": "you",
         "wordZh": "",
-        "startChar": 27,
-        "endChar": 29
+        "startChar": 19,
+        "endChar": 21
       },
       {
         "wordEn": "kidding",
         "wordZh": "",
-        "startChar": 31,
-        "endChar": 37
+        "startChar": 23,
+        "endChar": 29
       }
     ]
   },
@@ -15092,7 +15092,7 @@
     "textZh": "我一点经验都没有",
     "alignment": [
       {
-        "wordEn": "Im",
+        "wordEn": "I'm",
         "wordZh": "",
         "startChar": 0,
         "endChar": 2
@@ -15184,7 +15184,7 @@
         "endChar": 2
       },
       {
-        "wordEn": "youre",
+        "wordEn": "you're",
         "wordZh": "",
         "startChar": 4,
         "endChar": 9
@@ -15374,7 +15374,7 @@
     "textZh": "这双是 \"我不需要工作 我不需要父母",
     "alignment": [
       {
-        "wordEn": "Theyre",
+        "wordEn": "They're",
         "wordZh": "",
         "startChar": 0,
         "endChar": 6
@@ -15398,7 +15398,7 @@
         "endChar": 16
       },
       {
-        "wordEn": "dont",
+        "wordEn": "don't",
         "wordZh": "",
         "startChar": 18,
         "endChar": 22
@@ -15450,7 +15450,7 @@
     "textZh": "我买了新皮靴\"的皮靴",
     "alignment": [
       {
-        "wordEn": "Ive",
+        "wordEn": "I've",
         "wordZh": "",
         "startChar": 0,
         "endChar": 3
@@ -15486,56 +15486,56 @@
     "videoId": "friends-s01e01",
     "startTime": 1119.15,
     "endTime": 1121.36,
-    "textEn": "- How'd you pay for them?     - Uh, credit card.",
-    "textZh": "- 你用什么付帐的？- 信用卡",
+    "textEn": "How'd you pay for them? Uh, credit card.",
+    "textZh": "你用什么付帐的？ 信用卡",
     "alignment": [
       {
-        "wordEn": "Howd",
+        "wordEn": "How'd",
         "wordZh": "",
-        "startChar": 2,
-        "endChar": 6
+        "startChar": 0,
+        "endChar": 4
       },
       {
         "wordEn": "you",
         "wordZh": "",
-        "startChar": 8,
-        "endChar": 10
+        "startChar": 6,
+        "endChar": 8
       },
       {
         "wordEn": "pay",
         "wordZh": "",
-        "startChar": 12,
-        "endChar": 14
+        "startChar": 10,
+        "endChar": 12
       },
       {
         "wordEn": "for",
         "wordZh": "",
-        "startChar": 16,
-        "endChar": 18
+        "startChar": 14,
+        "endChar": 16
       },
       {
         "wordEn": "them",
         "wordZh": "",
-        "startChar": 20,
-        "endChar": 23
+        "startChar": 18,
+        "endChar": 21
       },
       {
         "wordEn": "Uh",
         "wordZh": "",
-        "startChar": 32,
-        "endChar": 33
+        "startChar": 24,
+        "endChar": 25
       },
       {
         "wordEn": "credit",
         "wordZh": "",
-        "startChar": 36,
-        "endChar": 41
+        "startChar": 28,
+        "endChar": 33
       },
       {
         "wordEn": "card",
         "wordZh": "",
-        "startChar": 43,
-        "endChar": 46
+        "startChar": 35,
+        "endChar": 38
       }
     ]
   },
@@ -15622,7 +15622,7 @@
         "endChar": 2
       },
       {
-        "wordEn": "cant",
+        "wordEn": "can't",
         "wordZh": "",
         "startChar": 4,
         "endChar": 8
@@ -15698,7 +15698,7 @@
         "endChar": 10
       },
       {
-        "wordEn": "Thats",
+        "wordEn": "That's",
         "wordZh": "",
         "startChar": 13,
         "endChar": 18
@@ -15768,7 +15768,7 @@
         "endChar": 15
       },
       {
-        "wordEn": "Its",
+        "wordEn": "It's",
         "wordZh": "",
         "startChar": 18,
         "endChar": 21
@@ -15834,32 +15834,32 @@
     "videoId": "friends-s01e01",
     "startTime": 1138.51,
     "endTime": 1140.01,
-    "textEn": "- Thank you.     - You're welcome.",
-    "textZh": "- 谢谢你   - 别客气",
+    "textEn": "Thank you. You're welcome.",
+    "textZh": "谢谢你 别客气",
     "alignment": [
       {
         "wordEn": "Thank",
         "wordZh": "",
-        "startChar": 2,
-        "endChar": 6
+        "startChar": 0,
+        "endChar": 4
       },
       {
         "wordEn": "you",
         "wordZh": "",
-        "startChar": 8,
-        "endChar": 10
+        "startChar": 6,
+        "endChar": 8
       },
       {
-        "wordEn": "Youre",
+        "wordEn": "You're",
         "wordZh": "",
-        "startChar": 19,
-        "endChar": 24
+        "startChar": 11,
+        "endChar": 16
       },
       {
         "wordEn": "welcome",
         "wordZh": "",
-        "startChar": 26,
-        "endChar": 32
+        "startChar": 18,
+        "endChar": 24
       }
     ]
   },
@@ -16066,7 +16066,7 @@
         "endChar": 20
       },
       {
-        "wordEn": "didnt",
+        "wordEn": "didn't",
         "wordZh": "",
         "startChar": 22,
         "endChar": 27
@@ -16340,7 +16340,7 @@
         "endChar": 7
       },
       {
-        "wordEn": "youre",
+        "wordEn": "you're",
         "wordZh": "",
         "startChar": 9,
         "endChar": 14
@@ -16420,50 +16420,50 @@
     "videoId": "friends-s01e01",
     "startTime": 1174.42,
     "endTime": 1176.13,
-    "textEn": "- I don't think so.     - Oh, come on.",
-    "textZh": "- 还没有   - 来吧",
+    "textEn": "I don't think so. Oh, come on.",
+    "textZh": "还没有 来吧",
     "alignment": [
       {
         "wordEn": "I",
         "wordZh": "",
-        "startChar": 2,
-        "endChar": 2
+        "startChar": 0,
+        "endChar": 0
       },
       {
-        "wordEn": "dont",
+        "wordEn": "don't",
         "wordZh": "",
-        "startChar": 4,
-        "endChar": 8
+        "startChar": 2,
+        "endChar": 6
       },
       {
         "wordEn": "think",
         "wordZh": "",
-        "startChar": 10,
-        "endChar": 14
+        "startChar": 8,
+        "endChar": 12
       },
       {
         "wordEn": "so",
         "wordZh": "",
-        "startChar": 16,
-        "endChar": 17
+        "startChar": 14,
+        "endChar": 15
       },
       {
         "wordEn": "Oh",
         "wordZh": "",
-        "startChar": 26,
-        "endChar": 27
+        "startChar": 18,
+        "endChar": 19
       },
       {
         "wordEn": "come",
         "wordZh": "",
-        "startChar": 30,
-        "endChar": 33
+        "startChar": 22,
+        "endChar": 25
       },
       {
         "wordEn": "on",
         "wordZh": "",
-        "startChar": 35,
-        "endChar": 36
+        "startChar": 27,
+        "endChar": 28
       }
     ]
   },
@@ -16522,26 +16522,26 @@
     "videoId": "friends-s01e01",
     "startTime": 1182.68,
     "endTime": 1185.6,
-    "textEn": "- Hey.     - All right.",
-    "textZh": "- 嘿   - 好耶",
+    "textEn": "Hey. All right.",
+    "textZh": "嘿 好耶",
     "alignment": [
       {
         "wordEn": "Hey",
         "wordZh": "",
-        "startChar": 2,
-        "endChar": 4
+        "startChar": 0,
+        "endChar": 2
       },
       {
         "wordEn": "All",
         "wordZh": "",
-        "startChar": 13,
-        "endChar": 15
+        "startChar": 5,
+        "endChar": 7
       },
       {
         "wordEn": "right",
         "wordZh": "",
-        "startChar": 17,
-        "endChar": 21
+        "startChar": 9,
+        "endChar": 13
       }
     ]
   },
@@ -16606,7 +16606,7 @@
         "endChar": 7
       },
       {
-        "wordEn": "Youre",
+        "wordEn": "You're",
         "wordZh": "",
         "startChar": 10,
         "endChar": 15
@@ -16646,7 +16646,7 @@
         "endChar": 3
       },
       {
-        "wordEn": "thats",
+        "wordEn": "that's",
         "wordZh": "",
         "startChar": 6,
         "endChar": 11
@@ -16700,80 +16700,80 @@
     "videoId": "friends-s01e01",
     "startTime": 1200.99,
     "endTime": 1204.32,
-    "textEn": "- No. No, I gotta go home sometime.     - Are you gonna be okay?",
-    "textZh": "- 不 我总要回家啊   - 你还好吗？",
+    "textEn": "No. No, I gotta go home sometime. Are you gonna be okay?",
+    "textZh": "不 我总要回家啊 你还好吗？",
     "alignment": [
       {
         "wordEn": "No",
         "wordZh": "",
-        "startChar": 2,
-        "endChar": 3
+        "startChar": 0,
+        "endChar": 1
       },
       {
         "wordEn": "No",
         "wordZh": "",
-        "startChar": 6,
-        "endChar": 7
+        "startChar": 4,
+        "endChar": 5
       },
       {
         "wordEn": "I",
         "wordZh": "",
-        "startChar": 10,
-        "endChar": 10
+        "startChar": 8,
+        "endChar": 8
       },
       {
         "wordEn": "gotta",
         "wordZh": "",
-        "startChar": 12,
-        "endChar": 16
+        "startChar": 10,
+        "endChar": 14
       },
       {
         "wordEn": "go",
         "wordZh": "",
-        "startChar": 18,
-        "endChar": 19
+        "startChar": 16,
+        "endChar": 17
       },
       {
         "wordEn": "home",
         "wordZh": "",
-        "startChar": 21,
-        "endChar": 24
+        "startChar": 19,
+        "endChar": 22
       },
       {
         "wordEn": "sometime",
         "wordZh": "",
-        "startChar": 26,
-        "endChar": 33
+        "startChar": 24,
+        "endChar": 31
       },
       {
         "wordEn": "Are",
         "wordZh": "",
-        "startChar": 42,
-        "endChar": 44
+        "startChar": 34,
+        "endChar": 36
       },
       {
         "wordEn": "you",
         "wordZh": "",
-        "startChar": 46,
-        "endChar": 48
+        "startChar": 38,
+        "endChar": 40
       },
       {
         "wordEn": "gonna",
         "wordZh": "",
-        "startChar": 50,
-        "endChar": 54
+        "startChar": 42,
+        "endChar": 46
       },
       {
         "wordEn": "be",
         "wordZh": "",
-        "startChar": 56,
-        "endChar": 57
+        "startChar": 48,
+        "endChar": 49
       },
       {
         "wordEn": "okay",
         "wordZh": "",
-        "startChar": 59,
-        "endChar": 62
+        "startChar": 51,
+        "endChar": 54
       }
     ]
   },
@@ -16876,13 +16876,13 @@
     "textZh": "那是保罗的手表",
     "alignment": [
       {
-        "wordEn": "Thats",
+        "wordEn": "That's",
         "wordZh": "",
         "startChar": 0,
         "endChar": 5
       },
       {
-        "wordEn": "Pauls",
+        "wordEn": "Paul's",
         "wordZh": "",
         "startChar": 7,
         "endChar": 12
@@ -17044,44 +17044,44 @@
     "videoId": "friends-s01e01",
     "startTime": 1234.27,
     "endTime": 1235.52,
-    "textEn": "- Oh, sorry.     - No. Oh, no. Go.",
-    "textZh": "- 哦 抱歉   - 不 你来",
+    "textEn": "Oh, sorry. No. Oh, no. Go.",
+    "textZh": "哦 抱歉 不 你来",
     "alignment": [
       {
         "wordEn": "Oh",
         "wordZh": "",
-        "startChar": 2,
-        "endChar": 3
+        "startChar": 0,
+        "endChar": 1
       },
       {
         "wordEn": "sorry",
         "wordZh": "",
-        "startChar": 6,
-        "endChar": 10
+        "startChar": 4,
+        "endChar": 8
       },
       {
         "wordEn": "No",
+        "wordZh": "",
+        "startChar": 11,
+        "endChar": 12
+      },
+      {
+        "wordEn": "Oh",
+        "wordZh": "",
+        "startChar": 15,
+        "endChar": 16
+      },
+      {
+        "wordEn": "no",
         "wordZh": "",
         "startChar": 19,
         "endChar": 20
       },
       {
-        "wordEn": "Oh",
+        "wordEn": "Go",
         "wordZh": "",
         "startChar": 23,
         "endChar": 24
-      },
-      {
-        "wordEn": "no",
-        "wordZh": "",
-        "startChar": 27,
-        "endChar": 28
-      },
-      {
-        "wordEn": "Go",
-        "wordZh": "",
-        "startChar": 31,
-        "endChar": 32
       }
     ]
   },
@@ -17090,44 +17090,44 @@
     "videoId": "friends-s01e01",
     "startTime": 1235.69,
     "endTime": 1237.65,
-    "textEn": "- No, have it, really.     - Split it?",
-    "textZh": "- 不 你吃吧   - 平分？",
+    "textEn": "No, have it, really. Split it?",
+    "textZh": "不 你吃吧 平分？",
     "alignment": [
       {
         "wordEn": "No",
         "wordZh": "",
-        "startChar": 2,
-        "endChar": 3
+        "startChar": 0,
+        "endChar": 1
       },
       {
         "wordEn": "have",
         "wordZh": "",
-        "startChar": 6,
-        "endChar": 9
+        "startChar": 4,
+        "endChar": 7
       },
       {
         "wordEn": "it",
         "wordZh": "",
-        "startChar": 11,
-        "endChar": 12
+        "startChar": 9,
+        "endChar": 10
       },
       {
         "wordEn": "really",
         "wordZh": "",
-        "startChar": 15,
-        "endChar": 20
+        "startChar": 13,
+        "endChar": 18
       },
       {
         "wordEn": "Split",
         "wordZh": "",
-        "startChar": 29,
-        "endChar": 33
+        "startChar": 21,
+        "endChar": 25
       },
       {
         "wordEn": "it",
         "wordZh": "",
-        "startChar": 35,
-        "endChar": 36
+        "startChar": 27,
+        "endChar": 28
       }
     ]
   },
@@ -17136,20 +17136,20 @@
     "videoId": "friends-s01e01",
     "startTime": 1237.81,
     "endTime": 1239.82,
-    "textEn": "- Okay.     - Okay.",
-    "textZh": "- 好吧   - 好吧",
+    "textEn": "Okay. Okay.",
+    "textZh": "好吧 好吧",
     "alignment": [
       {
         "wordEn": "Okay",
         "wordZh": "",
-        "startChar": 2,
-        "endChar": 5
+        "startChar": 0,
+        "endChar": 3
       },
       {
         "wordEn": "Okay",
         "wordZh": "",
-        "startChar": 14,
-        "endChar": 17
+        "startChar": 6,
+        "endChar": 9
       }
     ]
   },
@@ -17190,7 +17190,7 @@
         "endChar": 11
       },
       {
-        "wordEn": "didnt",
+        "wordEn": "didn't",
         "wordZh": "",
         "startChar": 13,
         "endChar": 18
@@ -17386,7 +17386,7 @@
         "endChar": 26
       },
       {
-        "wordEn": "Monicas",
+        "wordEn": "Monica's",
         "wordZh": "",
         "startChar": 28,
         "endChar": 35
@@ -17742,32 +17742,32 @@
     "videoId": "friends-s01e01",
     "startTime": 1295.83,
     "endTime": 1297.96,
-    "textEn": "- Good night.     - Good night.",
-    "textZh": "- 晚安   - 晚安",
+    "textEn": "Good night. Good night.",
+    "textZh": "晚安 晚安",
     "alignment": [
       {
         "wordEn": "Good",
         "wordZh": "",
-        "startChar": 2,
-        "endChar": 5
+        "startChar": 0,
+        "endChar": 3
       },
       {
         "wordEn": "night",
         "wordZh": "",
-        "startChar": 7,
-        "endChar": 11
+        "startChar": 5,
+        "endChar": 9
       },
       {
         "wordEn": "Good",
         "wordZh": "",
-        "startChar": 20,
-        "endChar": 23
+        "startChar": 12,
+        "endChar": 15
       },
       {
         "wordEn": "night",
         "wordZh": "",
-        "startChar": 25,
-        "endChar": 29
+        "startChar": 17,
+        "endChar": 21
       }
     ]
   },
@@ -17820,7 +17820,7 @@
         "endChar": 14
       },
       {
-        "wordEn": "whats",
+        "wordEn": "what's",
         "wordZh": "",
         "startChar": 17,
         "endChar": 22
@@ -17888,7 +17888,7 @@
     "textZh": "我真不敢相信我听到的",
     "alignment": [
       {
-        "wordEn": "Cant",
+        "wordEn": "Can't",
         "wordZh": "",
         "startChar": 0,
         "endChar": 4
@@ -17906,7 +17906,7 @@
         "endChar": 17
       },
       {
-        "wordEn": "Im",
+        "wordEn": "I'm",
         "wordZh": "",
         "startChar": 19,
         "endChar": 21
@@ -17934,7 +17934,7 @@
         "endChar": 0
       },
       {
-        "wordEn": "cant",
+        "wordEn": "can't",
         "wordZh": "",
         "startChar": 2,
         "endChar": 6
@@ -17952,7 +17952,7 @@
         "endChar": 19
       },
       {
-        "wordEn": "Im",
+        "wordEn": "I'm",
         "wordZh": "",
         "startChar": 21,
         "endChar": 23
@@ -17976,68 +17976,68 @@
     "videoId": "friends-s01e01",
     "startTime": 1334.04,
     "endTime": 1336.25,
-    "textEn": "- What? I said you had...     - What? I said you had...",
-    "textZh": "- 怎么啦 我说你有个   - 我说你有个…",
+    "textEn": "What? I said you had... What? I said you had...",
+    "textZh": "怎么啦 我说你有个 我说你有个…",
     "alignment": [
       {
         "wordEn": "What",
         "wordZh": "",
-        "startChar": 2,
-        "endChar": 5
+        "startChar": 0,
+        "endChar": 3
       },
       {
         "wordEn": "I",
         "wordZh": "",
-        "startChar": 8,
-        "endChar": 8
+        "startChar": 6,
+        "endChar": 6
       },
       {
         "wordEn": "said",
         "wordZh": "",
-        "startChar": 10,
-        "endChar": 13
+        "startChar": 8,
+        "endChar": 11
       },
       {
         "wordEn": "you",
         "wordZh": "",
-        "startChar": 15,
-        "endChar": 17
+        "startChar": 13,
+        "endChar": 15
       },
       {
         "wordEn": "had",
         "wordZh": "",
-        "startChar": 19,
-        "endChar": 21
+        "startChar": 17,
+        "endChar": 19
       },
       {
         "wordEn": "What",
+        "wordZh": "",
+        "startChar": 24,
+        "endChar": 27
+      },
+      {
+        "wordEn": "I",
+        "wordZh": "",
+        "startChar": 30,
+        "endChar": 30
+      },
+      {
+        "wordEn": "said",
         "wordZh": "",
         "startChar": 32,
         "endChar": 35
       },
       {
-        "wordEn": "I",
-        "wordZh": "",
-        "startChar": 38,
-        "endChar": 38
-      },
-      {
-        "wordEn": "said",
-        "wordZh": "",
-        "startChar": 40,
-        "endChar": 43
-      },
-      {
         "wordEn": "you",
         "wordZh": "",
-        "startChar": 45,
-        "endChar": 47
+        "startChar": 37,
+        "endChar": 39
       },
       {
         "wordEn": "had",
         "wordZh": "",
-        "startChar": 49,
-        "endChar": 51
+        "startChar": 41,
+        "endChar": 43
       }
     ]
   },
@@ -18046,62 +18046,62 @@
     "videoId": "friends-s01e01",
     "startTime": 1337.29,
     "endTime": 1339.75,
-    "textEn": "- Would you stop?     - Oh, was I doing it again?",
-    "textZh": "- 有完没完？ - 我的老毛病又犯了？",
+    "textEn": "Would you stop? Oh, was I doing it again?",
+    "textZh": "有完没完？ 我的老毛病又犯了？",
     "alignment": [
       {
         "wordEn": "Would",
         "wordZh": "",
-        "startChar": 2,
-        "endChar": 6
+        "startChar": 0,
+        "endChar": 4
       },
       {
         "wordEn": "you",
         "wordZh": "",
-        "startChar": 8,
-        "endChar": 10
+        "startChar": 6,
+        "endChar": 8
       },
       {
         "wordEn": "stop",
         "wordZh": "",
-        "startChar": 12,
-        "endChar": 15
+        "startChar": 10,
+        "endChar": 13
       },
       {
         "wordEn": "Oh",
         "wordZh": "",
-        "startChar": 24,
-        "endChar": 25
+        "startChar": 16,
+        "endChar": 17
       },
       {
         "wordEn": "was",
         "wordZh": "",
-        "startChar": 28,
-        "endChar": 30
+        "startChar": 20,
+        "endChar": 22
       },
       {
         "wordEn": "I",
         "wordZh": "",
-        "startChar": 32,
-        "endChar": 32
+        "startChar": 24,
+        "endChar": 24
       },
       {
         "wordEn": "doing",
         "wordZh": "",
-        "startChar": 34,
-        "endChar": 38
+        "startChar": 26,
+        "endChar": 30
       },
       {
         "wordEn": "it",
         "wordZh": "",
-        "startChar": 40,
-        "endChar": 41
+        "startChar": 32,
+        "endChar": 33
       },
       {
         "wordEn": "again",
         "wordZh": "",
-        "startChar": 43,
-        "endChar": 47
+        "startChar": 35,
+        "endChar": 39
       }
     ]
   },
@@ -18236,68 +18236,68 @@
     "videoId": "friends-s01e01",
     "startTime": 1349.34,
     "endTime": 1352.64,
-    "textEn": "- I'm just serving it.     - I'll have a cup of coffee.",
-    "textZh": "- 只是端过来   - 好吧 我要杯咖啡",
+    "textEn": "I'm just serving it. I'll have a cup of coffee.",
+    "textZh": "只是端过来 好吧 我要杯咖啡",
     "alignment": [
       {
-        "wordEn": "Im",
+        "wordEn": "I'm",
         "wordZh": "",
-        "startChar": 2,
-        "endChar": 4
+        "startChar": 0,
+        "endChar": 2
       },
       {
         "wordEn": "just",
         "wordZh": "",
-        "startChar": 6,
-        "endChar": 9
+        "startChar": 4,
+        "endChar": 7
       },
       {
         "wordEn": "serving",
         "wordZh": "",
-        "startChar": 11,
-        "endChar": 17
+        "startChar": 9,
+        "endChar": 15
       },
       {
         "wordEn": "it",
         "wordZh": "",
-        "startChar": 19,
-        "endChar": 20
+        "startChar": 17,
+        "endChar": 18
       },
       {
-        "wordEn": "Ill",
+        "wordEn": "I'll",
         "wordZh": "",
-        "startChar": 29,
-        "endChar": 32
+        "startChar": 21,
+        "endChar": 24
       },
       {
         "wordEn": "have",
         "wordZh": "",
-        "startChar": 34,
-        "endChar": 37
+        "startChar": 26,
+        "endChar": 29
       },
       {
         "wordEn": "a",
         "wordZh": "",
-        "startChar": 39,
-        "endChar": 39
+        "startChar": 31,
+        "endChar": 31
       },
       {
         "wordEn": "cup",
         "wordZh": "",
-        "startChar": 41,
-        "endChar": 43
+        "startChar": 33,
+        "endChar": 35
       },
       {
         "wordEn": "of",
         "wordZh": "",
-        "startChar": 45,
-        "endChar": 46
+        "startChar": 37,
+        "endChar": 38
       },
       {
         "wordEn": "coffee",
         "wordZh": "",
-        "startChar": 48,
-        "endChar": 53
+        "startChar": 40,
+        "endChar": 45
       }
     ]
   },
@@ -18338,7 +18338,7 @@
     "textZh": "我在拉斯维加斯 我是丽莎.明妮莉…",
     "alignment": [
       {
-        "wordEn": "Im",
+        "wordEn": "I'm",
         "wordZh": "",
         "startChar": 0,
         "endChar": 2
@@ -18362,7 +18362,7 @@
         "endChar": 15
       },
       {
-        "wordEn": "Im",
+        "wordEn": "I'm",
         "wordZh": "",
         "startChar": 18,
         "endChar": 20
