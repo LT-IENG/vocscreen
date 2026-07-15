@@ -5,6 +5,7 @@ import { FilmReel } from '@phosphor-icons/react'
 
 export function VideoPlayer() {
   const videoRef = useRef<HTMLVideoElement>(null)
+  const retryCountRef = useRef(0)
   const {
     videoBlobUrl,
     isPlaying,
@@ -26,6 +27,8 @@ export function VideoPlayer() {
     const onTimeUpdate = () => setCurrentTime(video.currentTime)
     const onLoadedMeta = () => {
       if (video.duration && isFinite(video.duration)) setDuration(video.duration)
+      // 加载成功，重置重试计数
+      retryCountRef.current = 0
     }
     const onEnded = () => pause()
 
@@ -40,7 +43,10 @@ export function VideoPlayer() {
     }
   }, [videoBlobUrl, setCurrentTime, setDuration, pause])
 
-  useEffect(() => { setVideoError(false) }, [videoBlobUrl])
+  useEffect(() => {
+    setVideoError(false)
+    retryCountRef.current = 0
+  }, [videoBlobUrl])
 
   useEffect(() => {
     const video = videoRef.current
@@ -81,13 +87,19 @@ export function VideoPlayer() {
           src={videoBlobUrl}
           className="absolute inset-0 w-full h-full object-contain pointer-events-none"
           onError={() => {
-            setVideoError(true)
-            const ps = usePlayerStore.getState()
-            if (!ps.isDemoMode) {
-              ps.startDemo(ps.videoTitle)
+            // 重试一次（浏览器可能因 CORS 预检或网络抖动中止请求）
+            if (retryCountRef.current < 2) {
+              retryCountRef.current++
+              const video = videoRef.current
+              if (video) {
+                // 重新触发加载
+                video.load()
+              }
+              return
             }
+            // 重试仍失败，显示错误但保持视频元素（不切换到 demo 模式）
+            setVideoError(true)
           }}
-          crossOrigin="anonymous"
           playsInline
         />
       )}
@@ -105,7 +117,7 @@ export function VideoPlayer() {
               </>
             )}
             {videoError && (
-              <p className="text-xs text-accent-rose">浏览器不支持此视频编码（尝试转码为 MP4/H.264）</p>
+              <p className="text-xs text-accent-rose">视频加载失败，请检查网络或更换视频源</p>
             )}
             {!isDemoMode && !videoBlobUrl && !videoError && (
               <p className="text-xs text-ink-muted">暂无可播放的视频画面，字幕正常工作</p>
