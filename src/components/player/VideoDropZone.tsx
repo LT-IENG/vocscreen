@@ -65,11 +65,11 @@ export function VideoDropZone() {
     setError(null)
     setLoadingDemo(true)
     try {
-      // 先加载字幕（此时组件仍挂载，fetch 不会被中断）
+      // 先加载字幕
       const mockData = await loadMockSubtitles(DEMO_SUBTITLE_PATH)
+      console.log('[Demo] loadMockSubtitles result:', mockData ? `${mockData.segments.length} segments` : 'NULL')
 
-      if (mockData) {
-        // Rematch with currently loaded wordbook
+      if (mockData && mockData.segments.length > 0) {
         const vocabState = useVocabStore.getState()
         const currentBookId = useUIStore.getState().selectedWordBookId
         if (currentBookId && vocabState.loadedBooks.has(currentBookId as any)) {
@@ -77,6 +77,7 @@ export function VideoDropZone() {
           const wordSet = buildWordSet(book)
           const newSegments = rematchAll(mockData.segments, wordSet, book.id)
           const matchList = getMatchList(newSegments)
+          console.log('[Demo] rematch done:', newSegments.length, 'segments,', matchList.length, 'matches')
           useSubtitleStore.getState().loadMock({
             segments: newSegments,
             matchSummary: {
@@ -89,6 +90,7 @@ export function VideoDropZone() {
             duration: mockData.duration,
           })
         } else {
+          console.log('[Demo] no wordbook selected, loading raw segments')
           useSubtitleStore.getState().loadMock({
             segments: mockData.segments,
             matchSummary: mockData.matchSummary,
@@ -96,13 +98,16 @@ export function VideoDropZone() {
             duration: mockData.duration,
           })
         }
+        console.log('[Demo] subtitle store updated, segments:', useSubtitleStore.getState().segments.length)
+      } else {
+        console.error('[Demo] subtitles failed to load!')
       }
 
-      // 最后加载视频（此调用会触发组件卸载，但字幕数据已就绪）
+      // 加载视频
       loadVideoUrl(DEMO_VIDEO_URL, DEMO_VIDEO_TITLE, DEMO_VIDEO_ID)
     } catch (err) {
       setError('加载演示视频失败，请检查网络后重试')
-      console.error(err)
+      console.error('[Demo] error:', err)
     } finally {
       setLoadingDemo(false)
     }

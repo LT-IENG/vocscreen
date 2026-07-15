@@ -9,12 +9,13 @@ export async function loadMockSubtitles(
   duration: number
 } | null> {
   try {
-    // cache: 'no-cache' 确保每次都获取最新文件（避免浏览器缓存旧字幕）
-    const metaResp = await fetch(`${videoPath}/metadata.json`, { cache: 'no-cache' })
+    // 用时间戳破缓存，避免浏览器返回旧的缓存版本
+    const ts = Date.now()
+    const metaResp = await fetch(`${videoPath}/metadata.json?t=${ts}`)
     if (!metaResp.ok) return null
     const meta = await metaResp.json()
 
-    const subResp = await fetch(`${videoPath}/subtitles.json`, { cache: 'no-cache' })
+    const subResp = await fetch(`${videoPath}/subtitles.json?t=${ts}`)
     if (!subResp.ok) return null
     const rawSub: unknown = await subResp.json()
     // 兼容两种格式：纯数组 [seg, ...] 或对象 { segments: [...] }
