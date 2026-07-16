@@ -5,14 +5,14 @@ import { useUIStore } from '../../stores/useUIStore'
 import { useSubtitleStore } from '../../stores/useSubtitleStore'
 import { useVocabStore } from '../../stores/useVocabStore'
 import { buildWordSet, rematchAll, getMatchList } from '../../engines/matching/MatcherEngine'
-import { loadMockSubtitles } from '../../engines/subtitle/MockLoader'
 import { motion } from 'motion/react'
+import mockSubtitles from '../../mock/friends-s01e01/subtitles.json'
+import mockMetadata from '../../mock/friends-s01e01/metadata.json'
 
 // COS video URL (do not auto-test — requires user authorization to access)
 const DEMO_VIDEO_URL = 'https://tencent-1414173792.cos.ap-guangzhou.myqcloud.com/S01E01_compress2.mp4'
 const DEMO_VIDEO_TITLE = 'Friends S01E01'
 const DEMO_VIDEO_ID = 'friends-s01e01'
-const DEMO_SUBTITLE_PATH = '/mock/friends-s01e01'
 
 export function VideoDropZone() {
   const loadVideo = usePlayerStore((s) => s.loadVideo)
@@ -65,19 +65,18 @@ export function VideoDropZone() {
     setError(null)
     setLoadingDemo(true)
     try {
-      // 先加载字幕
-      const mockData = await loadMockSubtitles(DEMO_SUBTITLE_PATH)
-      console.log('[Demo] loadMockSubtitles result:', mockData ? `${mockData.segments.length} segments` : 'NULL')
+      // 字幕直接从 JS 包中读取，不走网络请求，100% 可靠
+      const segments = mockSubtitles as any[]
+      const meta = mockMetadata as any
 
-      if (mockData && mockData.segments.length > 0) {
+      if (segments && segments.length > 0) {
         const vocabState = useVocabStore.getState()
         const currentBookId = useUIStore.getState().selectedWordBookId
         if (currentBookId && vocabState.loadedBooks.has(currentBookId as any)) {
           const book = vocabState.loadedBooks.get(currentBookId as any)!
           const wordSet = buildWordSet(book)
-          const newSegments = rematchAll(mockData.segments, wordSet, book.id)
+          const newSegments = rematchAll(segments, wordSet, book.id)
           const matchList = getMatchList(newSegments)
-          console.log('[Demo] rematch done:', newSegments.length, 'segments,', matchList.length, 'matches')
           useSubtitleStore.getState().loadMock({
             segments: newSegments,
             matchSummary: {
@@ -86,21 +85,17 @@ export function VideoDropZone() {
               totalMatches: matchList.length,
               matchList,
             },
-            title: mockData.title,
-            duration: mockData.duration,
+            title: meta.title,
+            duration: meta.duration,
           })
         } else {
-          console.log('[Demo] no wordbook selected, loading raw segments')
           useSubtitleStore.getState().loadMock({
-            segments: mockData.segments,
-            matchSummary: mockData.matchSummary,
-            title: mockData.title,
-            duration: mockData.duration,
+            segments,
+            matchSummary: meta.matchSummary ?? { bookId: '', bookName: '', totalMatches: 0, matchList: [] },
+            title: meta.title,
+            duration: meta.duration,
           })
         }
-        console.log('[Demo] subtitle store updated, segments:', useSubtitleStore.getState().segments.length)
-      } else {
-        console.error('[Demo] subtitles failed to load!')
       }
 
       // 加载视频
